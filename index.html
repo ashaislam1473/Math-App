@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Math Solver AI</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);min-height:100vh;display:flex;justify-content:center;padding:30px 16px;transition:all 0.3s}
+body.light{background:linear-gradient(135deg,#667eea,#764ba2)}
+.app{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:24px;padding:28px 24px;width:100%;max-width:600px;border:1px solid rgba(255,255,255,0.1);height:fit-content}
+body.light .app{background:rgba(255,255,255,0.95);border:1px solid rgba(0,0,0,0.1)}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.header h1{font-size:22px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+body.light .header h1{color:#1a1a2e}
+#theme-btn{padding:8px 14px;border:1px solid rgba(255,255,255,0.3);border-radius:20px;background:rgba(255,255,255,0.1);color:#fff;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600}
+body.light #theme-btn{border-color:#ddd;background:white;color:#333}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:8px 16px;border:1px solid rgba(255,255,255,0.2);border-radius:20px;background:transparent;color:rgba(255,255,255,0.6);font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
+.tab.active{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white}
+body.light .tab{border-color:#ddd;color:#888}
+body.light .tab.active{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
+.input-section{margin-bottom:20px}
+.input-label{font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;display:block;font-weight:500}
+body.light .input-label{color:#666}
+.input-box{width:100%;padding:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:14px;color:#fff;font-size:16px;font-family:'Poppins',sans-serif;outline:none;transition:all 0.3s;resize:none}
+.input-box:focus{border-color:#e94560;background:rgba(255,255,255,0.12)}
+body.light .input-box{background:#f8f9ff;border-color:#ddd;color:#333}
+body.light .input-box:focus{border-color:#667eea;background:white}
+.examples{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.example-btn{padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:rgba(255,255,255,0.7);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;transition:all 0.2s}
+.example-btn:hover{background:rgba(255,255,255,0.15)}
+body.light .example-btn{background:#f0f0f0;border-color:#ddd;color:#555}
+.solve-btn{width:100%;padding:14px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s;margin-bottom:20px}
+body.light .solve-btn{background:linear-gradient(135deg,#667eea,#764ba2)}
+.solve-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(233,69,96,0.4)}
+.result-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px;margin-bottom:20px;display:none}
+body.light .result-box{background:#f8f9ff;border-color:#e0e0e0}
+.result-box.show{display:block}
+.result-header{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:12px;font-weight:500;text-transform:uppercase;letter-spacing:1px}
+body.light .result-header{color:#999}
+.answer{font-size:28px;font-weight:700;color:#4ecca3;margin-bottom:16px}
+body.light .answer{color:#667eea}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:12px;align-items:flex-start}
+.step-num{width:24px;height:24px;background:linear-gradient(135deg,#e94560,#c0392b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0;margin-top:2px}
+body.light .step-num{background:linear-gradient(135deg,#667eea,#764ba2)}
+.step-text{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6}
+body.light .step-text{color:#444}
+.error-box{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);border-radius:14px;padding:16px;margin-bottom:20px;display:none;color:#ff6b6b;font-size:13px}
+.error-box.show{display:block}
+.history-section{margin-top:20px}
+.history-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.history-title{font-size:13px;color:rgba(255,255,255,0.6);font-weight:600;text-transform:uppercase;letter-spacing:1px}
+body.light .history-title{color:#888}
+.clear-btn{padding:4px 12px;background:rgba(233,69,96,0.2);border:1px solid rgba(233,69,96,0.3);border-radius:10px;color:#e94560;font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer}
+.history-list{display:flex;flex-direction:column;gap:8px;max-height:200px;overflow-y:auto}
+.history-item{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center}
+.history-item:hover{background:rgba(255,255,255,0.1)}
+body.light .history-item{background:#f5f5f5;border-color:#e0e0e0}
+body.light .history-item:hover{background:#ebebeb}
+.history-problem{font-size:13px;color:rgba(255,255,255,0.8);font-weight:500}
+body.light .history-problem{color:#333}
+.history-answer{font-size:12px;color:#4ecca3;font-weight:600}
+body.light .history-answer{color:#667eea}
+.empty-history{text-align:center;color:rgba(255,255,255,0.3);font-size:13px;padding:20px 0}
+body.light .empty-history{color:#bbb}
+.loading{display:none;text-align:center;padding:20px;color:rgba(255,255,255,0.6);font-size:13px}
+.loading.show{display:block}
+.spinner{width:30px;height:30px;border:3px solid rgba(255,255,255,0.1);border-top:3px solid #e94560;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 10px}
+body.light .spinner{border-top-color:#667eea}
+@keyframes spin{to{transform:rotate(360deg)}}
+.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.calc-btn{padding:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:12px;color:#fff;font-size:16px;font-family:'Poppins',sans-serif;cursor:pointer;transition:all 0.2s;font-weight:500}
+.calc-btn:hover{background:rgba(255,255,255,0.15);transform:scale(1.05)}
+.calc-btn.operator{background:rgba(233,69,96,0.2);border-color:rgba(233,69,96,0.3);color:#e94560}
+.calc-btn.equals{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white;grid-column:span 2}
+.calc-btn.clear{background:rgba(255,165,0,0.2);border-color:rgba(255,165,0,0.3);color:orange}
+body.light .calc-btn{background:#f5f5f5;border-color:#e0e0e0;color:#333}
+body.light .calc-btn.operator{background:#ffe8f0;color:#e94560}
+body.light .calc-btn.equals{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
+body.light .calc-btn.clear{background:#fff3e0;color:orange}
+.calc-display{width:100%;padding:16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:14px;color:#fff;font-size:20px;font-family:'Poppins',sans-serif;outline:none;margin-bottom:12px;text-align:right}
+body.light .calc-display{background:#f8f9ff;border-color:#ddd;color:#333}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <h1>🔢 Math Solver</h1>
+    <button id="theme-btn" onclick="toggleTheme()">☀️ Light</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('solver',this)">🧮 Solver</button>
+    <button class="tab" onclick="switchTab('calculator',this)">🔢 Calculator</button>
+    <button class="tab" onclick="switchTab('history',this)">📜 History</button>
+  </div>
+
+  <!-- SOLVER TAB -->
+  <div id="tab-solver">
+    <div class="input-section">
+      <span class="input-label">Type your math problem:</span>
+      <textarea class="input-box" id="problem-input" rows="3" placeholder="Examples:&#10;2 + 2&#10;x + 5 = 10&#10;2x^2 + 3x - 5 = 0&#10;sqrt(144)&#10;sin(30)"></textarea>
+      <div class="examples">
+        <button class="example-btn" onclick="setExample('2 + 2')">2 + 2</button>
+        <button class="example-btn" onclick="setExample('15% of 200')">15% of 200</button>
+        <button class="example-btn" onclick="setExample('sqrt(144)')">√144</button>
+        <button class="example-btn" onclick="setExample('x + 5 = 10')">x + 5 = 10</button>
+        <button class="example-btn" onclick="setExample('2^10')">2¹⁰</button>
+        <button class="example-btn" onclick="setExample('sin(30 deg)')">sin(30°)</button>
+        <button class="example-btn" onclick="setExample('log(1000)')">log(1000)</button>
+        <button class="example-btn" onclick="setExample('5!')">5!</button>
+      </div>
+    </div>
+
+    <button class="solve-btn" onclick="solveProblem()">⚡ Solve & Explain</button>
+
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      Solving your problem...
+    </div>
+
+    <div class="error-box" id="error-box"></div>
+
+    <div class="result-box" id="result-box">
+      <div class="result-header">✅ Solution</div>
+      <div class="answer" id="answer-display"></div>
+      <div class="steps" id="steps-display"></div>
+    </div>
+  </div>
+
+  <!-- CALCULATOR TAB -->
+  <div id="tab-calculator" style="display:none">
+    <input class="calc-display" id="calc-display" readonly placeholder="0"/>
+    <div class="calc-grid">
+      <button class="calc-btn clear" onclick="calcClear()">C</button>
+      <button class="calc-btn clear" onclick="calcDel()">⌫</button>
+      <button class="calc-btn operator" onclick="calcInput('%')">%</button>
+      <button class="calc-btn operator" onclick="calcInput('/')">÷</button>
+      <button class="calc-btn" onclick="calcInput('7')">7</button>
+      <button class="calc-btn" onclick="calcInput('8')">8</button>
+      <button class="calc-btn" onclick="calcInput('9')">9</button>
+      <button class="calc-btn operator" onclick="calcInput('*')">×</button>
+      <button class="calc-btn" onclick="calcInput('4')">4</button>
+      <button class="calc-btn" onclick="calcInput('5')">5</button>
+      <button class="calc-btn" onclick="calcInput('6')">6</button>
+      <button class="calc-btn operator" onclick="calcInput('-')">−</button>
+      <button class="calc-btn" onclick="calcInput('1')">1</button>
+      <button class="calc-btn" onclick="calcInput('2')">2</button>
+      <button class="calc-btn" onclick="calcInput('3')">3</button>
+      <button class="calc-btn operator" onclick="calcInput('+')">+</button>
+      <button class="calc-btn" onclick="calcInput('0')" style="grid-column:span 2">0</button>
+      <button class="calc-btn" onclick="calcInput('.')">.</button>
+      <button class="calc-btn equals" onclick="calcEquals()">=</button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="example-btn" onclick="calcInput('sqrt(')">√</button>
+      <button class="example-btn" onclick="calcInput('^')">xⁿ</button>
+      <button class="example-btn" onclick="calcInput('(')"> ( </button>
+      <button class="example-btn" onclick="calcInput(')')"> ) </button>
+      <button class="example-btn" onclick="calcInput('pi')">π</button>
+      <button class="example-btn" onclick="calcInput('e')">e</button>
+    </div>
+  </div>
+
+  <!-- HISTORY TAB -->
+  <div id="tab-history" style="display:none">
+    <div class="history-header">
+      <span class="history-title">📜 Recent Problems</span>
+      <button class="clear-btn" onclick="clearHistory()">Clear All</button>
+    </div>
+    <div class="history-list" id="history-list"></div>
+  </div>
+
+</div>
+
+<script>
+let history = JSON.parse(localStorage.getItem('mathHistory')) || [];
+let calcExpr = '';
+
+// ===== THEME =====
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  const isLight = document.body.classList.contains('light');
+  document.getElementById('theme-btn').textContent = isLight ? '🌙 Dark' : '☀️ Light';
+  localStorage.setItem('mathTheme', isLight ? 'light' : 'dark');
+}
+if (localStorage.getItem('mathTheme') === 'light') {
+  document.body.classList.add('light');
+  document.getElementById('theme-btn').textContent = '🌙 Dark';
+}
+
+// ===== TABS =====
+function switchTab(tab, btn) {
+  document.getElementById('tab-solver').style.display = 'none';
+  document.getElementById('tab-calculator').style.display = 'none';
+  document.getElementById('tab-history').style.display = 'none';
+  document.getElementById('tab-' + tab).style.display = 'block';
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  if (tab === 'history') renderHistory();
+}
+
+// ===== EXAMPLES =====
+function setExample(val) {
+  document.getElementById('problem-input').value = val;
+}
+
+// ===== SOLVER =====
+function solveProblem() {
+  const input = document.getElementById('problem-input').value.trim();
+  const loading = document.getElementById('loading');
+  const resultBox = document.getElementById('result-box');
+  const errorBox = document.getElementById('error-box');
+
+  if (!input) {
+    showError('Please type a math problem first!');
+    return;
+  }
+
+  loading.classList.add('show');
+  resultBox.classList.remove('show');
+  errorBox.classList.remove('show');
+
+  setTimeout(() => {
+    loading.classList.remove('show');
+    try {
+      const result = solve(input);
+      showResult(input, result.answer, result.steps);
+      saveHistory(input, result.answer);
+    } catch (e) {
+      showError('Could not solve: ' + e.message + '\n\nTry: 2+2, sqrt(16), x+5=10');
+    }
+  }, 600);
+}
+
+function solve(input) {
+  const clean = input.trim();
+
+  // Percentage
+  if (/(\d+\.?\d*)%\s*of\s*(\d+\.?\d*)/i.test(clean)) {
+    const m = clean.match(/(\d+\.?\d*)%\s*of\s*(\d+\.?\d*)/i);
+    const pct = parseFloat(m[1]);
+    const num = parseFloat(m[2]);
+    const ans = (pct / 100) * num;
+    return {
+      answer: ans,
+      steps: [
+        `Problem: Find ${pct}% of ${num}`,
+        `Formula: (percentage ÷ 100) × number`,
+        `Step: (${pct} ÷ 100) × ${num}`,
+        `Step: ${pct/100} × ${num}`,
+        `Answer: ${ans}`
+      ]
+    };
+  }
+
+  // Linear equation: x + 5 = 10
+  if (/[a-zA-Z]/.test(clean) && clean.includes('=')) {
+    return solveEquation(clean);
+  }
+
+  // General math expression
+  const result = math.evaluate(clean);
+  const steps = explainExpression(clean, result);
+  return { answer: result, steps };
+}
+
+function solveEquation(eq) {
+  const sides = eq.split('=');
+  if (sides.length !== 2) throw new Error('Invalid equation');
+
+  const left = sides[0].trim();
+  const right = sides[1].trim();
+  const varName = (left.match(/[a-zA-Z]/) || right.match(/[a-zA-Z]/))[0];
+
+  const steps = [
+    `Equation: ${eq}`,
+    `We need to find the value of "${varName}"`,
+    `Left side: ${left}`,
+    `Right side: ${right}`,
+  ];
+
+  // Try simple: ax + b = c
+  const match = left.match(/^(-?\d*\.?\d*)\s*\*?\s*([a-zA-Z])\s*([+-]\s*\d+\.?\d*)?$/);
+  if (match) {
+    let a = match[1] === '' || match[1] === undefined ? 1 : (match[1] === '-' ? -1 : parseFloat(match[1]));
+    const b = match[3] ? parseFloat(match[3].replace(/\s/g, '')) : 0;
+    const c = parseFloat(right);
+    const ans = (c - b) / a;
+    steps.push(`Move ${b} to right: ${varName} = ${c} - ${b}`);
+    steps.push(`Divide by ${a}: ${varName} = ${c - b} ÷ ${a}`);
+    steps.push(`Answer: ${varName} = ${ans}`);
+    return { answer: `${varName} = ${ans}`, steps };
+  }
+
+  // Fallback: use mathjs
+  try {
+    const expr = `solve(${left} - (${right}), ${varName})`;
+    const result = math.evaluate(expr);
+    steps.push(`Solved: ${varName} = ${result}`);
+    return { answer: `${varName} = ${result}`, steps };
+  } catch(e) {
+    throw new Error('Complex equation — try simpler form like: x + 5 = 10');
+  }
+}
+
+function explainExpression(expr, result) {
+  const steps = [`Problem: ${expr}`];
+
+  if (expr.includes('+')) {
+    const parts = expr.split('+').map(p => p.trim());
+    steps.push(`Adding: ${parts.join(' + ')}`);
+    steps.push(`Think: combine all numbers together`);
+  } else if (expr.includes('-')) {
+    steps.push(`Subtracting the numbers`);
+    steps.push(`Think: take away from the first number`);
+  } else if (expr.includes('*')) {
+    steps.push(`Multiplying the numbers`);
+    steps.push(`Think: repeated addition`);
+  } else if (expr.includes('/')) {
+    steps.push(`Dividing the numbers`);
+    steps.push(`Think: splitting into equal parts`);
+  } else if (expr.includes('sqrt')) {
+    steps.push(`Finding square root`);
+    steps.push(`Think: what number × itself = the number inside?`);
+  } else if (expr.includes('^')) {
+    const parts = expr.split('^');
+    steps.push(`${parts[0]} to the power of ${parts[1]}`);
+    steps.push(`Think: multiply ${parts[0]} by itself ${parts[1]} times`);
+  } else if (expr.includes('sin') || expr.includes('cos') || expr.includes('tan')) {
+    steps.push(`Trigonometry function`);
+    steps.push(`Think: ratio of sides in a right triangle`);
+  } else if (expr.includes('log')) {
+    steps.push(`Logarithm: finding the power`);
+    steps.push(`Think: 10 to what power = the number?`);
+  } else if (expr.includes('!')) {
+    steps.push(`Factorial: multiply all numbers from 1 to this number`);
+  }
+
+  steps.push(`Calculate: ${expr} = ${result}`);
+  steps.push(`✅ Final Answer: ${result}`);
+  return steps;
+}
+
+function showResult(problem, answer, steps) {
+  document.getElementById('answer-display').textContent = '= ' + answer;
+  const stepsDiv = document.getElementById('steps-display');
+  stepsDiv.innerHTML = steps.map((s, i) =>
+    `<div class="step">
+      <div class="step-num">${i+1}</div>
+      <div class="step-text">${s}</div>
+    </div>`
+  ).join('');
+  document.getElementById('result-box').classList.add('show');
+}
+
+function showError(msg) {
+  const errorBox = document.getElementById('error-box');
+  errorBox.textContent = '❌ ' + msg;
+  errorBox.classList.add('show');
+}
+
+// ===== HISTORY =====
+function saveHistory(problem, answer) {
+  history.unshift({ problem, answer: String(answer), time: new Date().toLocaleTimeString() });
+  if (history.length > 20) history.pop();
+  localStorage.setItem('mathHistory', JSON.stringify(history));
+}
+
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  if (history.length === 0) {
+    list.innerHTML = '<div class="empty-history">No history yet! Solve a problem first.</div>';
+    return;
+  }
+  list.innerHTML = history.map((h, i) => `
+    <div class="history-item" onclick="loadHistory(${i})">
+      <span class="history-problem">${h.problem}</span>
+      <span class="history-answer">= ${h.answer}</span>
+    </div>
+  `).join('');
+}
+
+function loadHistory(i) {
+  document.getElementById('problem-input').value = history[i].problem;
+  switchTab('solver', document.querySelectorAll('.tab')[0]);
+  solveProblem();
+}
+
+function clearHistory() {
+  if (confirm('Clear all history?')) {
+    history = [];
+    localStorage.removeItem('mathHistory');
+    renderHistory();
+  }
+}
+
+// ===== CALCULATOR =====
+function calcInput(val) {
+  calcExpr += val;
+  document.getElementById('calc-display').value = calcExpr;
+}
+
+function calcClear() {
+  calcExpr = '';
+  document.getElementById('calc-display').value = '';
+}
+
+function calcDel() {
+  calcExpr = calcExpr.slice(0, -1);
+  document.getElementById('calc-display').value = calcExpr;
+}
+
+function calcEquals() {
+  try {
+    const result = math.evaluate(calcExpr);
+    document.getElementById('calc-display').value = result;
+    saveHistory(calcExpr, result);
+    calcExpr = String(result);
+  } catch(e) {
+    document.getElementById('calc-display').value = 'Error';
+    calcExpr = '';
+  }
+}
+
+// Enter key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && e.ctrlKey) solveProblem();
+});
+</script>
+</body>
+</html>
