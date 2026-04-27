@@ -526,3 +526,70 @@ window.addEventListener('resize',()=>{
 </script>
 </body>
 </html>
+<script>
+// তো
+
+<script>
+// 🔥 AI Explanation (Safe Add - No need to edit old code)
+
+// STEP 1: Original showResult save
+const oldShowResult = showResult;
+
+// STEP 2: Replace showResult with AI version
+showResult = async function(problem, answer, steps) {
+  // First show normal result instantly
+  oldShowResult(problem, answer, steps);
+
+  try {
+    // Call AI for better explanation
+    const aiSteps = await getAIExplanation(problem, answer);
+
+    // Replace steps with AI steps
+    document.getElementById('steps-display').innerHTML = aiSteps.map((s,i)=>
+      `<div class="step">
+        <div class="step-num">${i+1}</div>
+        <div class="step-text">${s}</div>
+      </div>`
+    ).join('');
+
+  } catch (e) {
+    console.log("AI failed, keeping basic steps");
+  }
+};
+
+// STEP 3: AI function
+async function getAIExplanation(problem, answer) {
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY"
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content: "You are a friendly math teacher. Explain in very simple steps for beginners."
+          },
+          {
+            role: "user",
+            content: `Explain step-by-step: ${problem}. Final answer is ${answer}`
+          }
+        ],
+        temperature: 0.7
+      })
+    });
+
+    const data = await response.json();
+    const text = data.choices[0].message.content;
+
+    return text.split('\n').filter(line => line.trim() !== '');
+
+  } catch (error) {
+    return ["⚠️ AI explanation failed", "Showing default steps"];
+  }
+}
+</script>
+</script>
