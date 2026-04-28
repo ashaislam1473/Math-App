@@ -11,9 +11,9 @@
 body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);min-height:100vh;display:flex;justify-content:center;padding:30px 16px;transition:all 0.3s}
 body.light{background:linear-gradient(135deg,#667eea,#764ba2)}
 .app{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:24px;padding:28px 24px;width:100%;max-width:640px;border:1px solid rgba(255,255,255,0.1);height:fit-content}
-body.light .app{background:rgba(255,255,255,0.95);border:1px solid rgba(0,0,0,0.1)}
+body.light .app{background:rgba(255,255,255,0.95)}
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-.header h1{font-size:22px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+.header h1{font-size:22px;font-weight:700;color:#fff}
 body.light .header h1{color:#1a1a2e}
 #theme-btn{padding:8px 14px;border:1px solid rgba(255,255,255,0.3);border-radius:20px;background:rgba(255,255,255,0.1);color:#fff;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600}
 body.light #theme-btn{border-color:#ddd;background:white;color:#333}
@@ -22,50 +22,30 @@ body.light #theme-btn{border-color:#ddd;background:white;color:#333}
 .tab.active{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white}
 body.light .tab{border-color:#ddd;color:#888}
 body.light .tab.active{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
-.input-section{margin-bottom:20px}
 .input-label{font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;display:block;font-weight:500}
 body.light .input-label{color:#666}
 .input-box{width:100%;padding:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:14px;color:#fff;font-size:15px;font-family:'Poppins',sans-serif;outline:none;transition:all 0.3s;resize:none}
-.input-box:focus{border-color:#e94560;background:rgba(255,255,255,0.12)}
 body.light .input-box{background:#f8f9ff;border-color:#ddd;color:#333}
-body.light .input-box:focus{border-color:#667eea;background:white}
-.lang-toggle{display:flex;gap:8px;margin-bottom:12px}
-.lang-btn{padding:6px 14px;border:1px solid rgba(255,255,255,0.2);border-radius:20px;background:transparent;color:rgba(255,255,255,0.6);font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
-.lang-btn.active{background:rgba(78,204,163,0.3);border-color:#4ecca3;color:#4ecca3}
-body.light .lang-btn{border-color:#ddd;color:#888}
-body.light .lang-btn.active{background:rgba(102,126,234,0.1);border-color:#667eea;color:#667eea}
 .examples{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .example-btn{padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:rgba(255,255,255,0.7);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;transition:all 0.2s}
-.example-btn:hover{background:rgba(255,255,255,0.15)}
 body.light .example-btn{background:#f0f0f0;border-color:#ddd;color:#555}
 .solve-btn{width:100%;padding:14px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s;margin-bottom:20px}
 body.light .solve-btn{background:linear-gradient(135deg,#667eea,#764ba2)}
-.solve-btn:disabled{opacity:0.6;cursor:not-allowed}
 .result-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px;margin-bottom:20px;display:none}
 body.light .result-box{background:#f8f9ff;border-color:#e0e0e0}
 .result-box.show{display:block}
-.result-header{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:12px;font-weight:500;text-transform:uppercase;letter-spacing:1px}
-body.light .result-header{color:#999}
-.answer{font-size:26px;font-weight:700;color:#4ecca3;margin-bottom:16px}
+.answer{font-size:26px;font-weight:700;color:#4ecca3;margin-bottom:12px}
 body.light .answer{color:#667eea}
-.ai-explanation{background:rgba(78,204,163,0.08);border:1px solid rgba(78,204,163,0.2);border-radius:12px;padding:16px;margin-top:12px}
-body.light .ai-explanation{background:rgba(102,126,234,0.05);border-color:rgba(102,126,234,0.2)}
-.ai-label{font-size:11px;color:#4ecca3;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
-body.light .ai-label{color:#667eea}
-.ai-text{font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;white-space:pre-wrap}
-body.light .ai-text{color:#444}
-.error-box{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);border-radius:14px;padding:16px;margin-bottom:20px;display:none;color:#ff6b6b;font-size:13px;line-height:1.6}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:12px;align-items:flex-start}
+.step-num{width:24px;height:24px;background:linear-gradient(135deg,#e94560,#c0392b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0;margin-top:2px}
+body.light .step-num{background:linear-gradient(135deg,#667eea,#764ba2)}
+.step-text{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6}
+body.light .step-text{color:#444}
+.error-box{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);border-radius:14px;padding:16px;margin-bottom:20px;display:none;color:#ff6b6b;font-size:13px}
 .error-box.show{display:block}
-.loading{display:none;text-align:center;padding:20px;color:rgba(255,255,255,0.6);font-size:13px}
-.loading.show{display:block}
-.spinner{width:30px;height:30px;border:3px solid rgba(255,255,255,0.1);border-top:3px solid #e94560;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 10px}
-body.light .spinner{border-top-color:#667eea}
-@keyframes spin{to{transform:rotate(360deg)}}
-.ai-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:linear-gradient(135deg,rgba(78,204,163,0.2),rgba(102,126,234,0.2));border:1px solid rgba(78,204,163,0.3);border-radius:10px;font-size:11px;color:#4ecca3;font-weight:600;margin-bottom:12px}
-body.light .ai-badge{color:#667eea;border-color:rgba(102,126,234,0.3)}
 .calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
 .calc-btn{padding:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:12px;color:#fff;font-size:16px;font-family:'Poppins',sans-serif;cursor:pointer;transition:all 0.2s;font-weight:500}
-.calc-btn:hover{background:rgba(255,255,255,0.15);transform:scale(1.05)}
 .calc-btn.operator{background:rgba(233,69,96,0.2);border-color:rgba(233,69,96,0.3);color:#e94560}
 .calc-btn.equals{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white;grid-column:span 2}
 .calc-btn.clear{background:rgba(255,165,0,0.2);border-color:rgba(255,165,0,0.3);color:orange}
@@ -81,7 +61,6 @@ body.light .history-title{color:#888}
 .clear-btn{padding:4px 12px;background:rgba(233,69,96,0.2);border:1px solid rgba(233,69,96,0.3);border-radius:10px;color:#e94560;font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer}
 .history-list{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto}
 .history-item{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;cursor:pointer;transition:all 0.2s}
-.history-item:hover{background:rgba(255,255,255,0.1)}
 body.light .history-item{background:#f5f5f5;border-color:#e0e0e0}
 .history-problem{font-size:13px;color:rgba(255,255,255,0.8);font-weight:500}
 body.light .history-problem{color:#333}
@@ -92,7 +71,7 @@ body.light .empty-history{color:#bbb}
 .graph-input-row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .graph-input{flex:1;min-width:160px;padding:12px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:12px;color:#fff;font-size:14px;font-family:'Poppins',sans-serif;outline:none}
 body.light .graph-input{background:#f8f9ff;border-color:#ddd;color:#333}
-.graph-btn{padding:12px 20px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:12px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;white-space:nowrap}
+.graph-btn{padding:12px 20px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:12px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
 body.light .graph-btn{background:linear-gradient(135deg,#667eea,#764ba2)}
 .graph-container{background:rgba(0,0,0,0.3);border-radius:14px;padding:16px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.1)}
 body.light .graph-container{background:#f8f9ff;border-color:#e0e0e0}
@@ -105,62 +84,107 @@ body.light .graph-info{color:#999}
 body.light .range-label{color:#666}
 .range-input{width:70px;padding:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none;text-align:center}
 body.light .range-input{background:#f8f9ff;border-color:#ddd;color:#333}
-.api-key-section{background:rgba(255,165,0,0.1);border:1px solid rgba(255,165,0,0.3);border-radius:12px;padding:14px;margin-bottom:16px}
-.api-key-label{font-size:11px;color:orange;font-weight:600;margin-bottom:6px;display:block}
-.api-key-input{width:100%;padding:10px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,165,0,0.3);border-radius:8px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none}
-body.light .api-key-input{background:#fff;border-color:#ffa500;color:#333}
-.api-key-note{font-size:10px;color:rgba(255,165,0,0.7);margin-top:6px}
+
+/* ===== QUIZ STYLES ===== */
+.quiz-setup{display:flex;flex-direction:column;gap:16px}
+.quiz-level-row{display:flex;gap:8px;flex-wrap:wrap}
+.level-btn{padding:10px 20px;border:2px solid rgba(255,255,255,0.2);border-radius:14px;background:transparent;color:rgba(255,255,255,0.6);font-size:13px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s;flex:1;text-align:center}
+.level-btn.active{border-color:transparent;color:white}
+.level-btn.easy.active{background:linear-gradient(135deg,#27ae60,#2ecc71)}
+.level-btn.medium.active{background:linear-gradient(135deg,#f39c12,#e67e22)}
+.level-btn.hard.active{background:linear-gradient(135deg,#e94560,#c0392b)}
+body.light .level-btn{border-color:#ddd;color:#888}
+.quiz-topic-row{display:flex;gap:8px;flex-wrap:wrap}
+.topic-btn{padding:8px 14px;border:1px solid rgba(255,255,255,0.2);border-radius:10px;background:transparent;color:rgba(255,255,255,0.6);font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
+.topic-btn.active{background:rgba(78,204,163,0.3);border-color:#4ecca3;color:#4ecca3}
+body.light .topic-btn{border-color:#ddd;color:#888}
+body.light .topic-btn.active{background:rgba(102,126,234,0.1);border-color:#667eea;color:#667eea}
+.start-quiz-btn{width:100%;padding:16px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:16px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s}
+.quiz-game{display:none;flex-direction:column;gap:16px}
+.quiz-header{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.05);border-radius:14px;padding:12px 16px}
+body.light .quiz-header{background:#f8f9ff}
+.quiz-score{font-size:14px;font-weight:700;color:#4ecca3}
+body.light .quiz-score{color:#667eea}
+.quiz-timer{font-size:14px;font-weight:700;color:#e94560}
+.quiz-progress{font-size:12px;color:rgba(255,255,255,0.5)}
+body.light .quiz-progress{color:#888}
+.progress-bar-bg{background:rgba(255,255,255,0.1);border-radius:10px;height:6px;margin-bottom:16px;overflow:hidden}
+body.light .progress-bar-bg{background:#e0e0e0}
+.progress-bar-fill{height:100%;background:linear-gradient(135deg,#4ecca3,#667eea);border-radius:10px;transition:width 0.5s}
+.question-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px;text-align:center;margin-bottom:8px}
+body.light .question-box{background:#f8f9ff;border-color:#e0e0e0}
+.question-label{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+body.light .question-label{color:#aaa}
+.question-text{font-size:28px;font-weight:700;color:#fff;margin-bottom:4px}
+body.light .question-text{color:#1a1a2e}
+.question-hint{font-size:12px;color:rgba(255,255,255,0.4)}
+body.light .question-hint{color:#aaa}
+.answer-input{width:100%;padding:16px;background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.2);border-radius:14px;color:#fff;font-size:22px;font-family:'Poppins',sans-serif;outline:none;text-align:center;transition:all 0.3s;font-weight:600}
+body.light .answer-input{background:#f8f9ff;border-color:#ddd;color:#333}
+.answer-input.correct{border-color:#27ae60;background:rgba(39,174,96,0.1)}
+.answer-input.wrong{border-color:#e94560;background:rgba(233,69,96,0.1)}
+.submit-btn{width:100%;padding:14px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s}
+.feedback-box{border-radius:14px;padding:16px;text-align:center;display:none;font-size:14px;font-weight:600;line-height:1.6}
+.feedback-box.show{display:block}
+.feedback-box.correct{background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);color:#4ecca3}
+.feedback-box.wrong{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);color:#ff6b6b}
+body.light .feedback-box.correct{background:rgba(39,174,96,0.1);color:#27ae60}
+body.light .feedback-box.wrong{background:rgba(233,69,96,0.05);color:#e94560}
+.next-btn{width:100%;padding:14px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;display:none}
+.next-btn.show{display:block}
+.quiz-result{display:none;text-align:center;padding:20px}
+.quiz-result.show{display:block}
+.result-emoji{font-size:60px;margin-bottom:16px}
+.result-title{font-size:24px;font-weight:700;color:#fff;margin-bottom:8px}
+body.light .result-title{color:#1a1a2e}
+.result-score{font-size:48px;font-weight:700;color:#4ecca3;margin-bottom:8px}
+body.light .result-score{color:#667eea}
+.result-detail{font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:24px;line-height:1.8}
+body.light .result-detail{color:#666}
+.play-again-btn{padding:14px 32px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
+.streak-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;background:rgba(255,165,0,0.2);border:1px solid rgba(255,165,0,0.4);border-radius:10px;font-size:12px;color:orange;font-weight:600;margin-top:8px}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="header">
-    <h1>🤖 Math AI Solver</h1>
+    <h1>🔢 Math Solver</h1>
     <button id="theme-btn" onclick="toggleTheme()">☀️ Light</button>
   </div>
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('solver',this)">🧮 AI Solver</button>
-    <button class="tab" onclick="switchTab('calculator',this)">🔢 Calculator</button>
+    <button class="tab active" onclick="switchTab('solver',this)">🧮 Solver</button>
+    <button class="tab" onclick="switchTab('calculator',this)">🔢 Calc</button>
     <button class="tab" onclick="switchTab('graph',this)">📊 Graph</button>
+    <button class="tab" onclick="switchTab('quiz',this)">📝 Quiz</button>
     <button class="tab" onclick="switchTab('history',this)">📜 History</button>
   </div>
+
+  <!-- SOLVER TAB -->
   <div id="tab-solver">
-    <div class="api-key-section">
-      <span class="api-key-label">🔑 Gemini API Key (একবার দাও, save হয়ে থাকবে)</span>
-      <input class="api-key-input" id="api-key-input" type="password" placeholder="AIzaSy... paste করো"/>
-      <div class="api-key-note">⚠️ Key শুধু তোমার browser এ save হবে</div>
-    </div>
-    <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('en',this)">🇬🇧 English</button>
-      <button class="lang-btn" onclick="setLang('bn',this)">🇧🇩 বাংলা</button>
-    </div>
-    <div class="input-section">
+    <div style="margin-bottom:20px">
       <span class="input-label">তোমার math problem লেখো:</span>
-      <textarea class="input-box" id="problem-input" rows="3" placeholder="যেকোনো math problem লেখো..."></textarea>
-      <div class="examples">
-        <button class="example-btn" onclick="setExample('2 + 2')">2 + 2</button>
+      <textarea class="input-box" id="problem-input" rows="3" placeholder="যেমন: 2+2, x+5=10, sqrt(144), 15% of 200"></textarea>
+      <div class="examples" style="margin-top:10px">
+        <button class="example-btn" onclick="setExample('2 + 2')">2+2</button>
         <button class="example-btn" onclick="setExample('15% of 200')">15% of 200</button>
         <button class="example-btn" onclick="setExample('sqrt(144)')">√144</button>
-        <button class="example-btn" onclick="setExample('x + 5 = 10')">x + 5 = 10</button>
+        <button class="example-btn" onclick="setExample('x + 5 = 10')">x+5=10</button>
         <button class="example-btn" onclick="setExample('2^10')">2¹⁰</button>
         <button class="example-btn" onclick="setExample('sin(30 deg)')">sin(30°)</button>
-        <button class="example-btn" onclick="setExample('If a train goes 60km/h for 2 hours, how far?')">🚂 Word problem</button>
-        <button class="example-btn" onclick="setExample('What is the area of a circle with radius 5?')">⭕ Circle area</button>
+        <button class="example-btn" onclick="setExample('log(1000)')">log(1000)</button>
+        <button class="example-btn" onclick="setExample('5!')">5!</button>
       </div>
     </div>
-    <button class="solve-btn" id="solve-btn" onclick="solveProblem()">🤖 AI দিয়ে Solve করো</button>
-    <div class="loading" id="loading"><div class="spinner"></div>AI চিন্তা করছে...</div>
+    <button class="solve-btn" onclick="solveProblem()">⚡ Solve & Explain</button>
     <div class="error-box" id="error-box"></div>
     <div class="result-box" id="result-box">
-      <div class="ai-badge">🤖 Powered by Google Gemini AI</div>
-      <div class="result-header">✅ Solution</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px" class="rh">✅ Solution</div>
       <div class="answer" id="answer-display"></div>
-      <div class="ai-explanation">
-        <div class="ai-label">🧠 AI Explanation</div>
-        <div class="ai-text" id="ai-explanation"></div>
-      </div>
+      <div class="steps" id="steps-display"></div>
     </div>
   </div>
+
+  <!-- CALCULATOR TAB -->
   <div id="tab-calculator" style="display:none">
     <input class="calc-display" id="calc-display" readonly placeholder="0"/>
     <div class="calc-grid">
@@ -193,6 +217,8 @@ body.light .api-key-input{background:#fff;border-color:#ffa500;color:#333}
       <button class="example-btn" onclick="calcInput('e')">e</button>
     </div>
   </div>
+
+  <!-- GRAPH TAB -->
   <div id="tab-graph" style="display:none">
     <div class="graph-input-row">
       <input class="graph-input" id="graph-input" placeholder="e.g. x^2 or sin(x)"/>
@@ -215,10 +241,80 @@ body.light .api-key-input{background:#fff;border-color:#ffa500;color:#333}
       <input class="range-input" id="x-max" value="10"/>
     </div>
     <div class="graph-container">
-      <canvas id="graph-canvas" width="560" height="340"></canvas>
+      <canvas id="graph-canvas" width="560" height="300"></canvas>
     </div>
     <div class="graph-info" id="graph-info">Enter a function and press Plot 📊</div>
   </div>
+
+  <!-- QUIZ TAB -->
+  <div id="tab-quiz" style="display:none">
+
+    <!-- SETUP -->
+    <div id="quiz-setup" class="quiz-setup">
+      <div>
+        <span class="input-label">Difficulty Level:</span>
+        <div class="quiz-level-row">
+          <button class="level-btn easy active" onclick="setLevel('easy',this)">🟢 Easy</button>
+          <button class="level-btn medium" onclick="setLevel('medium',this)">🟡 Medium</button>
+          <button class="level-btn hard" onclick="setLevel('hard',this)">🔴 Hard</button>
+        </div>
+      </div>
+      <div>
+        <span class="input-label">Topic:</span>
+        <div class="quiz-topic-row">
+          <button class="topic-btn active" onclick="setTopic('all',this)">🔢 All</button>
+          <button class="topic-btn" onclick="setTopic('addition',this)">➕ Add</button>
+          <button class="topic-btn" onclick="setTopic('multiply',this)">✖️ Multiply</button>
+          <button class="topic-btn" onclick="setTopic('percentage',this)">% Percent</button>
+          <button class="topic-btn" onclick="setTopic('algebra',this)">📐 Algebra</button>
+          <button class="topic-btn" onclick="setTopic('square',this)">² Square</button>
+        </div>
+      </div>
+      <div>
+        <span class="input-label">Number of Questions:</span>
+        <div style="display:flex;gap:8px">
+          <button class="topic-btn active" id="q5" onclick="setQCount(5,this)">5</button>
+          <button class="topic-btn" id="q10" onclick="setQCount(10,this)">10</button>
+          <button class="topic-btn" id="q15" onclick="setQCount(15,this)">15</button>
+          <button class="topic-btn" id="q20" onclick="setQCount(20,this)">20</button>
+        </div>
+      </div>
+      <button class="start-quiz-btn" onclick="startQuiz()">🚀 Start Quiz!</button>
+    </div>
+
+    <!-- GAME -->
+    <div id="quiz-game" class="quiz-game">
+      <div class="quiz-header">
+        <div class="quiz-score">⭐ Score: <span id="score-display">0</span></div>
+        <div class="quiz-progress"><span id="q-current">1</span>/<span id="q-total">10</span></div>
+        <div class="quiz-timer">⏱️ <span id="timer-display">30</span>s</div>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="question-box">
+        <div class="question-label">Solve this:</div>
+        <div class="question-text" id="question-text">2 + 2 = ?</div>
+        <div class="question-hint" id="question-hint"></div>
+      </div>
+      <input class="answer-input" id="answer-input" type="number" placeholder="Type your answer..." onkeypress="handleEnter(event)"/>
+      <div class="feedback-box" id="feedback-box"></div>
+      <button class="submit-btn" id="submit-btn" onclick="checkAnswer()">✅ Check Answer</button>
+      <button class="next-btn" id="next-btn" onclick="nextQuestion()">➡️ Next Question</button>
+    </div>
+
+    <!-- RESULT -->
+    <div id="quiz-result" class="quiz-result">
+      <div class="result-emoji" id="result-emoji">🎉</div>
+      <div class="result-title" id="result-title">Excellent!</div>
+      <div class="result-score" id="result-score-display">10/10</div>
+      <div class="result-detail" id="result-detail"></div>
+      <button class="play-again-btn" onclick="resetQuiz()">🔄 Play Again</button>
+    </div>
+
+  </div>
+
+  <!-- HISTORY TAB -->
   <div id="tab-history" style="display:none">
     <div class="history-header">
       <span class="history-title">📜 History</span>
@@ -227,29 +323,25 @@ body.light .api-key-input{background:#fff;border-color:#ffa500;color:#333}
     <div class="history-list" id="history-list"></div>
   </div>
 </div>
+
 <script>
+// ===== STATE =====
 let historyData=JSON.parse(localStorage.getItem('mathHistory'))||[];
 let calcExpr='';
-let currentLang='en';
-// ✅ FIXED: Updated model name
-const GEMINI_MODEL='gemini-2.0-flash';
 
-const apiKeyInput=document.getElementById('api-key-input');
-const savedKey=localStorage.getItem('geminiApiKey');
-if(savedKey) apiKeyInput.value=savedKey;
-apiKeyInput.addEventListener('change',function(){
-  localStorage.setItem('geminiApiKey',apiKeyInput.value.trim());
-});
-function getApiKey(){
-  const key=apiKeyInput.value.trim();
-  if(key) localStorage.setItem('geminiApiKey',key);
-  return key;
-}
-function setLang(lang,btn){
-  currentLang=lang;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-}
+// ===== QUIZ STATE =====
+let quizLevel='easy';
+let quizTopic='all';
+let quizQCount=5;
+let currentQ=0;
+let score=0;
+let correctAnswer=0;
+let timerInterval=null;
+let timeLeft=30;
+let streak=0;
+let totalCorrect=0;
+
+// ===== THEME =====
 function toggleTheme(){
   document.body.classList.toggle('light');
   const isLight=document.body.classList.contains('light');
@@ -261,8 +353,10 @@ if(localStorage.getItem('mathTheme')==='light'){
   document.body.classList.add('light');
   document.getElementById('theme-btn').textContent='🌙 Dark';
 }
+
+// ===== TABS =====
 function switchTab(tab,btn){
-  ['solver','calculator','graph','history'].forEach(t=>{
+  ['solver','calculator','graph','quiz','history'].forEach(t=>{
     document.getElementById('tab-'+t).style.display='none';
   });
   document.getElementById('tab-'+tab).style.display='block';
@@ -271,87 +365,66 @@ function switchTab(tab,btn){
   if(tab==='history') renderHistory();
   if(tab==='graph') plotGraph();
 }
+
+// ===== SOLVER =====
 function setExample(val){document.getElementById('problem-input').value=val;}
-function graphExample(val){document.getElementById('graph-input').value=val;plotGraph();}
-async function solveProblem(){
+function solveProblem(){
   const input=document.getElementById('problem-input').value.trim();
-  const apiKey=getApiKey();
-  const loading=document.getElementById('loading');
-  const resultBox=document.getElementById('result-box');
   const errorBox=document.getElementById('error-box');
-  const solveBtn=document.getElementById('solve-btn');
-  if(!input){showError('প্রথমে একটা math problem লেখো!');return;}
-  if(!apiKey){showError('প্রথমে Gemini API Key দাও!\naistudio.google.com থেকে key নাও।');return;}
-  loading.classList.add('show');
-  resultBox.classList.remove('show');
+  const resultBox=document.getElementById('result-box');
   errorBox.classList.remove('show');
-  solveBtn.disabled=true;
+  resultBox.classList.remove('show');
+  if(!input){errorBox.textContent='❌ Please type a math problem!';errorBox.classList.add('show');return;}
   try{
-    let quickAnswer='';
-    try{
-      if(!input.includes('?')&&!/[a-zA-Z]{2,}/.test(input)){
-        const r=math.evaluate(input);
-        quickAnswer=String(r);
-      }
-    }catch(e){}
-    const langInstruction=currentLang==='bn'?'সম্পূর্ণ বাংলায় উত্তর দাও।':'Answer in English.';
-    const prompt=`You are a friendly math teacher. Solve this math problem step by step in simple language.
-
-Problem: ${input}
-${quickAnswer?`Quick result: ${quickAnswer}`:''}
-
-${langInstruction}
-
-Format:
-ANSWER: [the answer]
----
-STEPS:
-[step by step explanation]`;
-
-    const response=await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
-      {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          contents:[{parts:[{text:prompt}]}],
-          generationConfig:{temperature:0.3,maxOutputTokens:1024}
-        })
-      }
-    );
-    if(!response.ok){
-      const err=await response.json();
-      throw new Error(err.error?.message||'API error: '+response.status);
-    }
-    const data=await response.json();
-    const aiText=data.candidates?.[0]?.content?.parts?.[0]?.text||'No response';
-    let answer=quickAnswer||'See explanation';
-    let explanation=aiText;
-    if(aiText.includes('ANSWER:')){
-      const parts=aiText.split('---');
-      answer=parts[0].replace('ANSWER:','').trim();
-      explanation=parts[1]?parts[1].replace('STEPS:','').trim():aiText;
-    }
-    document.getElementById('answer-display').textContent=answer;
-    document.getElementById('ai-explanation').textContent=explanation;
+    const result=solve(input);
+    document.getElementById('answer-display').textContent='= '+result.answer;
+    document.getElementById('steps-display').innerHTML=result.steps.map((s,i)=>
+      `<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`
+    ).join('');
     resultBox.classList.add('show');
-    saveHistory(input,answer);
+    saveHistory(input,result.answer);
   }catch(e){
-    let msg=e.message;
-    if(msg.includes('API_KEY_INVALID')||msg.includes('400')) msg='API Key ভুল! aistudio.google.com থেকে সঠিক key নাও।';
-    else if(msg.includes('429')) msg='অনেক বেশি request! একটু পরে আবার চেষ্টা করো।';
-    else if(msg.includes('fetch')) msg='Internet connection check করো!';
-    showError(msg);
-  }finally{
-    loading.classList.remove('show');
-    solveBtn.disabled=false;
+    errorBox.textContent='❌ Could not solve: '+e.message;
+    errorBox.classList.add('show');
   }
 }
-function showError(msg){
-  const e=document.getElementById('error-box');
-  e.textContent='❌ '+msg;
-  e.classList.add('show');
+function solve(input){
+  const clean=input.trim();
+  if(/(\d+\.?\d*)%\s*of\s*(\d+\.?\d*)/i.test(clean)){
+    const m=clean.match(/(\d+\.?\d*)%\s*of\s*(\d+\.?\d*)/i);
+    const pct=parseFloat(m[1]),num=parseFloat(m[2]),ans=(pct/100)*num;
+    return{answer:ans,steps:[`Find ${pct}% of ${num}`,`Formula: (${pct} ÷ 100) × ${num}`,`= ${pct/100} × ${num}`,`✅ Answer: ${ans}`]};
+  }
+  if(/[a-zA-Z]/.test(clean)&&clean.includes('=')){
+    const sides=clean.split('=');
+    const left=sides[0].trim(),right=sides[1].trim();
+    const varName=(left.match(/[a-zA-Z]/)||right.match(/[a-zA-Z]/))[0];
+    const steps=[`Equation: ${clean}`,`Find "${varName}"`];
+    const match=left.match(/^(-?\d*\.?\d*)\s*\*?\s*([a-zA-Z])\s*([+-]\s*\d+\.?\d*)?$/);
+    if(match){
+      let a=match[1]===''||!match[1]?1:(match[1]==='-'?-1:parseFloat(match[1]));
+      const b=match[3]?parseFloat(match[3].replace(/\s/g,'')):0;
+      const c=parseFloat(right);
+      const ans=(c-b)/a;
+      steps.push(`Move ${b} to right: ${varName} = ${c} - (${b}) = ${c-b}`);
+      steps.push(`Divide by ${a}: ${varName} = ${c-b} ÷ ${a}`);
+      steps.push(`✅ ${varName} = ${ans}`);
+      return{answer:`${varName} = ${ans}`,steps};
+    }
+  }
+  const result=math.evaluate(clean);
+  const steps=[`Problem: ${clean}`];
+  if(clean.includes('+')) steps.push(`Adding the numbers`);
+  else if(clean.includes('-')) steps.push(`Subtracting`);
+  else if(clean.includes('*')) steps.push(`Multiplying`);
+  else if(clean.includes('/')) steps.push(`Dividing`);
+  else if(clean.includes('sqrt')) steps.push(`Finding square root`);
+  else if(clean.includes('^')){const p=clean.split('^');steps.push(`${p[0]} to the power of ${p[1]}`);}
+  steps.push(`✅ Answer: ${result}`);
+  return{answer:result,steps};
 }
+
+// ===== HISTORY =====
 function saveHistory(problem,answer){
   historyData.unshift({problem,answer:String(answer),time:new Date().toLocaleTimeString()});
   if(historyData.length>30) historyData.pop();
@@ -359,20 +432,22 @@ function saveHistory(problem,answer){
 }
 function renderHistory(){
   const list=document.getElementById('history-list');
-  if(historyData.length===0){list.innerHTML='<div class="empty-history">কোনো history নেই!</div>';return;}
+  if(historyData.length===0){list.innerHTML='<div class="empty-history">No history yet!</div>';return;}
   list.innerHTML=historyData.map((h,i)=>`
-    <div class="history-item" onclick="loadHistory(${i})">
+    <div class="history-item" onclick="loadFromHistory(${i})">
       <div class="history-problem">${h.problem.substring(0,50)}</div>
       <div class="history-answer">= ${String(h.answer).substring(0,40)}</div>
     </div>`).join('');
 }
-function loadHistory(i){
+function loadFromHistory(i){
   document.getElementById('problem-input').value=historyData[i].problem;
   switchTab('solver',document.querySelectorAll('.tab')[0]);
 }
 function clearHistory(){
-  if(confirm('সব history মুছে দেবে?')){historyData=[];localStorage.removeItem('mathHistory');renderHistory();}
+  if(confirm('Clear all history?')){historyData=[];localStorage.removeItem('mathHistory');renderHistory();}
 }
+
+// ===== CALCULATOR =====
 function calcInput(val){calcExpr+=val;document.getElementById('calc-display').value=calcExpr;}
 function calcClear(){calcExpr='';document.getElementById('calc-display').value='';}
 function calcDel(){calcExpr=calcExpr.slice(0,-1);document.getElementById('calc-display').value=calcExpr;}
@@ -384,21 +459,22 @@ function calcEquals(){
     calcExpr=String(result);
   }catch(e){document.getElementById('calc-display').value='Error';calcExpr='';}
 }
+
+// ===== GRAPH =====
+function graphExample(val){document.getElementById('graph-input').value=val;plotGraph();}
 function plotGraph(){
   const expr=document.getElementById('graph-input').value.trim();
   const canvas=document.getElementById('graph-canvas');
   const ctx=canvas.getContext('2d');
   const W=canvas.width=canvas.offsetWidth||560;
-  const H=canvas.height=340;
+  const H=canvas.height=300;
   const isLight=document.body.classList.contains('light');
   ctx.fillStyle=isLight?'#f8f9ff':'#0d1b2a';
   ctx.fillRect(0,0,W,H);
   if(!expr){
     ctx.fillStyle=isLight?'#aaa':'rgba(255,255,255,0.3)';
-    ctx.font='14px Poppins,sans-serif';
-    ctx.textAlign='center';
-    ctx.fillText('Enter a function above to see its graph',W/2,H/2);
-    return;
+    ctx.font='14px Poppins,sans-serif';ctx.textAlign='center';
+    ctx.fillText('Enter a function above',W/2,H/2);return;
   }
   const xMin=parseFloat(document.getElementById('x-min').value)||(-10);
   const xMax=parseFloat(document.getElementById('x-max').value)||10;
@@ -415,48 +491,191 @@ function plotGraph(){
   if(yMin===yMax){yMin-=1;yMax+=1;}
   const yPad=(yMax-yMin)*0.1;yMin-=yPad;yMax+=yPad;
   const yRange=yMax-yMin;
-  function cx(x){return((x-xMin)/xRange)*W;}
-  function cy(y){return H-((y-yMin)/yRange)*H;}
-  ctx.strokeStyle=isLight?'rgba(0,0,0,0.08)':'rgba(255,255,255,0.06)';
-  ctx.lineWidth=1;
+  const cx=x=>((x-xMin)/xRange)*W;
+  const cy=y=>H-((y-yMin)/yRange)*H;
+  ctx.strokeStyle=isLight?'rgba(0,0,0,0.08)':'rgba(255,255,255,0.06)';ctx.lineWidth=1;
   for(let gx=Math.ceil(xMin);gx<=xMax;gx++){ctx.beginPath();ctx.moveTo(cx(gx),0);ctx.lineTo(cx(gx),H);ctx.stroke();}
   for(let gy=Math.ceil(yMin);gy<=yMax;gy++){ctx.beginPath();ctx.moveTo(0,cy(gy));ctx.lineTo(W,cy(gy));ctx.stroke();}
-  ctx.strokeStyle=isLight?'rgba(0,0,0,0.25)':'rgba(255,255,255,0.25)';
-  ctx.lineWidth=1.5;
+  ctx.strokeStyle=isLight?'rgba(0,0,0,0.2)':'rgba(255,255,255,0.2)';ctx.lineWidth=1.5;
   if(yMin<=0&&yMax>=0){ctx.beginPath();ctx.moveTo(0,cy(0));ctx.lineTo(W,cy(0));ctx.stroke();}
   if(xMin<=0&&xMax>=0){ctx.beginPath();ctx.moveTo(cx(0),0);ctx.lineTo(cx(0),H);ctx.stroke();}
-  ctx.fillStyle=isLight?'rgba(0,0,0,0.4)':'rgba(255,255,255,0.35)';
-  ctx.font='10px Poppins,sans-serif';
-  ctx.textAlign='center';
-  for(let gx=Math.ceil(xMin);gx<=xMax;gx+=Math.max(1,Math.ceil(xRange/10))){
-    if(gx===0)continue;
-    ctx.fillText(gx,cx(gx),(yMin<=0&&yMax>=0)?cy(0)+12:H-5);
-  }
-  ctx.textAlign='right';
-  for(let gy=Math.ceil(yMin);gy<=yMax;gy+=Math.max(1,Math.ceil(yRange/8))){
-    if(gy===0)continue;
-    ctx.fillText(gy,(xMin<=0&&xMax>=0)?cx(0)-4:30,cy(gy)+4);
-  }
-  ctx.strokeStyle=isLight?'#667eea':'#e94560';
-  ctx.lineWidth=2.5;
-  ctx.lineJoin='round';
-  ctx.beginPath();
-  let started=false;
-  points.forEach(p=>{
-    if(!p){started=false;return;}
-    if(!started){ctx.moveTo(cx(p.x),cy(p.y));started=true;}
-    else ctx.lineTo(cx(p.x),cy(p.y));
-  });
+  ctx.strokeStyle=isLight?'#667eea':'#e94560';ctx.lineWidth=2.5;ctx.lineJoin='round';
+  ctx.beginPath();let started=false;
+  points.forEach(p=>{if(!p){started=false;return;}if(!started){ctx.moveTo(cx(p.x),cy(p.y));started=true;}else ctx.lineTo(cx(p.x),cy(p.y));});
   ctx.stroke();
-  ctx.fillStyle=isLight?'#667eea':'#4ecca3';
-  ctx.font='bold 13px Poppins,sans-serif';
-  ctx.textAlign='left';
-  ctx.fillText('y = '+expr,10,20);
+  ctx.fillStyle=isLight?'#667eea':'#4ecca3';ctx.font='bold 12px Poppins,sans-serif';ctx.textAlign='left';
+  ctx.fillText('y = '+expr,10,18);
   document.getElementById('graph-info').textContent=`y = ${expr} | x: [${xMin}, ${xMax}]`;
 }
-window.addEventListener('resize',()=>{
-  if(document.getElementById('tab-graph').style.display!=='none') plotGraph();
-});
+window.addEventListener('resize',()=>{if(document.getElementById('tab-graph').style.display!=='none')plotGraph();});
+
+// ===== QUIZ =====
+function setLevel(level,btn){
+  quizLevel=level;
+  document.querySelectorAll('.level-btn').forEach(b=>{b.classList.remove('active');});
+  btn.classList.add('active');
+}
+function setTopic(topic,btn){
+  quizTopic=topic;
+  document.querySelectorAll('.topic-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function setQCount(n,btn){
+  quizQCount=n;
+  document.querySelectorAll('#quiz-setup .topic-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function generateQuestion(){
+  const easy={
+    addition:()=>{const a=rnd(1,20),b=rnd(1,20);return{q:`${a} + ${b} = ?`,a:a+b,hint:'Add the numbers'}},
+    subtraction:()=>{const a=rnd(10,30),b=rnd(1,a);return{q:`${a} - ${b} = ?`,a:a-b,hint:'Subtract'}},
+    multiply:()=>{const a=rnd(1,10),b=rnd(1,10);return{q:`${a} × ${b} = ?`,a:a*b,hint:'Multiply'}},
+    divide:()=>{const b=rnd(1,10),a=b*rnd(1,10);return{q:`${a} ÷ ${b} = ?`,a:a/b,hint:'Divide'}},
+  };
+  const medium={
+    addition:()=>{const a=rnd(20,100),b=rnd(20,100);return{q:`${a} + ${b} = ?`,a:a+b,hint:''}},
+    multiply:()=>{const a=rnd(5,20),b=rnd(5,20);return{q:`${a} × ${b} = ?`,a:a*b,hint:''}},
+    percentage:()=>{const p=[10,20,25,50],pc=p[rnd(0,3)],n=rnd(2,20)*10;return{q:`${pc}% of ${n} = ?`,a:(pc/100)*n,hint:`${pc}/100 × ${n}`}},
+    algebra:()=>{const b=rnd(1,20),c=rnd(b+1,30);return{q:`x + ${b} = ${c}\nx = ?`,a:c-b,hint:'Move the number to other side'}},
+    square:()=>{const a=rnd(2,12);return{q:`${a}² = ?`,a:a*a,hint:`${a} × ${a}`}},
+  };
+  const hard={
+    algebra:()=>{const a=rnd(2,5),b=rnd(1,20),c=rnd(10,50);return{q:`${a}x + ${b} = ${c}\nx = ?`,a:(c-b)/a,hint:`Subtract ${b}, then divide by ${a}`}},
+    percentage:()=>{const p=rnd(1,9)*10,n=rnd(1,20)*5;return{q:`${p}% of ${n} = ?`,a:(p/100)*n,hint:''}},
+    square:()=>{const a=rnd(10,20);return{q:`${a}² = ?`,a:a*a,hint:`${a} × ${a}`}},
+    multiply:()=>{const a=rnd(11,25),b=rnd(11,25);return{q:`${a} × ${b} = ?`,a:a*b,hint:''}},
+    mixed:()=>{const a=rnd(2,10),b=rnd(2,10),c=rnd(2,10);return{q:`${a} × ${b} + ${c} = ?`,a:a*b+c,hint:`First multiply, then add`}},
+  };
+
+  const pool=quizLevel==='easy'?easy:quizLevel==='medium'?medium:hard;
+  const keys=Object.keys(pool);
+  let type;
+  if(quizTopic==='all') type=keys[rnd(0,keys.length-1)];
+  else if(pool[quizTopic]) type=quizTopic;
+  else type=keys[rnd(0,keys.length-1)];
+
+  return pool[type]();
+}
+
+function rnd(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+
+function startQuiz(){
+  currentQ=0;score=0;totalCorrect=0;streak=0;
+  document.getElementById('quiz-setup').style.display='none';
+  document.getElementById('quiz-result').classList.remove('show');
+  document.getElementById('quiz-game').style.display='flex';
+  document.getElementById('q-total').textContent=quizQCount;
+  loadQuestion();
+}
+
+function loadQuestion(){
+  clearInterval(timerInterval);
+  timeLeft=quizLevel==='easy'?30:quizLevel==='medium'?20:15;
+
+  const qData=generateQuestion();
+  correctAnswer=qData.a;
+
+  document.getElementById('question-text').textContent=qData.q;
+  document.getElementById('question-hint').textContent=qData.hint?'💡 Hint: '+qData.hint:'';
+  document.getElementById('q-current').textContent=currentQ+1;
+  document.getElementById('score-display').textContent=score;
+  document.getElementById('answer-input').value='';
+  document.getElementById('answer-input').className='answer-input';
+  document.getElementById('feedback-box').className='feedback-box';
+  document.getElementById('next-btn').className='next-btn';
+  document.getElementById('submit-btn').style.display='block';
+  document.getElementById('answer-input').focus();
+
+  const progress=((currentQ)/quizQCount)*100;
+  document.getElementById('progress-fill').style.width=progress+'%';
+
+  timerInterval=setInterval(()=>{
+    timeLeft--;
+    document.getElementById('timer-display').textContent=timeLeft;
+    if(timeLeft<=0){
+      clearInterval(timerInterval);
+      timeUp();
+    }
+  },1000);
+}
+
+function timeUp(){
+  document.getElementById('answer-input').className='answer-input wrong';
+  document.getElementById('feedback-box').textContent=`⏰ Time up! Answer: ${correctAnswer}`;
+  document.getElementById('feedback-box').className='feedback-box wrong show';
+  document.getElementById('submit-btn').style.display='none';
+  document.getElementById('next-btn').className='next-btn show';
+  streak=0;
+}
+
+function checkAnswer(){
+  clearInterval(timerInterval);
+  const userAns=parseFloat(document.getElementById('answer-input').value);
+  const isCorrect=Math.abs(userAns-correctAnswer)<0.01;
+
+  if(isCorrect){
+    const timeBonus=Math.floor(timeLeft/5);
+    const pts=10+timeBonus;
+    score+=pts;streak++;totalCorrect++;
+    document.getElementById('answer-input').className='answer-input correct';
+    let msg=`✅ Correct! +${pts} points`;
+    if(streak>=3) msg+=` 🔥 ${streak} streak!`;
+    document.getElementById('feedback-box').textContent=msg;
+    document.getElementById('feedback-box').className='feedback-box correct show';
+  } else {
+    streak=0;
+    document.getElementById('answer-input').className='answer-input wrong';
+    document.getElementById('feedback-box').textContent=`❌ Wrong! Correct answer: ${correctAnswer}`;
+    document.getElementById('feedback-box').className='feedback-box wrong show';
+  }
+  document.getElementById('score-display').textContent=score;
+  document.getElementById('submit-btn').style.display='none';
+  document.getElementById('next-btn').className='next-btn show';
+}
+
+function nextQuestion(){
+  currentQ++;
+  if(currentQ>=quizQCount){
+    showResult();
+  } else {
+    loadQuestion();
+  }
+}
+
+function showResult(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-game').style.display='none';
+  const result=document.getElementById('quiz-result');
+  result.classList.add('show');
+
+  const pct=Math.round((totalCorrect/quizQCount)*100);
+  let emoji='😊',title='Good try!';
+  if(pct===100){emoji='🏆';title='Perfect Score!';}
+  else if(pct>=80){emoji='🎉';title='Excellent!';}
+  else if(pct>=60){emoji='👍';title='Well Done!';}
+  else if(pct>=40){emoji='📚';title='Keep Practicing!';}
+  else{emoji='💪';title='Keep Going!';}
+
+  document.getElementById('result-emoji').textContent=emoji;
+  document.getElementById('result-title').textContent=title;
+  document.getElementById('result-score-display').textContent=`${totalCorrect}/${quizQCount}`;
+  document.getElementById('result-detail').innerHTML=
+    `Score: ${score} points<br>
+     Correct: ${totalCorrect} / ${quizQCount}<br>
+     Accuracy: ${pct}%<br>
+     Level: ${quizLevel.charAt(0).toUpperCase()+quizLevel.slice(1)}`;
+}
+
+function resetQuiz(){
+  document.getElementById('quiz-result').classList.remove('show');
+  document.getElementById('quiz-game').style.display='none';
+  document.getElementById('quiz-setup').style.display='flex';
+}
+
+function handleEnter(e){
+  if(e.key==='Enter') checkAnswer();
+}
 </script>
 </body>
 </html>
