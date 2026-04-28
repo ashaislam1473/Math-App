@@ -12,137 +12,167 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#1a1a2e,
 body.light{background:linear-gradient(135deg,#667eea,#764ba2)}
 .app{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:24px;padding:28px 24px;width:100%;max-width:640px;border:1px solid rgba(255,255,255,0.1);height:fit-content}
 body.light .app{background:rgba(255,255,255,0.95)}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-.header h1{font-size:22px;font-weight:700;color:#fff}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.header h1{font-size:20px;font-weight:700;color:#fff}
 body.light .header h1{color:#1a1a2e}
-#theme-btn{padding:8px 14px;border:1px solid rgba(255,255,255,0.3);border-radius:20px;background:rgba(255,255,255,0.1);color:#fff;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600}
+#theme-btn{padding:7px 13px;border:1px solid rgba(255,255,255,0.3);border-radius:20px;background:rgba(255,255,255,0.1);color:#fff;font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600}
 body.light #theme-btn{border-color:#ddd;background:white;color:#333}
-.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
-.tab{padding:8px 16px;border:1px solid rgba(255,255,255,0.2);border-radius:20px;background:transparent;color:rgba(255,255,255,0.6);font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
+.tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:7px 12px;border:1px solid rgba(255,255,255,0.2);border-radius:20px;background:transparent;color:rgba(255,255,255,0.6);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
 .tab.active{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white}
 body.light .tab{border-color:#ddd;color:#888}
 body.light .tab.active{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
-.input-label{font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;display:block;font-weight:500}
-body.light .input-label{color:#666}
-.input-box{width:100%;padding:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:14px;color:#fff;font-size:15px;font-family:'Poppins',sans-serif;outline:none;transition:all 0.3s;resize:none}
-body.light .input-box{background:#f8f9ff;border-color:#ddd;color:#333}
-.examples{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.example-btn{padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:rgba(255,255,255,0.7);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;transition:all 0.2s}
-body.light .example-btn{background:#f0f0f0;border-color:#ddd;color:#555}
-.solve-btn{width:100%;padding:14px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s;margin-bottom:20px}
-body.light .solve-btn{background:linear-gradient(135deg,#667eea,#764ba2)}
-.result-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px;margin-bottom:20px;display:none}
-body.light .result-box{background:#f8f9ff;border-color:#e0e0e0}
-.result-box.show{display:block}
-.answer{font-size:26px;font-weight:700;color:#4ecca3;margin-bottom:12px}
-body.light .answer{color:#667eea}
-.steps{display:flex;flex-direction:column;gap:10px}
-.step{display:flex;gap:12px;align-items:flex-start}
-.step-num{width:24px;height:24px;background:linear-gradient(135deg,#e94560,#c0392b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0;margin-top:2px}
-body.light .step-num{background:linear-gradient(135deg,#667eea,#764ba2)}
-.step-text{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6}
-body.light .step-text{color:#444}
-.error-box{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);border-radius:14px;padding:16px;margin-bottom:20px;display:none;color:#ff6b6b;font-size:13px}
-.error-box.show{display:block}
-.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
-.calc-btn{padding:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:12px;color:#fff;font-size:16px;font-family:'Poppins',sans-serif;cursor:pointer;transition:all 0.2s;font-weight:500}
-.calc-btn.operator{background:rgba(233,69,96,0.2);border-color:rgba(233,69,96,0.3);color:#e94560}
-.calc-btn.equals{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white;grid-column:span 2}
-.calc-btn.clear{background:rgba(255,165,0,0.2);border-color:rgba(255,165,0,0.3);color:orange}
-body.light .calc-btn{background:#f5f5f5;border-color:#e0e0e0;color:#333}
-body.light .calc-btn.operator{background:#ffe8f0;color:#e94560}
-body.light .calc-btn.equals{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
-body.light .calc-btn.clear{background:#fff3e0;color:orange}
-.calc-display{width:100%;padding:16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:14px;color:#fff;font-size:20px;font-family:'Poppins',sans-serif;outline:none;margin-bottom:12px;text-align:right}
-body.light .calc-display{background:#f8f9ff;border-color:#ddd;color:#333}
-.history-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.history-title{font-size:13px;color:rgba(255,255,255,0.6);font-weight:600;text-transform:uppercase;letter-spacing:1px}
-body.light .history-title{color:#888}
-.clear-btn{padding:4px 12px;background:rgba(233,69,96,0.2);border:1px solid rgba(233,69,96,0.3);border-radius:10px;color:#e94560;font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer}
-.history-list{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto}
-.history-item{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;cursor:pointer;transition:all 0.2s}
-body.light .history-item{background:#f5f5f5;border-color:#e0e0e0}
-.history-problem{font-size:13px;color:rgba(255,255,255,0.8);font-weight:500}
-body.light .history-problem{color:#333}
-.history-answer{font-size:12px;color:#4ecca3;font-weight:600;margin-top:2px}
-body.light .history-answer{color:#667eea}
-.empty-history{text-align:center;color:rgba(255,255,255,0.3);font-size:13px;padding:20px 0}
-body.light .empty-history{color:#bbb}
-.graph-input-row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.graph-input{flex:1;min-width:160px;padding:12px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:12px;color:#fff;font-size:14px;font-family:'Poppins',sans-serif;outline:none}
-body.light .graph-input{background:#f8f9ff;border-color:#ddd;color:#333}
-.graph-btn{padding:12px 20px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:12px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
-body.light .graph-btn{background:linear-gradient(135deg,#667eea,#764ba2)}
-.graph-container{background:rgba(0,0,0,0.3);border-radius:14px;padding:16px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.1)}
-body.light .graph-container{background:#f8f9ff;border-color:#e0e0e0}
+.lbl{font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;display:block;font-weight:500}
+body.light .lbl{color:#666}
+.ibox{width:100%;padding:14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:14px;color:#fff;font-size:15px;font-family:'Poppins',sans-serif;outline:none;transition:all 0.3s;resize:none}
+.ibox:focus{border-color:#e94560}
+body.light .ibox{background:#f8f9ff;border-color:#ddd;color:#333}
+body.light .ibox:focus{border-color:#667eea}
+.exs{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.ex{padding:4px 10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:rgba(255,255,255,0.7);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer}
+body.light .ex{background:#f0f0f0;border-color:#ddd;color:#555}
+.btn{width:100%;padding:13px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:14px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s;margin-bottom:16px}
+body.light .btn{background:linear-gradient(135deg,#667eea,#764ba2)}
+.res{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:18px;margin-bottom:16px;display:none}
+body.light .res{background:#f8f9ff;border-color:#e0e0e0}
+.res.show{display:block}
+.ans{font-size:24px;font-weight:700;color:#4ecca3;margin-bottom:12px}
+body.light .ans{color:#667eea}
+.steps{display:flex;flex-direction:column;gap:8px}
+.step{display:flex;gap:10px;align-items:flex-start}
+.sn{width:22px;height:22px;background:linear-gradient(135deg,#e94560,#c0392b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0;margin-top:2px}
+body.light .sn{background:linear-gradient(135deg,#667eea,#764ba2)}
+.st{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6}
+body.light .st{color:#444}
+.err{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);border-radius:12px;padding:14px;margin-bottom:16px;display:none;color:#ff6b6b;font-size:13px}
+.err.show{display:block}
+.lang-row{display:flex;gap:8px;margin-bottom:12px}
+.lang-btn{padding:6px 14px;border:1px solid rgba(255,255,255,0.2);border-radius:20px;background:transparent;color:rgba(255,255,255,0.6);font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
+.lang-btn.active{background:rgba(78,204,163,0.3);border-color:#4ecca3;color:#4ecca3}
+body.light .lang-btn{border-color:#ddd;color:#888}
+body.light .lang-btn.active{background:rgba(102,126,234,0.1);border-color:#667eea;color:#667eea}
+/* CALC */
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:12px}
+.cb{padding:14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:12px;color:#fff;font-size:15px;font-family:'Poppins',sans-serif;cursor:pointer;transition:all 0.2s;font-weight:500}
+.cb.op{background:rgba(233,69,96,0.2);border-color:rgba(233,69,96,0.3);color:#e94560}
+.cb.eq{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white;grid-column:span 2}
+.cb.cl{background:rgba(255,165,0,0.2);border-color:rgba(255,165,0,0.3);color:orange}
+body.light .cb{background:#f5f5f5;border-color:#e0e0e0;color:#333}
+body.light .cb.op{background:#ffe8f0;color:#e94560}
+body.light .cb.eq{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
+body.light .cb.cl{background:#fff3e0;color:orange}
+.cdis{width:100%;padding:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;font-size:18px;font-family:'Poppins',sans-serif;outline:none;margin-bottom:10px;text-align:right}
+body.light .cdis{background:#f8f9ff;border-color:#ddd;color:#333}
+/* GRAPH */
+.ginrow{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.gi{flex:1;min-width:140px;padding:11px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:12px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none}
+body.light .gi{background:#f8f9ff;border-color:#ddd;color:#333}
+.gbtn{padding:11px 18px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:12px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
+body.light .gbtn{background:linear-gradient(135deg,#667eea,#764ba2)}
+.gcont{background:rgba(0,0,0,0.3);border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.1)}
+body.light .gcont{background:#f8f9ff;border-color:#e0e0e0}
 canvas{width:100%;border-radius:10px;display:block}
-.graph-examples{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.graph-info{font-size:11px;color:rgba(255,255,255,0.5);text-align:center;margin-top:8px}
-body.light .graph-info{color:#999}
-.range-row{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
-.range-label{font-size:12px;color:rgba(255,255,255,0.6);white-space:nowrap}
-body.light .range-label{color:#666}
-.range-input{width:70px;padding:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none;text-align:center}
-body.light .range-input{background:#f8f9ff;border-color:#ddd;color:#333}
+.ginfo{font-size:11px;color:rgba(255,255,255,0.4);text-align:center;margin-top:6px}
+body.light .ginfo{color:#999}
+.rrow{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.rl{font-size:12px;color:rgba(255,255,255,0.6);white-space:nowrap}
+body.light .rl{color:#666}
+.ri{width:65px;padding:7px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none;text-align:center}
+body.light .ri{background:#f8f9ff;border-color:#ddd;color:#333}
+/* QUIZ */
+.qlrow{display:flex;gap:8px;flex-wrap:wrap}
+.lb{padding:10px 16px;border:2px solid rgba(255,255,255,0.2);border-radius:14px;background:transparent;color:rgba(255,255,255,0.6);font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s;flex:1;text-align:center}
+.lb.easy.active{background:linear-gradient(135deg,#27ae60,#2ecc71);border-color:transparent;color:white}
+.lb.medium.active{background:linear-gradient(135deg,#f39c12,#e67e22);border-color:transparent;color:white}
+.lb.hard.active{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white}
+body.light .lb{border-color:#ddd;color:#888}
+.qtrow{display:flex;gap:6px;flex-wrap:wrap}
+.tb{padding:7px 12px;border:1px solid rgba(255,255,255,0.2);border-radius:10px;background:transparent;color:rgba(255,255,255,0.6);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
+.tb.active{background:rgba(78,204,163,0.3);border-color:#4ecca3;color:#4ecca3}
+body.light .tb{border-color:#ddd;color:#888}
+body.light .tb.active{background:rgba(102,126,234,0.1);border-color:#667eea;color:#667eea}
+.sqbtn{width:100%;padding:15px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
+.qhdr{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.05);border-radius:12px;padding:10px 14px;margin-bottom:12px}
+body.light .qhdr{background:#f8f9ff}
+.qsc{font-size:13px;font-weight:700;color:#4ecca3}
+body.light .qsc{color:#667eea}
+.qtm{font-size:13px;font-weight:700;color:#e94560}
+.qpr{font-size:11px;color:rgba(255,255,255,0.5)}
+body.light .qpr{color:#888}
+.pbg{background:rgba(255,255,255,0.1);border-radius:10px;height:5px;margin-bottom:14px;overflow:hidden}
+body.light .pbg{background:#e0e0e0}
+.pf{height:100%;background:linear-gradient(135deg,#4ecca3,#667eea);border-radius:10px;transition:width 0.5s}
+.qbox{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:22px;text-align:center;margin-bottom:10px}
+body.light .qbox{background:#f8f9ff;border-color:#e0e0e0}
+.qlb{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+body.light .qlb{color:#aaa}
+.qt{font-size:26px;font-weight:700;color:#fff;margin-bottom:4px;line-height:1.4}
+body.light .qt{color:#1a1a2e}
+.qh{font-size:11px;color:rgba(255,255,255,0.4)}
+body.light .qh{color:#aaa}
+.ai{width:100%;padding:14px;background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.2);border-radius:14px;color:#fff;font-size:20px;font-family:'Poppins',sans-serif;outline:none;text-align:center;transition:all 0.3s;font-weight:600;margin-bottom:10px}
+body.light .ai{background:#f8f9ff;border-color:#ddd;color:#333}
+.ai.correct{border-color:#27ae60;background:rgba(39,174,96,0.1)}
+.ai.wrong{border-color:#e94560;background:rgba(233,69,96,0.1)}
+.subbtn{width:100%;padding:13px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;margin-bottom:8px}
+.fb{border-radius:12px;padding:14px;text-align:center;display:none;font-size:13px;font-weight:600;line-height:1.6;margin-bottom:8px}
+.fb.show{display:block}
+.fb.correct{background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);color:#4ecca3}
+.fb.wrong{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);color:#ff6b6b}
+body.light .fb.correct{background:rgba(39,174,96,0.1);color:#27ae60}
+body.light .fb.wrong{background:rgba(233,69,96,0.05);color:#e94560}
+.nxbtn{width:100%;padding:13px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:14px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;display:none}
+.nxbtn.show{display:block}
+.qres{display:none;text-align:center;padding:20px}
+.qres.show{display:block}
+.re{font-size:56px;margin-bottom:12px}
+.rt{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
+body.light .rt{color:#1a1a2e}
+.rs{font-size:44px;font-weight:700;color:#4ecca3;margin-bottom:6px}
+body.light .rs{color:#667eea}
+.rd{font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;line-height:1.8}
+body.light .rd{color:#666}
+.pabtn{padding:13px 28px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
+/* HISTORY */
+.hhdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.ht{font-size:12px;color:rgba(255,255,255,0.6);font-weight:600;text-transform:uppercase;letter-spacing:1px}
+body.light .ht{color:#888}
+.clrbtn{padding:4px 10px;background:rgba(233,69,96,0.2);border:1px solid rgba(233,69,96,0.3);border-radius:8px;color:#e94560;font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer}
+.hlist{display:flex;flex-direction:column;gap:7px;max-height:280px;overflow-y:auto}
+.hi{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:9px 12px;cursor:pointer;transition:all 0.2s}
+body.light .hi{background:#f5f5f5;border-color:#e0e0e0}
+.hp{font-size:12px;color:rgba(255,255,255,0.8);font-weight:500}
+body.light .hp{color:#333}
+.ha{font-size:11px;color:#4ecca3;font-weight:600;margin-top:2px}
+body.light .ha{color:#667eea}
+.eh{text-align:center;color:rgba(255,255,255,0.3);font-size:13px;padding:20px 0}
+body.light .eh{color:#bbb}
 
-/* ===== QUIZ STYLES ===== */
-.quiz-setup{display:flex;flex-direction:column;gap:16px}
-.quiz-level-row{display:flex;gap:8px;flex-wrap:wrap}
-.level-btn{padding:10px 20px;border:2px solid rgba(255,255,255,0.2);border-radius:14px;background:transparent;color:rgba(255,255,255,0.6);font-size:13px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s;flex:1;text-align:center}
-.level-btn.active{border-color:transparent;color:white}
-.level-btn.easy.active{background:linear-gradient(135deg,#27ae60,#2ecc71)}
-.level-btn.medium.active{background:linear-gradient(135deg,#f39c12,#e67e22)}
-.level-btn.hard.active{background:linear-gradient(135deg,#e94560,#c0392b)}
-body.light .level-btn{border-color:#ddd;color:#888}
-.quiz-topic-row{display:flex;gap:8px;flex-wrap:wrap}
-.topic-btn{padding:8px 14px;border:1px solid rgba(255,255,255,0.2);border-radius:10px;background:transparent;color:rgba(255,255,255,0.6);font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
-.topic-btn.active{background:rgba(78,204,163,0.3);border-color:#4ecca3;color:#4ecca3}
-body.light .topic-btn{border-color:#ddd;color:#888}
-body.light .topic-btn.active{background:rgba(102,126,234,0.1);border-color:#667eea;color:#667eea}
-.start-quiz-btn{width:100%;padding:16px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:16px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s}
-.quiz-game{display:none;flex-direction:column;gap:16px}
-.quiz-header{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.05);border-radius:14px;padding:12px 16px}
-body.light .quiz-header{background:#f8f9ff}
-.quiz-score{font-size:14px;font-weight:700;color:#4ecca3}
-body.light .quiz-score{color:#667eea}
-.quiz-timer{font-size:14px;font-weight:700;color:#e94560}
-.quiz-progress{font-size:12px;color:rgba(255,255,255,0.5)}
-body.light .quiz-progress{color:#888}
-.progress-bar-bg{background:rgba(255,255,255,0.1);border-radius:10px;height:6px;margin-bottom:16px;overflow:hidden}
-body.light .progress-bar-bg{background:#e0e0e0}
-.progress-bar-fill{height:100%;background:linear-gradient(135deg,#4ecca3,#667eea);border-radius:10px;transition:width 0.5s}
-.question-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px;text-align:center;margin-bottom:8px}
-body.light .question-box{background:#f8f9ff;border-color:#e0e0e0}
-.question-label{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-body.light .question-label{color:#aaa}
-.question-text{font-size:28px;font-weight:700;color:#fff;margin-bottom:4px}
-body.light .question-text{color:#1a1a2e}
-.question-hint{font-size:12px;color:rgba(255,255,255,0.4)}
-body.light .question-hint{color:#aaa}
-.answer-input{width:100%;padding:16px;background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.2);border-radius:14px;color:#fff;font-size:22px;font-family:'Poppins',sans-serif;outline:none;text-align:center;transition:all 0.3s;font-weight:600}
-body.light .answer-input{background:#f8f9ff;border-color:#ddd;color:#333}
-.answer-input.correct{border-color:#27ae60;background:rgba(39,174,96,0.1)}
-.answer-input.wrong{border-color:#e94560;background:rgba(233,69,96,0.1)}
-.submit-btn{width:100%;padding:14px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s}
-.feedback-box{border-radius:14px;padding:16px;text-align:center;display:none;font-size:14px;font-weight:600;line-height:1.6}
-.feedback-box.show{display:block}
-.feedback-box.correct{background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);color:#4ecca3}
-.feedback-box.wrong{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);color:#ff6b6b}
-body.light .feedback-box.correct{background:rgba(39,174,96,0.1);color:#27ae60}
-body.light .feedback-box.wrong{background:rgba(233,69,96,0.05);color:#e94560}
-.next-btn{width:100%;padding:14px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;display:none}
-.next-btn.show{display:block}
-.quiz-result{display:none;text-align:center;padding:20px}
-.quiz-result.show{display:block}
-.result-emoji{font-size:60px;margin-bottom:16px}
-.result-title{font-size:24px;font-weight:700;color:#fff;margin-bottom:8px}
-body.light .result-title{color:#1a1a2e}
-.result-score{font-size:48px;font-weight:700;color:#4ecca3;margin-bottom:8px}
-body.light .result-score{color:#667eea}
-.result-detail{font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:24px;line-height:1.8}
-body.light .result-detail{color:#666}
-.play-again-btn{padding:14px 32px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
-.streak-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;background:rgba(255,165,0,0.2);border:1px solid rgba(255,165,0,0.4);border-radius:10px;font-size:12px;color:orange;font-weight:600;margin-top:8px}
+/* ===== TOOL STYLES ===== */
+.tool-section{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:18px;margin-bottom:16px}
+body.light .tool-section{background:#f8f9ff;border-color:#e0e0e0}
+.tool-title{font-size:14px;font-weight:700;color:#4ecca3;margin-bottom:14px}
+body.light .tool-title{color:#667eea}
+.tool-row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center}
+.tool-label{font-size:12px;color:rgba(255,255,255,0.6);min-width:80px;font-weight:500}
+body.light .tool-label{color:#666}
+.tool-input{flex:1;min-width:80px;padding:10px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none}
+body.light .tool-input{background:#fff;border-color:#ddd;color:#333}
+.tool-select{flex:1;padding:10px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none;cursor:pointer}
+body.light .tool-select{background:#fff;border-color:#ddd;color:#333}
+.tool-btn{padding:10px 18px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:10px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;white-space:nowrap}
+body.light .tool-btn{background:linear-gradient(135deg,#667eea,#764ba2)}
+.tool-result{background:rgba(78,204,163,0.1);border:1px solid rgba(78,204,163,0.2);border-radius:10px;padding:14px;margin-top:10px;display:none}
+body.light .tool-result{background:rgba(102,126,234,0.05);border-color:rgba(102,126,234,0.2)}
+.tool-result.show{display:block}
+.tool-result-value{font-size:20px;font-weight:700;color:#4ecca3;margin-bottom:6px}
+body.light .tool-result-value{color:#667eea}
+.tool-result-detail{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.8;white-space:pre-wrap}
+body.light .tool-result-detail{color:#555}
+.bn-section{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;margin-bottom:12px}
+body.light .bn-section{background:#fafafa;border-color:#eee}
+.bn-title{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+body.light .bn-title{color:#aaa}
 </style>
 </head>
 <body>
@@ -156,192 +186,325 @@ body.light .result-detail{color:#666}
     <button class="tab" onclick="switchTab('calculator',this)">🔢 Calc</button>
     <button class="tab" onclick="switchTab('graph',this)">📊 Graph</button>
     <button class="tab" onclick="switchTab('quiz',this)">📝 Quiz</button>
+    <button class="tab" onclick="switchTab('tools',this)">🛠️ Tools</button>
     <button class="tab" onclick="switchTab('history',this)">📜 History</button>
   </div>
 
   <!-- SOLVER TAB -->
   <div id="tab-solver">
-    <div style="margin-bottom:20px">
-      <span class="input-label">তোমার math problem লেখো:</span>
-      <textarea class="input-box" id="problem-input" rows="3" placeholder="যেমন: 2+2, x+5=10, sqrt(144), 15% of 200"></textarea>
-      <div class="examples" style="margin-top:10px">
-        <button class="example-btn" onclick="setExample('2 + 2')">2+2</button>
-        <button class="example-btn" onclick="setExample('15% of 200')">15% of 200</button>
-        <button class="example-btn" onclick="setExample('sqrt(144)')">√144</button>
-        <button class="example-btn" onclick="setExample('x + 5 = 10')">x+5=10</button>
-        <button class="example-btn" onclick="setExample('2^10')">2¹⁰</button>
-        <button class="example-btn" onclick="setExample('sin(30 deg)')">sin(30°)</button>
-        <button class="example-btn" onclick="setExample('log(1000)')">log(1000)</button>
-        <button class="example-btn" onclick="setExample('5!')">5!</button>
+    <div class="lang-row">
+      <button class="lang-btn active" onclick="setLang('en',this)">🇬🇧 English</button>
+      <button class="lang-btn" onclick="setLang('bn',this)">🇧🇩 বাংলা</button>
+    </div>
+    <div style="margin-bottom:16px">
+      <span class="lbl">তোমার math problem লেখো:</span>
+      <textarea class="ibox" id="problem-input" rows="3" placeholder="যেমন: 2+2, x+5=10, sqrt(144), 15% of 200"></textarea>
+      <div class="exs">
+        <button class="ex" onclick="setEx('2+2')">2+2</button>
+        <button class="ex" onclick="setEx('15% of 200')">15% of 200</button>
+        <button class="ex" onclick="setEx('sqrt(144)')">√144</button>
+        <button class="ex" onclick="setEx('x+5=10')">x+5=10</button>
+        <button class="ex" onclick="setEx('2^10')">2¹⁰</button>
+        <button class="ex" onclick="setEx('sin(30 deg)')">sin(30°)</button>
+        <button class="ex" onclick="setEx('log(1000)')">log(1000)</button>
+        <button class="ex" onclick="setEx('5!')">5!</button>
       </div>
     </div>
-    <button class="solve-btn" onclick="solveProblem()">⚡ Solve & Explain</button>
-    <div class="error-box" id="error-box"></div>
-    <div class="result-box" id="result-box">
-      <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px" class="rh">✅ Solution</div>
-      <div class="answer" id="answer-display"></div>
+    <button class="btn" onclick="solveProblem()">⚡ Solve & Explain</button>
+    <div class="err" id="error-box"></div>
+    <div class="res" id="result-box">
+      <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">✅ Solution</div>
+      <div class="ans" id="answer-display"></div>
       <div class="steps" id="steps-display"></div>
     </div>
   </div>
 
   <!-- CALCULATOR TAB -->
   <div id="tab-calculator" style="display:none">
-    <input class="calc-display" id="calc-display" readonly placeholder="0"/>
-    <div class="calc-grid">
-      <button class="calc-btn clear" onclick="calcClear()">C</button>
-      <button class="calc-btn clear" onclick="calcDel()">⌫</button>
-      <button class="calc-btn operator" onclick="calcInput('%')">%</button>
-      <button class="calc-btn operator" onclick="calcInput('/')">÷</button>
-      <button class="calc-btn" onclick="calcInput('7')">7</button>
-      <button class="calc-btn" onclick="calcInput('8')">8</button>
-      <button class="calc-btn" onclick="calcInput('9')">9</button>
-      <button class="calc-btn operator" onclick="calcInput('*')">×</button>
-      <button class="calc-btn" onclick="calcInput('4')">4</button>
-      <button class="calc-btn" onclick="calcInput('5')">5</button>
-      <button class="calc-btn" onclick="calcInput('6')">6</button>
-      <button class="calc-btn operator" onclick="calcInput('-')">−</button>
-      <button class="calc-btn" onclick="calcInput('1')">1</button>
-      <button class="calc-btn" onclick="calcInput('2')">2</button>
-      <button class="calc-btn" onclick="calcInput('3')">3</button>
-      <button class="calc-btn operator" onclick="calcInput('+')">+</button>
-      <button class="calc-btn" onclick="calcInput('0')" style="grid-column:span 2">0</button>
-      <button class="calc-btn" onclick="calcInput('.')">.</button>
-      <button class="calc-btn equals" onclick="calcEquals()">=</button>
+    <input class="cdis" id="calc-display" readonly placeholder="0"/>
+    <div class="cgrid">
+      <button class="cb cl" onclick="calcClear()">C</button>
+      <button class="cb cl" onclick="calcDel()">⌫</button>
+      <button class="cb op" onclick="calcInput('%')">%</button>
+      <button class="cb op" onclick="calcInput('/')">÷</button>
+      <button class="cb" onclick="calcInput('7')">7</button>
+      <button class="cb" onclick="calcInput('8')">8</button>
+      <button class="cb" onclick="calcInput('9')">9</button>
+      <button class="cb op" onclick="calcInput('*')">×</button>
+      <button class="cb" onclick="calcInput('4')">4</button>
+      <button class="cb" onclick="calcInput('5')">5</button>
+      <button class="cb" onclick="calcInput('6')">6</button>
+      <button class="cb op" onclick="calcInput('-')">−</button>
+      <button class="cb" onclick="calcInput('1')">1</button>
+      <button class="cb" onclick="calcInput('2')">2</button>
+      <button class="cb" onclick="calcInput('3')">3</button>
+      <button class="cb op" onclick="calcInput('+')">+</button>
+      <button class="cb" onclick="calcInput('0')" style="grid-column:span 2">0</button>
+      <button class="cb" onclick="calcInput('.')">.</button>
+      <button class="cb eq" onclick="calcEquals()">=</button>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="example-btn" onclick="calcInput('sqrt(')">√</button>
-      <button class="example-btn" onclick="calcInput('^')">xⁿ</button>
-      <button class="example-btn" onclick="calcInput('(')">( </button>
-      <button class="example-btn" onclick="calcInput(')')"> )</button>
-      <button class="example-btn" onclick="calcInput('pi')">π</button>
-      <button class="example-btn" onclick="calcInput('e')">e</button>
+    <div class="exs">
+      <button class="ex" onclick="calcInput('sqrt(')">√</button>
+      <button class="ex" onclick="calcInput('^')">xⁿ</button>
+      <button class="ex" onclick="calcInput('(')">( </button>
+      <button class="ex" onclick="calcInput(')')"> )</button>
+      <button class="ex" onclick="calcInput('pi')">π</button>
+      <button class="ex" onclick="calcInput('e')">e</button>
     </div>
   </div>
 
   <!-- GRAPH TAB -->
   <div id="tab-graph" style="display:none">
-    <div class="graph-input-row">
-      <input class="graph-input" id="graph-input" placeholder="e.g. x^2 or sin(x)"/>
-      <button class="graph-btn" onclick="plotGraph()">📊 Plot</button>
+    <div class="ginrow">
+      <input class="gi" id="graph-input" placeholder="e.g. x^2 or sin(x)"/>
+      <button class="gbtn" onclick="plotGraph()">📊 Plot</button>
     </div>
-    <div class="graph-examples">
-      <button class="example-btn" onclick="graphExample('x^2')">x²</button>
-      <button class="example-btn" onclick="graphExample('x^3')">x³</button>
-      <button class="example-btn" onclick="graphExample('sin(x)')">sin(x)</button>
-      <button class="example-btn" onclick="graphExample('cos(x)')">cos(x)</button>
-      <button class="example-btn" onclick="graphExample('2*x+3')">2x+3</button>
-      <button class="example-btn" onclick="graphExample('sqrt(x)')">√x</button>
-      <button class="example-btn" onclick="graphExample('1/x')">1/x</button>
-      <button class="example-btn" onclick="graphExample('abs(x)')">|x|</button>
+    <div class="exs" style="margin-bottom:10px">
+      <button class="ex" onclick="gex('x^2')">x²</button>
+      <button class="ex" onclick="gex('x^3')">x³</button>
+      <button class="ex" onclick="gex('sin(x)')">sin(x)</button>
+      <button class="ex" onclick="gex('cos(x)')">cos(x)</button>
+      <button class="ex" onclick="gex('2*x+3')">2x+3</button>
+      <button class="ex" onclick="gex('sqrt(x)')">√x</button>
+      <button class="ex" onclick="gex('1/x')">1/x</button>
+      <button class="ex" onclick="gex('abs(x)')">|x|</button>
     </div>
-    <div class="range-row">
-      <span class="range-label">x from:</span>
-      <input class="range-input" id="x-min" value="-10"/>
-      <span class="range-label">to:</span>
-      <input class="range-input" id="x-max" value="10"/>
+    <div class="rrow">
+      <span class="rl">x from:</span>
+      <input class="ri" id="x-min" value="-10"/>
+      <span class="rl">to:</span>
+      <input class="ri" id="x-max" value="10"/>
     </div>
-    <div class="graph-container">
-      <canvas id="graph-canvas" width="560" height="300"></canvas>
-    </div>
-    <div class="graph-info" id="graph-info">Enter a function and press Plot 📊</div>
+    <div class="gcont"><canvas id="graph-canvas" width="560" height="280"></canvas></div>
+    <div class="ginfo" id="graph-info">Enter a function and press Plot</div>
   </div>
 
   <!-- QUIZ TAB -->
   <div id="tab-quiz" style="display:none">
-
-    <!-- SETUP -->
-    <div id="quiz-setup" class="quiz-setup">
+    <div id="quiz-setup" style="display:flex;flex-direction:column;gap:14px">
       <div>
-        <span class="input-label">Difficulty Level:</span>
-        <div class="quiz-level-row">
-          <button class="level-btn easy active" onclick="setLevel('easy',this)">🟢 Easy</button>
-          <button class="level-btn medium" onclick="setLevel('medium',this)">🟡 Medium</button>
-          <button class="level-btn hard" onclick="setLevel('hard',this)">🔴 Hard</button>
+        <span class="lbl">Difficulty:</span>
+        <div class="qlrow">
+          <button class="lb easy active" onclick="setLevel('easy',this)">🟢 Easy</button>
+          <button class="lb medium" onclick="setLevel('medium',this)">🟡 Medium</button>
+          <button class="lb hard" onclick="setLevel('hard',this)">🔴 Hard</button>
         </div>
       </div>
       <div>
-        <span class="input-label">Topic:</span>
-        <div class="quiz-topic-row">
-          <button class="topic-btn active" onclick="setTopic('all',this)">🔢 All</button>
-          <button class="topic-btn" onclick="setTopic('addition',this)">➕ Add</button>
-          <button class="topic-btn" onclick="setTopic('multiply',this)">✖️ Multiply</button>
-          <button class="topic-btn" onclick="setTopic('percentage',this)">% Percent</button>
-          <button class="topic-btn" onclick="setTopic('algebra',this)">📐 Algebra</button>
-          <button class="topic-btn" onclick="setTopic('square',this)">² Square</button>
+        <span class="lbl">Topic:</span>
+        <div class="qtrow">
+          <button class="tb active" onclick="setTopic('all',this)">🔢 All</button>
+          <button class="tb" onclick="setTopic('addition',this)">➕ Add</button>
+          <button class="tb" onclick="setTopic('multiply',this)">✖️ Multiply</button>
+          <button class="tb" onclick="setTopic('percentage',this)">% Percent</button>
+          <button class="tb" onclick="setTopic('algebra',this)">📐 Algebra</button>
+          <button class="tb" onclick="setTopic('square',this)">² Square</button>
         </div>
       </div>
       <div>
-        <span class="input-label">Number of Questions:</span>
+        <span class="lbl">Questions:</span>
         <div style="display:flex;gap:8px">
-          <button class="topic-btn active" id="q5" onclick="setQCount(5,this)">5</button>
-          <button class="topic-btn" id="q10" onclick="setQCount(10,this)">10</button>
-          <button class="topic-btn" id="q15" onclick="setQCount(15,this)">15</button>
-          <button class="topic-btn" id="q20" onclick="setQCount(20,this)">20</button>
+          <button class="tb active" id="q5" onclick="setQC(5,this)">5</button>
+          <button class="tb" id="q10" onclick="setQC(10,this)">10</button>
+          <button class="tb" id="q15" onclick="setQC(15,this)">15</button>
+          <button class="tb" id="q20" onclick="setQC(20,this)">20</button>
         </div>
       </div>
-      <button class="start-quiz-btn" onclick="startQuiz()">🚀 Start Quiz!</button>
+      <button class="sqbtn" onclick="startQuiz()">🚀 Start Quiz!</button>
+    </div>
+    <div id="quiz-game" style="display:none;flex-direction:column;gap:10px">
+      <div class="qhdr">
+        <div class="qsc">⭐ <span id="score-display">0</span></div>
+        <div class="qpr"><span id="q-current">1</span>/<span id="q-total">10</span></div>
+        <div class="qtm">⏱️ <span id="timer-display">30</span>s</div>
+      </div>
+      <div class="pbg"><div class="pf" id="progress-fill" style="width:0%"></div></div>
+      <div class="qbox">
+        <div class="qlb">Solve this:</div>
+        <div class="qt" id="question-text">2 + 2 = ?</div>
+        <div class="qh" id="question-hint"></div>
+      </div>
+      <input class="ai" id="answer-input" type="number" placeholder="Your answer..." onkeypress="handleEnter(event)"/>
+      <div class="fb" id="feedback-box"></div>
+      <button class="subbtn" id="submit-btn" onclick="checkAnswer()">✅ Check Answer</button>
+      <button class="nxbtn" id="next-btn" onclick="nextQuestion()">➡️ Next Question</button>
+    </div>
+    <div id="quiz-result" class="qres">
+      <div class="re" id="result-emoji">🎉</div>
+      <div class="rt" id="result-title">Excellent!</div>
+      <div class="rs" id="result-score-display">10/10</div>
+      <div class="rd" id="result-detail"></div>
+      <button class="pabtn" onclick="resetQuiz()">🔄 Play Again</button>
+    </div>
+  </div>
+
+  <!-- TOOLS TAB -->
+  <div id="tab-tools" style="display:none">
+
+    <!-- বাংলা Explanation -->
+    <div class="tool-section">
+      <div class="tool-title">🇧🇩 বাংলায় Math Explanation</div>
+      <div class="tool-row">
+        <input class="tool-input" id="bn-input" placeholder="যেমন: 2+2, sqrt(16), 5!"/>
+        <button class="tool-btn" onclick="solveBangla()">বাংলায় বলো</button>
+      </div>
+      <div class="tool-result" id="bn-result">
+        <div class="tool-result-value" id="bn-answer"></div>
+        <div class="tool-result-detail" id="bn-steps"></div>
+      </div>
     </div>
 
-    <!-- GAME -->
-    <div id="quiz-game" class="quiz-game">
-      <div class="quiz-header">
-        <div class="quiz-score">⭐ Score: <span id="score-display">0</span></div>
-        <div class="quiz-progress"><span id="q-current">1</span>/<span id="q-total">10</span></div>
-        <div class="quiz-timer">⏱️ <span id="timer-display">30</span>s</div>
+    <!-- Statistics -->
+    <div class="tool-section">
+      <div class="tool-title">📊 Statistics Calculator</div>
+      <div class="tool-row">
+        <input class="tool-input" id="stat-input" placeholder="Numbers: 5, 10, 15, 20, 25"/>
+        <button class="tool-btn" onclick="calcStats()">Calculate</button>
       </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      <div class="tool-result" id="stat-result">
+        <div class="tool-result-detail" id="stat-detail"></div>
       </div>
-      <div class="question-box">
-        <div class="question-label">Solve this:</div>
-        <div class="question-text" id="question-text">2 + 2 = ?</div>
-        <div class="question-hint" id="question-hint"></div>
-      </div>
-      <input class="answer-input" id="answer-input" type="number" placeholder="Type your answer..." onkeypress="handleEnter(event)"/>
-      <div class="feedback-box" id="feedback-box"></div>
-      <button class="submit-btn" id="submit-btn" onclick="checkAnswer()">✅ Check Answer</button>
-      <button class="next-btn" id="next-btn" onclick="nextQuestion()">➡️ Next Question</button>
     </div>
 
-    <!-- RESULT -->
-    <div id="quiz-result" class="quiz-result">
-      <div class="result-emoji" id="result-emoji">🎉</div>
-      <div class="result-title" id="result-title">Excellent!</div>
-      <div class="result-score" id="result-score-display">10/10</div>
-      <div class="result-detail" id="result-detail"></div>
-      <button class="play-again-btn" onclick="resetQuiz()">🔄 Play Again</button>
+    <!-- Interest Calculator -->
+    <div class="tool-section">
+      <div class="tool-title">💰 Interest Calculator</div>
+      <div class="bn-section">
+        <div class="bn-title">Simple Interest</div>
+        <div class="tool-row">
+          <span class="tool-label">Principal (P)</span>
+          <input class="tool-input" id="si-p" type="number" placeholder="10000"/>
+        </div>
+        <div class="tool-row">
+          <span class="tool-label">Rate % (R)</span>
+          <input class="tool-input" id="si-r" type="number" placeholder="5"/>
+        </div>
+        <div class="tool-row">
+          <span class="tool-label">Time (T) years</span>
+          <input class="tool-input" id="si-t" type="number" placeholder="2"/>
+        </div>
+        <button class="tool-btn" style="width:100%" onclick="calcSI()">Calculate SI</button>
+        <div class="tool-result" id="si-result">
+          <div class="tool-result-detail" id="si-detail"></div>
+        </div>
+      </div>
+      <div class="bn-section">
+        <div class="bn-title">Compound Interest</div>
+        <div class="tool-row">
+          <span class="tool-label">Principal (P)</span>
+          <input class="tool-input" id="ci-p" type="number" placeholder="10000"/>
+        </div>
+        <div class="tool-row">
+          <span class="tool-label">Rate % (R)</span>
+          <input class="tool-input" id="ci-r" type="number" placeholder="5"/>
+        </div>
+        <div class="tool-row">
+          <span class="tool-label">Time (T) years</span>
+          <input class="tool-input" id="ci-t" type="number" placeholder="2"/>
+        </div>
+        <div class="tool-row">
+          <span class="tool-label">Compound</span>
+          <select class="tool-select" id="ci-n">
+            <option value="1">Yearly</option>
+            <option value="2">Half-yearly</option>
+            <option value="4">Quarterly</option>
+            <option value="12">Monthly</option>
+          </select>
+        </div>
+        <button class="tool-btn" style="width:100%" onclick="calcCI()">Calculate CI</button>
+        <div class="tool-result" id="ci-result">
+          <div class="tool-result-detail" id="ci-detail"></div>
+        </div>
+      </div>
     </div>
 
+    <!-- Unit Converter -->
+    <div class="tool-section">
+      <div class="tool-title">🔄 Unit Converter</div>
+      <div class="tool-row">
+        <input class="tool-input" id="uc-value" type="number" placeholder="Value"/>
+        <select class="tool-select" id="uc-from">
+          <optgroup label="📏 Length">
+            <option value="km">km</option>
+            <option value="mile">mile</option>
+            <option value="meter">meter</option>
+            <option value="cm">cm</option>
+            <option value="inch">inch</option>
+            <option value="foot">foot</option>
+          </optgroup>
+          <optgroup label="⚖️ Weight">
+            <option value="kg">kg</option>
+            <option value="lb">pound</option>
+            <option value="gram">gram</option>
+            <option value="oz">ounce</option>
+          </optgroup>
+          <optgroup label="🌡️ Temperature">
+            <option value="celsius">°C Celsius</option>
+            <option value="fahrenheit">°F Fahrenheit</option>
+            <option value="kelvin">K Kelvin</option>
+          </optgroup>
+          <optgroup label="📐 Area">
+            <option value="sqm">m²</option>
+            <option value="sqft">ft²</option>
+            <option value="acre">acre</option>
+            <option value="hectare">hectare</option>
+          </optgroup>
+        </select>
+        <span style="color:rgba(255,255,255,0.5);padding:0 4px">→</span>
+        <select class="tool-select" id="uc-to">
+          <optgroup label="📏 Length">
+            <option value="km">km</option>
+            <option value="mile">mile</option>
+            <option value="meter">meter</option>
+            <option value="cm">cm</option>
+            <option value="inch">inch</option>
+            <option value="foot">foot</option>
+          </optgroup>
+          <optgroup label="⚖️ Weight">
+            <option value="kg">kg</option>
+            <option value="lb">pound</option>
+            <option value="gram">gram</option>
+            <option value="oz">ounce</option>
+          </optgroup>
+          <optgroup label="🌡️ Temperature">
+            <option value="celsius">°C Celsius</option>
+            <option value="fahrenheit">°F Fahrenheit</option>
+            <option value="kelvin">K Kelvin</option>
+          </optgroup>
+          <optgroup label="📐 Area">
+            <option value="sqm">m²</option>
+            <option value="sqft">ft²</option>
+            <option value="acre">acre</option>
+            <option value="hectare">hectare</option>
+          </optgroup>
+        </select>
+      </div>
+      <button class="tool-btn" style="width:100%;margin-top:4px" onclick="convertUnit()">🔄 Convert</button>
+      <div class="tool-result" id="uc-result">
+        <div class="tool-result-value" id="uc-answer"></div>
+        <div class="tool-result-detail" id="uc-detail"></div>
+      </div>
+    </div>
   </div>
 
   <!-- HISTORY TAB -->
   <div id="tab-history" style="display:none">
-    <div class="history-header">
-      <span class="history-title">📜 History</span>
-      <button class="clear-btn" onclick="clearHistory()">Clear All</button>
+    <div class="hhdr">
+      <span class="ht">📜 History</span>
+      <button class="clrbtn" onclick="clearHistory()">Clear All</button>
     </div>
-    <div class="history-list" id="history-list"></div>
+    <div class="hlist" id="history-list"></div>
   </div>
 </div>
 
 <script>
-// ===== STATE =====
 let historyData=JSON.parse(localStorage.getItem('mathHistory'))||[];
 let calcExpr='';
+let currentLang='en';
+let quizLevel='easy',quizTopic='all',quizQC=5;
+let currentQ=0,score=0,correctAnswer=0,timerInterval=null,timeLeft=30,streak=0,totalCorrect=0;
 
-// ===== QUIZ STATE =====
-let quizLevel='easy';
-let quizTopic='all';
-let quizQCount=5;
-let currentQ=0;
-let score=0;
-let correctAnswer=0;
-let timerInterval=null;
-let timeLeft=30;
-let streak=0;
-let totalCorrect=0;
-
-// ===== THEME =====
+// THEME
 function toggleTheme(){
   document.body.classList.toggle('light');
   const isLight=document.body.classList.contains('light');
@@ -349,16 +512,11 @@ function toggleTheme(){
   localStorage.setItem('mathTheme',isLight?'light':'dark');
   if(document.getElementById('tab-graph').style.display!=='none') plotGraph();
 }
-if(localStorage.getItem('mathTheme')==='light'){
-  document.body.classList.add('light');
-  document.getElementById('theme-btn').textContent='🌙 Dark';
-}
+if(localStorage.getItem('mathTheme')==='light'){document.body.classList.add('light');document.getElementById('theme-btn').textContent='🌙 Dark';}
 
-// ===== TABS =====
+// TABS
 function switchTab(tab,btn){
-  ['solver','calculator','graph','quiz','history'].forEach(t=>{
-    document.getElementById('tab-'+t).style.display='none';
-  });
+  ['solver','calculator','graph','quiz','tools','history'].forEach(t=>{document.getElementById('tab-'+t).style.display='none';});
   document.getElementById('tab-'+tab).style.display='block';
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
@@ -366,65 +524,240 @@ function switchTab(tab,btn){
   if(tab==='graph') plotGraph();
 }
 
-// ===== SOLVER =====
-function setExample(val){document.getElementById('problem-input').value=val;}
+// LANGUAGE
+function setLang(lang,btn){
+  currentLang=lang;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// SOLVER
+function setEx(val){document.getElementById('problem-input').value=val;}
 function solveProblem(){
   const input=document.getElementById('problem-input').value.trim();
-  const errorBox=document.getElementById('error-box');
-  const resultBox=document.getElementById('result-box');
-  errorBox.classList.remove('show');
-  resultBox.classList.remove('show');
-  if(!input){errorBox.textContent='❌ Please type a math problem!';errorBox.classList.add('show');return;}
+  const eb=document.getElementById('error-box');
+  const rb=document.getElementById('result-box');
+  eb.classList.remove('show');rb.classList.remove('show');
+  if(!input){eb.textContent='❌ Please type a math problem!';eb.classList.add('show');return;}
   try{
-    const result=solve(input);
+    const result=solveIt(input,currentLang);
     document.getElementById('answer-display').textContent='= '+result.answer;
     document.getElementById('steps-display').innerHTML=result.steps.map((s,i)=>
-      `<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`
-    ).join('');
-    resultBox.classList.add('show');
+      `<div class="step"><div class="sn">${i+1}</div><div class="st">${s}</div></div>`).join('');
+    rb.classList.add('show');
     saveHistory(input,result.answer);
-  }catch(e){
-    errorBox.textContent='❌ Could not solve: '+e.message;
-    errorBox.classList.add('show');
-  }
+  }catch(e){eb.textContent='❌ Could not solve: '+e.message;eb.classList.add('show');}
 }
-function solve(input){
+
+function solveIt(input,lang='en'){
   const clean=input.trim();
+  const isBn=lang==='bn';
+
   if(/(\d+\.?\d*)%\s*of\s*(\d+\.?\d*)/i.test(clean)){
     const m=clean.match(/(\d+\.?\d*)%\s*of\s*(\d+\.?\d*)/i);
     const pct=parseFloat(m[1]),num=parseFloat(m[2]),ans=(pct/100)*num;
-    return{answer:ans,steps:[`Find ${pct}% of ${num}`,`Formula: (${pct} ÷ 100) × ${num}`,`= ${pct/100} × ${num}`,`✅ Answer: ${ans}`]};
+    return isBn?{answer:ans,steps:[
+      `সমস্যা: ${pct}% of ${num} বের করতে হবে`,
+      `সূত্র: (শতকরা ÷ ১০০) × সংখ্যা`,
+      `ধাপ: (${pct} ÷ ১০০) × ${num}`,
+      `= ${pct/100} × ${num}`,
+      `✅ উত্তর: ${ans}`
+    ]}:{answer:ans,steps:[
+      `Find ${pct}% of ${num}`,
+      `Formula: (${pct} ÷ 100) × ${num}`,
+      `= ${pct/100} × ${num}`,
+      `✅ Answer: ${ans}`
+    ]};
   }
+
   if(/[a-zA-Z]/.test(clean)&&clean.includes('=')){
     const sides=clean.split('=');
     const left=sides[0].trim(),right=sides[1].trim();
     const varName=(left.match(/[a-zA-Z]/)||right.match(/[a-zA-Z]/))[0];
-    const steps=[`Equation: ${clean}`,`Find "${varName}"`];
     const match=left.match(/^(-?\d*\.?\d*)\s*\*?\s*([a-zA-Z])\s*([+-]\s*\d+\.?\d*)?$/);
     if(match){
       let a=match[1]===''||!match[1]?1:(match[1]==='-'?-1:parseFloat(match[1]));
       const b=match[3]?parseFloat(match[3].replace(/\s/g,'')):0;
       const c=parseFloat(right);
       const ans=(c-b)/a;
-      steps.push(`Move ${b} to right: ${varName} = ${c} - (${b}) = ${c-b}`);
-      steps.push(`Divide by ${a}: ${varName} = ${c-b} ÷ ${a}`);
-      steps.push(`✅ ${varName} = ${ans}`);
-      return{answer:`${varName} = ${ans}`,steps};
+      return isBn?{answer:`${varName} = ${ans}`,steps:[
+        `সমীকরণ: ${clean}`,
+        `${varName} এর মান বের করতে হবে`,
+        `${b} ডানদিকে নিয়ে: ${varName} = ${c} - ${b} = ${c-b}`,
+        `${a} দিয়ে ভাগ করে: ${varName} = ${c-b} ÷ ${a}`,
+        `✅ উত্তর: ${varName} = ${ans}`
+      ]}:{answer:`${varName} = ${ans}`,steps:[
+        `Equation: ${clean}`,
+        `Find ${varName}`,
+        `Move ${b}: ${varName} = ${c} - ${b} = ${c-b}`,
+        `Divide by ${a}: ${varName} = ${c-b} ÷ ${a}`,
+        `✅ ${varName} = ${ans}`
+      ]};
     }
   }
+
   const result=math.evaluate(clean);
-  const steps=[`Problem: ${clean}`];
-  if(clean.includes('+')) steps.push(`Adding the numbers`);
-  else if(clean.includes('-')) steps.push(`Subtracting`);
-  else if(clean.includes('*')) steps.push(`Multiplying`);
-  else if(clean.includes('/')) steps.push(`Dividing`);
-  else if(clean.includes('sqrt')) steps.push(`Finding square root`);
-  else if(clean.includes('^')){const p=clean.split('^');steps.push(`${p[0]} to the power of ${p[1]}`);}
-  steps.push(`✅ Answer: ${result}`);
+  const steps=isBn?getBnSteps(clean,result):getEnSteps(clean,result);
   return{answer:result,steps};
 }
 
-// ===== HISTORY =====
+function getEnSteps(expr,result){
+  const s=[`Problem: ${expr}`];
+  if(expr.includes('+')) s.push(`Adding the numbers together`);
+  else if(expr.includes('-')) s.push(`Subtracting`);
+  else if(expr.includes('*')) s.push(`Multiplying`);
+  else if(expr.includes('/')) s.push(`Dividing`);
+  else if(expr.includes('sqrt')) s.push(`Finding square root — what number × itself = the value inside?`);
+  else if(expr.includes('^')){const p=expr.split('^');s.push(`${p[0]} to the power ${p[1]} — multiply ${p[0]} by itself ${p[1]} times`);}
+  else if(expr.includes('sin')||expr.includes('cos')||expr.includes('tan')) s.push(`Trigonometry — ratio of sides in right triangle`);
+  else if(expr.includes('log')) s.push(`Logarithm — what power gives this number?`);
+  else if(expr.includes('!')) s.push(`Factorial — multiply all numbers from 1 to this number`);
+  s.push(`✅ Answer: ${result}`);
+  return s;
+}
+
+function getBnSteps(expr,result){
+  const s=[`সমস্যা: ${expr}`];
+  if(expr.includes('+')) s.push(`সংখ্যাগুলো যোগ করতে হবে`);
+  else if(expr.includes('-')) s.push(`সংখ্যা বিয়োগ করতে হবে`);
+  else if(expr.includes('*')) s.push(`সংখ্যাগুলো গুণ করতে হবে`);
+  else if(expr.includes('/')) s.push(`সংখ্যাগুলো ভাগ করতে হবে`);
+  else if(expr.includes('sqrt')) s.push(`বর্গমূল বের করতে হবে — কোন সংখ্যা নিজেকে নিজে গুণ করলে এই মান হয়?`);
+  else if(expr.includes('^')){const p=expr.split('^');s.push(`${p[0]} কে ${p[1]} ঘাতে উন্নীত করতে হবে — ${p[0]} কে ${p[1]} বার গুণ করো`);}
+  else if(expr.includes('sin')||expr.includes('cos')||expr.includes('tan')) s.push(`ত্রিকোণমিতি — সমকোণী ত্রিভুজের বাহুর অনুপাত`);
+  else if(expr.includes('log')) s.push(`লগারিদম — কোন ঘাতে উন্নীত করলে এই সংখ্যা পাওয়া যাবে?`);
+  else if(expr.includes('!')) s.push(`ফ্যাক্টরিয়াল — ১ থেকে এই সংখ্যা পর্যন্ত সব সংখ্যা গুণ করো`);
+  s.push(`✅ উত্তর: ${result}`);
+  return s;
+}
+
+// BANGLA SOLVER
+function solveBangla(){
+  const input=document.getElementById('bn-input').value.trim();
+  const res=document.getElementById('bn-result');
+  if(!input){alert('কিছু লেখো!');return;}
+  try{
+    const result=solveIt(input,'bn');
+    document.getElementById('bn-answer').textContent='= '+result.answer;
+    document.getElementById('bn-steps').textContent=result.steps.join('\n');
+    res.classList.add('show');
+  }catch(e){
+    document.getElementById('bn-answer').textContent='❌ সমাধান হয়নি';
+    document.getElementById('bn-steps').textContent=e.message;
+    res.classList.add('show');
+  }
+}
+
+// STATISTICS
+function calcStats(){
+  const input=document.getElementById('stat-input').value.trim();
+  const res=document.getElementById('stat-result');
+  if(!input){alert('Numbers দাও!');return;}
+  try{
+    const nums=input.split(/[,\s]+/).map(n=>parseFloat(n)).filter(n=>!isNaN(n));
+    if(nums.length===0) throw new Error('No valid numbers');
+    const sorted=[...nums].sort((a,b)=>a-b);
+    const n=nums.length;
+    const sum=nums.reduce((a,b)=>a+b,0);
+    const mean=sum/n;
+    const mid=Math.floor(n/2);
+    const median=n%2===0?(sorted[mid-1]+sorted[mid])/2:sorted[mid];
+    const freq={};
+    nums.forEach(x=>{freq[x]=(freq[x]||0)+1;});
+    const maxF=Math.max(...Object.values(freq));
+    const mode=Object.keys(freq).filter(k=>freq[k]===maxF).join(', ');
+    const variance=nums.reduce((a,b)=>a+Math.pow(b-mean,2),0)/n;
+    const stddev=Math.sqrt(variance);
+    const range=sorted[n-1]-sorted[0];
+    document.getElementById('stat-detail').textContent=
+      `Numbers: ${nums.join(', ')}\nCount (n): ${n}\n\n` +
+      `Sum: ${sum}\nMean (Average): ${mean.toFixed(4)}\n` +
+      `Median: ${median}\nMode: ${mode}\n\n` +
+      `Range: ${range}\nVariance: ${variance.toFixed(4)}\n` +
+      `Standard Deviation: ${stddev.toFixed(4)}\n\n` +
+      `Min: ${sorted[0]}  |  Max: ${sorted[n-1]}`;
+    res.classList.add('show');
+  }catch(e){alert('Error: '+e.message);}
+}
+
+// SIMPLE INTEREST
+function calcSI(){
+  const p=parseFloat(document.getElementById('si-p').value);
+  const r=parseFloat(document.getElementById('si-r').value);
+  const t=parseFloat(document.getElementById('si-t').value);
+  if(isNaN(p)||isNaN(r)||isNaN(t)){alert('সব value দাও!');return;}
+  const si=(p*r*t)/100;
+  const total=p+si;
+  document.getElementById('si-detail').textContent=
+    `Formula: SI = (P × R × T) / 100\n\n` +
+    `Principal (P): ${p}\nRate (R): ${r}%\nTime (T): ${t} years\n\n` +
+    `SI = (${p} × ${r} × ${t}) / 100\nSI = ${si}\n\n` +
+    `Total Amount = P + SI\n= ${p} + ${si}\n= ${total}`;
+  document.getElementById('si-result').classList.add('show');
+}
+
+// COMPOUND INTEREST
+function calcCI(){
+  const p=parseFloat(document.getElementById('ci-p').value);
+  const r=parseFloat(document.getElementById('ci-r').value);
+  const t=parseFloat(document.getElementById('ci-t').value);
+  const n=parseFloat(document.getElementById('ci-n').value);
+  if(isNaN(p)||isNaN(r)||isNaN(t)){alert('সব value দাও!');return;}
+  const amount=p*Math.pow(1+(r/100)/n,n*t);
+  const ci=amount-p;
+  const nMap={1:'Yearly',2:'Half-yearly',4:'Quarterly',12:'Monthly'};
+  document.getElementById('ci-detail').textContent=
+    `Formula: A = P(1 + R/100n)^(nT)\n\n` +
+    `Principal: ${p}\nRate: ${r}%\nTime: ${t} years\nCompound: ${nMap[n]}\n\n` +
+    `Amount = ${p}(1 + ${r/100}/n)^(n×${t})\nAmount = ${amount.toFixed(2)}\n\n` +
+    `Compound Interest = ${ci.toFixed(2)}\nTotal Amount = ${amount.toFixed(2)}`;
+  document.getElementById('ci-result').classList.add('show');
+}
+
+// UNIT CONVERTER
+function convertUnit(){
+  const val=parseFloat(document.getElementById('uc-value').value);
+  const from=document.getElementById('uc-from').value;
+  const to=document.getElementById('uc-to').value;
+  if(isNaN(val)){alert('Value দাও!');return;}
+
+  const toMeter={km:1000,mile:1609.34,meter:1,cm:0.01,inch:0.0254,foot:0.3048};
+  const toKg={kg:1,lb:0.453592,gram:0.001,oz:0.0283495};
+  const toSqm={sqm:1,sqft:0.092903,acre:4046.86,hectare:10000};
+
+  let result,detail='';
+  try{
+    if(from==='celsius'||from==='fahrenheit'||from==='kelvin'){
+      let celsius;
+      if(from==='celsius') celsius=val;
+      else if(from==='fahrenheit') celsius=(val-32)*5/9;
+      else celsius=val-273.15;
+      if(to==='celsius') result=celsius;
+      else if(to==='fahrenheit') result=celsius*9/5+32;
+      else result=celsius+273.15;
+      detail=`${val} ${from} → ${result.toFixed(4)} ${to}`;
+    } else if(toMeter[from]&&toMeter[to]){
+      const meters=val*toMeter[from];
+      result=meters/toMeter[to];
+      detail=`${val} ${from} → ${result.toFixed(6)} ${to}`;
+    } else if(toKg[from]&&toKg[to]){
+      const kg=val*toKg[from];
+      result=kg/toKg[to];
+      detail=`${val} ${from} → ${result.toFixed(6)} ${to}`;
+    } else if(toSqm[from]&&toSqm[to]){
+      const sqm=val*toSqm[from];
+      result=sqm/toSqm[to];
+      detail=`${val} ${from} → ${result.toFixed(6)} ${to}`;
+    } else {
+      throw new Error('Cannot convert between different unit types!');
+    }
+    document.getElementById('uc-answer').textContent=`${result.toFixed(4)} ${to}`;
+    document.getElementById('uc-detail').textContent=detail;
+    document.getElementById('uc-result').classList.add('show');
+  }catch(e){alert('❌ '+e.message);}
+}
+
+// HISTORY
 function saveHistory(problem,answer){
   historyData.unshift({problem,answer:String(answer),time:new Date().toLocaleTimeString()});
   if(historyData.length>30) historyData.pop();
@@ -432,68 +765,54 @@ function saveHistory(problem,answer){
 }
 function renderHistory(){
   const list=document.getElementById('history-list');
-  if(historyData.length===0){list.innerHTML='<div class="empty-history">No history yet!</div>';return;}
+  if(historyData.length===0){list.innerHTML='<div class="eh">No history yet!</div>';return;}
   list.innerHTML=historyData.map((h,i)=>`
-    <div class="history-item" onclick="loadFromHistory(${i})">
-      <div class="history-problem">${h.problem.substring(0,50)}</div>
-      <div class="history-answer">= ${String(h.answer).substring(0,40)}</div>
+    <div class="hi" onclick="loadH(${i})">
+      <div class="hp">${h.problem.substring(0,50)}</div>
+      <div class="ha">= ${String(h.answer).substring(0,40)}</div>
     </div>`).join('');
 }
-function loadFromHistory(i){
+function loadH(i){
   document.getElementById('problem-input').value=historyData[i].problem;
   switchTab('solver',document.querySelectorAll('.tab')[0]);
 }
-function clearHistory(){
-  if(confirm('Clear all history?')){historyData=[];localStorage.removeItem('mathHistory');renderHistory();}
-}
+function clearHistory(){if(confirm('Clear all?')){historyData=[];localStorage.removeItem('mathHistory');renderHistory();}}
 
-// ===== CALCULATOR =====
+// CALCULATOR
 function calcInput(val){calcExpr+=val;document.getElementById('calc-display').value=calcExpr;}
 function calcClear(){calcExpr='';document.getElementById('calc-display').value='';}
 function calcDel(){calcExpr=calcExpr.slice(0,-1);document.getElementById('calc-display').value=calcExpr;}
 function calcEquals(){
-  try{
-    const result=math.evaluate(calcExpr);
-    document.getElementById('calc-display').value=result;
-    saveHistory(calcExpr,result);
-    calcExpr=String(result);
-  }catch(e){document.getElementById('calc-display').value='Error';calcExpr='';}
+  try{const r=math.evaluate(calcExpr);document.getElementById('calc-display').value=r;saveHistory(calcExpr,r);calcExpr=String(r);}
+  catch(e){document.getElementById('calc-display').value='Error';calcExpr='';}
 }
 
-// ===== GRAPH =====
-function graphExample(val){document.getElementById('graph-input').value=val;plotGraph();}
+// GRAPH
+function gex(val){document.getElementById('graph-input').value=val;plotGraph();}
 function plotGraph(){
   const expr=document.getElementById('graph-input').value.trim();
   const canvas=document.getElementById('graph-canvas');
   const ctx=canvas.getContext('2d');
   const W=canvas.width=canvas.offsetWidth||560;
-  const H=canvas.height=300;
+  const H=canvas.height=280;
   const isLight=document.body.classList.contains('light');
   ctx.fillStyle=isLight?'#f8f9ff':'#0d1b2a';
   ctx.fillRect(0,0,W,H);
-  if(!expr){
-    ctx.fillStyle=isLight?'#aaa':'rgba(255,255,255,0.3)';
-    ctx.font='14px Poppins,sans-serif';ctx.textAlign='center';
-    ctx.fillText('Enter a function above',W/2,H/2);return;
-  }
+  if(!expr){ctx.fillStyle=isLight?'#aaa':'rgba(255,255,255,0.3)';ctx.font='13px Poppins,sans-serif';ctx.textAlign='center';ctx.fillText('Enter a function above',W/2,H/2);return;}
   const xMin=parseFloat(document.getElementById('x-min').value)||(-10);
   const xMax=parseFloat(document.getElementById('x-max').value)||10;
   const xRange=xMax-xMin;
-  const points=[];
-  for(let i=0;i<=300;i++){
-    const x=xMin+(xRange*i/300);
-    try{const y=math.evaluate(expr,{x});points.push(typeof y==='number'&&isFinite(y)?{x,y}:null);}
-    catch(e){points.push(null);}
-  }
-  const validY=points.filter(p=>p!==null).map(p=>p.y);
-  if(validY.length===0){document.getElementById('graph-info').textContent='❌ Could not plot';return;}
-  let yMin=Math.min(...validY),yMax=Math.max(...validY);
+  const pts=[];
+  for(let i=0;i<=300;i++){const x=xMin+(xRange*i/300);try{const y=math.evaluate(expr,{x});pts.push(typeof y==='number'&&isFinite(y)?{x,y}:null);}catch(e){pts.push(null);}}
+  const vy=pts.filter(p=>p).map(p=>p.y);
+  if(!vy.length){document.getElementById('graph-info').textContent='❌ Could not plot';return;}
+  let yMin=Math.min(...vy),yMax=Math.max(...vy);
   if(yMin===yMax){yMin-=1;yMax+=1;}
   const yPad=(yMax-yMin)*0.1;yMin-=yPad;yMax+=yPad;
   const yRange=yMax-yMin;
   const cx=x=>((x-xMin)/xRange)*W;
   const cy=y=>H-((y-yMin)/yRange)*H;
-  ctx.strokeStyle=isLight?'rgba(0,0,0,0.08)':'rgba(255,255,255,0.06)';ctx.lineWidth=1;
+  ctx.strokeStyle=isLight?'rgba(0,0,0,0.07)':'rgba(255,255,255,0.05)';ctx.lineWidth=1;
   for(let gx=Math.ceil(xMin);gx<=xMax;gx++){ctx.beginPath();ctx.moveTo(cx(gx),0);ctx.lineTo(cx(gx),H);ctx.stroke();}
   for(let gy=Math.ceil(yMin);gy<=yMax;gy++){ctx.beginPath();ctx.moveTo(0,cy(gy));ctx.lineTo(W,cy(gy));ctx.stroke();}
   ctx.strokeStyle=isLight?'rgba(0,0,0,0.2)':'rgba(255,255,255,0.2)';ctx.lineWidth=1.5;
@@ -501,181 +820,87 @@ function plotGraph(){
   if(xMin<=0&&xMax>=0){ctx.beginPath();ctx.moveTo(cx(0),0);ctx.lineTo(cx(0),H);ctx.stroke();}
   ctx.strokeStyle=isLight?'#667eea':'#e94560';ctx.lineWidth=2.5;ctx.lineJoin='round';
   ctx.beginPath();let started=false;
-  points.forEach(p=>{if(!p){started=false;return;}if(!started){ctx.moveTo(cx(p.x),cy(p.y));started=true;}else ctx.lineTo(cx(p.x),cy(p.y));});
+  pts.forEach(p=>{if(!p){started=false;return;}if(!started){ctx.moveTo(cx(p.x),cy(p.y));started=true;}else ctx.lineTo(cx(p.x),cy(p.y));});
   ctx.stroke();
   ctx.fillStyle=isLight?'#667eea':'#4ecca3';ctx.font='bold 12px Poppins,sans-serif';ctx.textAlign='left';
-  ctx.fillText('y = '+expr,10,18);
+  ctx.fillText('y = '+expr,10,16);
   document.getElementById('graph-info').textContent=`y = ${expr} | x: [${xMin}, ${xMax}]`;
 }
 window.addEventListener('resize',()=>{if(document.getElementById('tab-graph').style.display!=='none')plotGraph();});
 
-// ===== QUIZ =====
-function setLevel(level,btn){
-  quizLevel=level;
-  document.querySelectorAll('.level-btn').forEach(b=>{b.classList.remove('active');});
-  btn.classList.add('active');
-}
-function setTopic(topic,btn){
-  quizTopic=topic;
-  document.querySelectorAll('.topic-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-}
-function setQCount(n,btn){
-  quizQCount=n;
-  document.querySelectorAll('#quiz-setup .topic-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-function generateQuestion(){
-  const easy={
-    addition:()=>{const a=rnd(1,20),b=rnd(1,20);return{q:`${a} + ${b} = ?`,a:a+b,hint:'Add the numbers'}},
-    subtraction:()=>{const a=rnd(10,30),b=rnd(1,a);return{q:`${a} - ${b} = ?`,a:a-b,hint:'Subtract'}},
-    multiply:()=>{const a=rnd(1,10),b=rnd(1,10);return{q:`${a} × ${b} = ?`,a:a*b,hint:'Multiply'}},
-    divide:()=>{const b=rnd(1,10),a=b*rnd(1,10);return{q:`${a} ÷ ${b} = ?`,a:a/b,hint:'Divide'}},
-  };
-  const medium={
-    addition:()=>{const a=rnd(20,100),b=rnd(20,100);return{q:`${a} + ${b} = ?`,a:a+b,hint:''}},
-    multiply:()=>{const a=rnd(5,20),b=rnd(5,20);return{q:`${a} × ${b} = ?`,a:a*b,hint:''}},
-    percentage:()=>{const p=[10,20,25,50],pc=p[rnd(0,3)],n=rnd(2,20)*10;return{q:`${pc}% of ${n} = ?`,a:(pc/100)*n,hint:`${pc}/100 × ${n}`}},
-    algebra:()=>{const b=rnd(1,20),c=rnd(b+1,30);return{q:`x + ${b} = ${c}\nx = ?`,a:c-b,hint:'Move the number to other side'}},
-    square:()=>{const a=rnd(2,12);return{q:`${a}² = ?`,a:a*a,hint:`${a} × ${a}`}},
-  };
-  const hard={
-    algebra:()=>{const a=rnd(2,5),b=rnd(1,20),c=rnd(10,50);return{q:`${a}x + ${b} = ${c}\nx = ?`,a:(c-b)/a,hint:`Subtract ${b}, then divide by ${a}`}},
-    percentage:()=>{const p=rnd(1,9)*10,n=rnd(1,20)*5;return{q:`${p}% of ${n} = ?`,a:(p/100)*n,hint:''}},
-    square:()=>{const a=rnd(10,20);return{q:`${a}² = ?`,a:a*a,hint:`${a} × ${a}`}},
-    multiply:()=>{const a=rnd(11,25),b=rnd(11,25);return{q:`${a} × ${b} = ?`,a:a*b,hint:''}},
-    mixed:()=>{const a=rnd(2,10),b=rnd(2,10),c=rnd(2,10);return{q:`${a} × ${b} + ${c} = ?`,a:a*b+c,hint:`First multiply, then add`}},
-  };
-
+// QUIZ
+function setLevel(l,btn){quizLevel=l;document.querySelectorAll('.lb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function setTopic(t,btn){quizTopic=t;document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function setQC(n,btn){quizQC=n;['q5','q10','q15','q20'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});btn.classList.add('active');}
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function generateQ(){
+  const easy={addition:()=>{const a=rnd(1,20),b=rnd(1,20);return{q:`${a} + ${b} = ?`,a:a+b,hint:'Add'};},multiply:()=>{const a=rnd(1,10),b=rnd(1,10);return{q:`${a} × ${b} = ?`,a:a*b,hint:'Multiply'};},subtraction:()=>{const a=rnd(10,30),b=rnd(1,a);return{q:`${a} - ${b} = ?`,a:a-b,hint:'Subtract'};},divide:()=>{const b=rnd(1,10),a=b*rnd(1,10);return{q:`${a} ÷ ${b} = ?`,a:a/b,hint:'Divide'};}};
+  const medium={addition:()=>{const a=rnd(20,100),b=rnd(20,100);return{q:`${a} + ${b} = ?`,a:a+b,hint:''};},multiply:()=>{const a=rnd(5,20),b=rnd(5,20);return{q:`${a} × ${b} = ?`,a:a*b,hint:''};},percentage:()=>{const p=[10,20,25,50][rnd(0,3)],n=rnd(2,20)*10;return{q:`${p}% of ${n} = ?`,a:(p/100)*n,hint:`${p}/100 × ${n}`};},algebra:()=>{const b=rnd(1,20),c=rnd(b+1,30);return{q:`x + ${b} = ${c}\nx = ?`,a:c-b,hint:'Move to other side'};},square:()=>{const a=rnd(2,12);return{q:`${a}² = ?`,a:a*a,hint:`${a} × ${a}`};}};
+  const hard={algebra:()=>{const a=rnd(2,5),b=rnd(1,20),c=rnd(10,50);return{q:`${a}x + ${b} = ${c}\nx = ?`,a:(c-b)/a,hint:`Subtract ${b}, divide by ${a}`};},percentage:()=>{const p=rnd(1,9)*10,n=rnd(1,20)*5;return{q:`${p}% of ${n} = ?`,a:(p/100)*n,hint:''};},square:()=>{const a=rnd(10,20);return{q:`${a}² = ?`,a:a*a,hint:'';},multiply:()=>{const a=rnd(11,25),b=rnd(11,25);return{q:`${a} × ${b} = ?`,a:a*b,hint:''};},mixed:()=>{const a=rnd(2,10),b=rnd(2,10),c=rnd(2,10);return{q:`${a}×${b}+${c}=?`,a:a*b+c,hint:'Multiply first, then add'};}};
   const pool=quizLevel==='easy'?easy:quizLevel==='medium'?medium:hard;
   const keys=Object.keys(pool);
-  let type;
-  if(quizTopic==='all') type=keys[rnd(0,keys.length-1)];
-  else if(pool[quizTopic]) type=quizTopic;
-  else type=keys[rnd(0,keys.length-1)];
-
+  const type=(quizTopic!=='all'&&pool[quizTopic])?quizTopic:keys[rnd(0,keys.length-1)];
   return pool[type]();
 }
-
-function rnd(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
-
 function startQuiz(){
   currentQ=0;score=0;totalCorrect=0;streak=0;
   document.getElementById('quiz-setup').style.display='none';
   document.getElementById('quiz-result').classList.remove('show');
   document.getElementById('quiz-game').style.display='flex';
-  document.getElementById('q-total').textContent=quizQCount;
-  loadQuestion();
+  document.getElementById('q-total').textContent=quizQC;
+  loadQ();
 }
-
-function loadQuestion(){
+function loadQ(){
   clearInterval(timerInterval);
   timeLeft=quizLevel==='easy'?30:quizLevel==='medium'?20:15;
-
-  const qData=generateQuestion();
-  correctAnswer=qData.a;
-
-  document.getElementById('question-text').textContent=qData.q;
-  document.getElementById('question-hint').textContent=qData.hint?'💡 Hint: '+qData.hint:'';
+  const qd=generateQ();
+  correctAnswer=qd.a;
+  document.getElementById('question-text').textContent=qd.q;
+  document.getElementById('question-hint').textContent=qd.hint?'💡 '+qd.hint:'';
   document.getElementById('q-current').textContent=currentQ+1;
   document.getElementById('score-display').textContent=score;
   document.getElementById('answer-input').value='';
-  document.getElementById('answer-input').className='answer-input';
-  document.getElementById('feedback-box').className='feedback-box';
-  document.getElementById('next-btn').className='next-btn';
+  document.getElementById('answer-input').className='ai';
+  document.getElementById('feedback-box').className='fb';
+  document.getElementById('next-btn').className='nxbtn';
   document.getElementById('submit-btn').style.display='block';
+  document.getElementById('progress-fill').style.width=((currentQ/quizQC)*100)+'%';
   document.getElementById('answer-input').focus();
-
-  const progress=((currentQ)/quizQCount)*100;
-  document.getElementById('progress-fill').style.width=progress+'%';
-
-  timerInterval=setInterval(()=>{
-    timeLeft--;
-    document.getElementById('timer-display').textContent=timeLeft;
-    if(timeLeft<=0){
-      clearInterval(timerInterval);
-      timeUp();
-    }
-  },1000);
+  timerInterval=setInterval(()=>{timeLeft--;document.getElementById('timer-display').textContent=timeLeft;if(timeLeft<=0){clearInterval(timerInterval);timeUp();}},1000);
 }
-
 function timeUp(){
-  document.getElementById('answer-input').className='answer-input wrong';
+  document.getElementById('answer-input').className='ai wrong';
   document.getElementById('feedback-box').textContent=`⏰ Time up! Answer: ${correctAnswer}`;
-  document.getElementById('feedback-box').className='feedback-box wrong show';
+  document.getElementById('feedback-box').className='fb wrong show';
   document.getElementById('submit-btn').style.display='none';
-  document.getElementById('next-btn').className='next-btn show';
+  document.getElementById('next-btn').className='nxbtn show';
   streak=0;
 }
-
 function checkAnswer(){
   clearInterval(timerInterval);
-  const userAns=parseFloat(document.getElementById('answer-input').value);
-  const isCorrect=Math.abs(userAns-correctAnswer)<0.01;
-
-  if(isCorrect){
-    const timeBonus=Math.floor(timeLeft/5);
-    const pts=10+timeBonus;
-    score+=pts;streak++;totalCorrect++;
-    document.getElementById('answer-input').className='answer-input correct';
-    let msg=`✅ Correct! +${pts} points`;
-    if(streak>=3) msg+=` 🔥 ${streak} streak!`;
-    document.getElementById('feedback-box').textContent=msg;
-    document.getElementById('feedback-box').className='feedback-box correct show';
-  } else {
-    streak=0;
-    document.getElementById('answer-input').className='answer-input wrong';
-    document.getElementById('feedback-box').textContent=`❌ Wrong! Correct answer: ${correctAnswer}`;
-    document.getElementById('feedback-box').className='feedback-box wrong show';
-  }
+  const ua=parseFloat(document.getElementById('answer-input').value);
+  const ok=Math.abs(ua-correctAnswer)<0.01;
+  if(ok){const pts=10+Math.floor(timeLeft/5);score+=pts;streak++;totalCorrect++;document.getElementById('answer-input').className='ai correct';let msg=`✅ Correct! +${pts}pts`;if(streak>=3)msg+=` 🔥${streak} streak!`;document.getElementById('feedback-box').textContent=msg;document.getElementById('feedback-box').className='fb correct show';}
+  else{streak=0;document.getElementById('answer-input').className='ai wrong';document.getElementById('feedback-box').textContent=`❌ Wrong! Answer: ${correctAnswer}`;document.getElementById('feedback-box').className='fb wrong show';}
   document.getElementById('score-display').textContent=score;
   document.getElementById('submit-btn').style.display='none';
-  document.getElementById('next-btn').className='next-btn show';
+  document.getElementById('next-btn').className='nxbtn show';
 }
-
-function nextQuestion(){
-  currentQ++;
-  if(currentQ>=quizQCount){
-    showResult();
-  } else {
-    loadQuestion();
-  }
-}
-
+function nextQuestion(){currentQ++;if(currentQ>=quizQC)showResult();else loadQ();}
 function showResult(){
   clearInterval(timerInterval);
   document.getElementById('quiz-game').style.display='none';
-  const result=document.getElementById('quiz-result');
-  result.classList.add('show');
-
-  const pct=Math.round((totalCorrect/quizQCount)*100);
-  let emoji='😊',title='Good try!';
-  if(pct===100){emoji='🏆';title='Perfect Score!';}
-  else if(pct>=80){emoji='🎉';title='Excellent!';}
-  else if(pct>=60){emoji='👍';title='Well Done!';}
-  else if(pct>=40){emoji='📚';title='Keep Practicing!';}
-  else{emoji='💪';title='Keep Going!';}
-
-  document.getElementById('result-emoji').textContent=emoji;
-  document.getElementById('result-title').textContent=title;
-  document.getElementById('result-score-display').textContent=`${totalCorrect}/${quizQCount}`;
-  document.getElementById('result-detail').innerHTML=
-    `Score: ${score} points<br>
-     Correct: ${totalCorrect} / ${quizQCount}<br>
-     Accuracy: ${pct}%<br>
-     Level: ${quizLevel.charAt(0).toUpperCase()+quizLevel.slice(1)}`;
+  document.getElementById('quiz-result').classList.add('show');
+  const pct=Math.round((totalCorrect/quizQC)*100);
+  const e=pct===100?'🏆':pct>=80?'🎉':pct>=60?'👍':pct>=40?'📚':'💪';
+  const t=pct===100?'Perfect!':pct>=80?'Excellent!':pct>=60?'Well Done!':pct>=40?'Keep Practicing!':'Keep Going!';
+  document.getElementById('result-emoji').textContent=e;
+  document.getElementById('result-title').textContent=t;
+  document.getElementById('result-score-display').textContent=`${totalCorrect}/${quizQC}`;
+  document.getElementById('result-detail').innerHTML=`Score: ${score} pts<br>Correct: ${totalCorrect}/${quizQC}<br>Accuracy: ${pct}%`;
 }
-
-function resetQuiz(){
-  document.getElementById('quiz-result').classList.remove('show');
-  document.getElementById('quiz-game').style.display='none';
-  document.getElementById('quiz-setup').style.display='flex';
-}
-
-function handleEnter(e){
-  if(e.key==='Enter') checkAnswer();
-}
+function resetQuiz(){document.getElementById('quiz-result').classList.remove('show');document.getElementById('quiz-game').style.display='none';document.getElementById('quiz-setup').style.display='flex';}
+function handleEnter(e){if(e.key==='Enter')checkAnswer();}
 </script>
 </body>
 </html>
