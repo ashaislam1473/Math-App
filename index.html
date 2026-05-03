@@ -3,904 +3,781 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Math Solver AI</title>
+<title>Math Solver</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);min-height:100vh;display:flex;justify-content:center;padding:30px 16px;transition:all 0.3s}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#1a1a2e,#16213e);min-height:100vh;display:flex;justify-content:center;padding:30px 16px}
 body.light{background:linear-gradient(135deg,#667eea,#764ba2)}
-.app{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:24px;padding:28px 24px;width:100%;max-width:640px;border:1px solid rgba(255,255,255,0.1);height:fit-content}
+.app{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:24px;padding:28px 24px;width:100%;max-width:600px;border:1px solid rgba(255,255,255,0.1);height:fit-content}
 body.light .app{background:rgba(255,255,255,0.95)}
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .header h1{font-size:20px;font-weight:700;color:#fff}
 body.light .header h1{color:#1a1a2e}
-#theme-btn{padding:7px 13px;border:1px solid rgba(255,255,255,0.3);border-radius:20px;background:rgba(255,255,255,0.1);color:#fff;font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600}
-body.light #theme-btn{border-color:#ddd;background:white;color:#333}
+#tbtn{padding:7px 13px;border:1px solid rgba(255,255,255,0.3);border-radius:20px;background:rgba(255,255,255,0.1);color:#fff;font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600}
+body.light #tbtn{border-color:#ddd;background:white;color:#333}
 .tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
-.tab{padding:7px 12px;border:1px solid rgba(255,255,255,0.2);border-radius:20px;background:transparent;color:rgba(255,255,255,0.6);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
-.tab.active{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white}
+.tab{padding:7px 12px;border:1px solid rgba(255,255,255,0.2);border-radius:20px;background:transparent;color:rgba(255,255,255,0.6);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600}
+.tab.on{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white}
 body.light .tab{border-color:#ddd;color:#888}
-body.light .tab.active{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
-.lbl{font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;display:block;font-weight:500}
+body.light .tab.on{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
+.page{display:none}
+.page.on{display:block}
+.lbl{font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:6px;display:block;font-weight:500}
 body.light .lbl{color:#666}
-.ibox{width:100%;padding:14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:14px;color:#fff;font-size:15px;font-family:'Poppins',sans-serif;outline:none;transition:all 0.3s;resize:none}
-.ibox:focus{border-color:#e94560}
-body.light .ibox{background:#f8f9ff;border-color:#ddd;color:#333}
-body.light .ibox:focus{border-color:#667eea}
-.exs{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.ex{padding:4px 10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:rgba(255,255,255,0.7);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer}
-body.light .ex{background:#f0f0f0;border-color:#ddd;color:#555}
-.btn{width:100%;padding:13px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:14px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s;margin-bottom:16px}
-body.light .btn{background:linear-gradient(135deg,#667eea,#764ba2)}
-.res{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:18px;margin-bottom:16px;display:none}
+textarea{width:100%;padding:12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:12px;color:#fff;font-size:14px;font-family:'Poppins',sans-serif;outline:none;resize:none;margin-bottom:8px}
+body.light textarea{background:#f8f9ff;border-color:#ddd;color:#333}
+input[type=number],input[type=text]{width:100%;padding:10px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none}
+body.light input[type=number],body.light input[type=text]{background:#f8f9ff;border-color:#ddd;color:#333}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.chip{padding:4px 10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:rgba(255,255,255,0.7);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer}
+body.light .chip{background:#f0f0f0;border-color:#ddd;color:#555}
+.chip.on{background:rgba(78,204,163,0.3);border-color:#4ecca3;color:#4ecca3}
+body.light .chip.on{background:rgba(102,126,234,0.1);border-color:#667eea;color:#667eea}
+.rbtn{width:100%;padding:13px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:12px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;margin-bottom:12px}
+body.light .rbtn{background:linear-gradient(135deg,#667eea,#764ba2)}
+.gbtn{background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e}
+.res{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px;display:none;margin-bottom:12px}
 body.light .res{background:#f8f9ff;border-color:#e0e0e0}
-.res.show{display:block}
-.ans{font-size:24px;font-weight:700;color:#4ecca3;margin-bottom:12px}
-body.light .ans{color:#667eea}
-.steps{display:flex;flex-direction:column;gap:8px}
-.step{display:flex;gap:10px;align-items:flex-start}
-.sn{width:22px;height:22px;background:linear-gradient(135deg,#e94560,#c0392b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0;margin-top:2px}
-body.light .sn{background:linear-gradient(135deg,#667eea,#764ba2)}
-.st{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6}
-body.light .st{color:#444}
-.err{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);border-radius:12px;padding:14px;margin-bottom:16px;display:none;color:#ff6b6b;font-size:13px}
-.err.show{display:block}
-.lang-row{display:flex;gap:8px;margin-bottom:12px}
-.lang-btn{padding:6px 14px;border:1px solid rgba(255,255,255,0.2);border-radius:20px;background:transparent;color:rgba(255,255,255,0.6);font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
-.lang-btn.active{background:rgba(78,204,163,0.3);border-color:#4ecca3;color:#4ecca3}
-body.light .lang-btn{border-color:#ddd;color:#888}
-body.light .lang-btn.active{background:rgba(102,126,234,0.1);border-color:#667eea;color:#667eea}
-/* CALC */
-.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:12px}
-.cb{padding:14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:12px;color:#fff;font-size:15px;font-family:'Poppins',sans-serif;cursor:pointer;transition:all 0.2s;font-weight:500}
-.cb.op{background:rgba(233,69,96,0.2);border-color:rgba(233,69,96,0.3);color:#e94560}
-.cb.eq{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white;grid-column:span 2}
-.cb.cl{background:rgba(255,165,0,0.2);border-color:rgba(255,165,0,0.3);color:orange}
+.res.on{display:block}
+.big{font-size:22px;font-weight:700;color:#4ecca3;margin-bottom:10px}
+body.light .big{color:#667eea}
+.slist{display:flex;flex-direction:column;gap:6px}
+.srow{display:flex;gap:8px}
+.snum{width:20px;height:20px;min-width:20px;background:#e94560;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white;margin-top:2px}
+body.light .snum{background:#667eea}
+.stxt{font-size:12px;color:rgba(255,255,255,0.8);line-height:1.6}
+body.light .stxt{color:#444}
+.ebox{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);border-radius:10px;padding:12px;display:none;color:#ff6b6b;font-size:12px;margin-bottom:12px}
+.ebox.on{display:block}
+.lgrow{display:flex;gap:8px;margin-bottom:12px}
+.lgbtn{padding:5px 12px;border:1px solid rgba(255,255,255,0.2);border-radius:20px;background:transparent;color:rgba(255,255,255,0.6);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600}
+.lgbtn.on{background:rgba(78,204,163,0.3);border-color:#4ecca3;color:#4ecca3}
+body.light .lgbtn{border-color:#ddd;color:#888}
+body.light .lgbtn.on{background:rgba(102,126,234,0.1);border-color:#667eea;color:#667eea}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.cb{padding:13px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500;text-align:center}
+.cb.op{background:rgba(233,69,96,0.2);color:#e94560}
+.cb.eq{background:linear-gradient(135deg,#e94560,#c0392b);color:white;grid-column:span 2}
+.cb.cl{background:rgba(255,165,0,0.2);color:orange}
 body.light .cb{background:#f5f5f5;border-color:#e0e0e0;color:#333}
 body.light .cb.op{background:#ffe8f0;color:#e94560}
 body.light .cb.eq{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
 body.light .cb.cl{background:#fff3e0;color:orange}
-.cdis{width:100%;padding:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;font-size:18px;font-family:'Poppins',sans-serif;outline:none;margin-bottom:10px;text-align:right}
+.cdis{width:100%;padding:12px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:18px;font-family:'Poppins',sans-serif;outline:none;margin-bottom:8px;text-align:right}
 body.light .cdis{background:#f8f9ff;border-color:#ddd;color:#333}
-/* GRAPH */
-.ginrow{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.gi{flex:1;min-width:140px;padding:11px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:12px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none}
+.gcont{background:rgba(0,0,0,0.3);border-radius:12px;padding:12px;margin-bottom:8px}
+body.light .gcont{background:#f8f9ff}
+canvas{width:100%;display:block;border-radius:8px}
+.ginrow{display:flex;gap:8px;margin-bottom:8px}
+.gi{flex:1;padding:10px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none}
 body.light .gi{background:#f8f9ff;border-color:#ddd;color:#333}
-.gbtn{padding:11px 18px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:12px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
-body.light .gbtn{background:linear-gradient(135deg,#667eea,#764ba2)}
-.gcont{background:rgba(0,0,0,0.3);border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.1)}
-body.light .gcont{background:#f8f9ff;border-color:#e0e0e0}
-canvas{width:100%;border-radius:10px;display:block}
-.ginfo{font-size:11px;color:rgba(255,255,255,0.4);text-align:center;margin-top:6px}
-body.light .ginfo{color:#999}
-.rrow{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
-.rl{font-size:12px;color:rgba(255,255,255,0.6);white-space:nowrap}
-body.light .rl{color:#666}
-.ri{width:65px;padding:7px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none;text-align:center}
+.gpbtn{padding:10px 16px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:10px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
+body.light .gpbtn{background:linear-gradient(135deg,#667eea,#764ba2)}
+.rrow{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.rl{font-size:11px;color:rgba(255,255,255,0.5)}
+body.light .rl{color:#888}
+.ri{width:60px;padding:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none;text-align:center}
 body.light .ri{background:#f8f9ff;border-color:#ddd;color:#333}
-/* QUIZ */
-.qlrow{display:flex;gap:8px;flex-wrap:wrap}
-.lb{padding:10px 16px;border:2px solid rgba(255,255,255,0.2);border-radius:14px;background:transparent;color:rgba(255,255,255,0.6);font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s;flex:1;text-align:center}
-.lb.easy.active{background:linear-gradient(135deg,#27ae60,#2ecc71);border-color:transparent;color:white}
-.lb.medium.active{background:linear-gradient(135deg,#f39c12,#e67e22);border-color:transparent;color:white}
-.lb.hard.active{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white}
-body.light .lb{border-color:#ddd;color:#888}
-.qtrow{display:flex;gap:6px;flex-wrap:wrap}
-.tb{padding:7px 12px;border:1px solid rgba(255,255,255,0.2);border-radius:10px;background:transparent;color:rgba(255,255,255,0.6);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
-.tb.active{background:rgba(78,204,163,0.3);border-color:#4ecca3;color:#4ecca3}
-body.light .tb{border-color:#ddd;color:#888}
-body.light .tb.active{background:rgba(102,126,234,0.1);border-color:#667eea;color:#667eea}
-.sqbtn{width:100%;padding:15px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
-.qhdr{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.05);border-radius:12px;padding:10px 14px;margin-bottom:12px}
+.ginfo{font-size:10px;color:rgba(255,255,255,0.4);text-align:center;margin-top:4px}
+body.light .ginfo{color:#999}
+.lvlrow{display:flex;gap:8px;margin-bottom:10px}
+.lvl{flex:1;padding:9px;border:2px solid rgba(255,255,255,0.2);border-radius:12px;background:transparent;color:rgba(255,255,255,0.5);font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;text-align:center}
+.lvl.e{background:linear-gradient(135deg,#27ae60,#2ecc71);border-color:transparent;color:white}
+.lvl.m{background:linear-gradient(135deg,#f39c12,#e67e22);border-color:transparent;color:white}
+.lvl.h{background:linear-gradient(135deg,#e94560,#c0392b);border-color:transparent;color:white}
+body.light .lvl{border-color:#ddd;color:#888}
+.qhdr{display:flex;justify-content:space-between;background:rgba(255,255,255,0.05);border-radius:10px;padding:9px 12px;margin-bottom:10px}
 body.light .qhdr{background:#f8f9ff}
-.qsc{font-size:13px;font-weight:700;color:#4ecca3}
+.qsc{font-size:12px;font-weight:700;color:#4ecca3}
 body.light .qsc{color:#667eea}
-.qtm{font-size:13px;font-weight:700;color:#e94560}
-.qpr{font-size:11px;color:rgba(255,255,255,0.5)}
-body.light .qpr{color:#888}
-.pbg{background:rgba(255,255,255,0.1);border-radius:10px;height:5px;margin-bottom:14px;overflow:hidden}
+.qtm{font-size:12px;font-weight:700;color:#e94560}
+.qpr{font-size:11px;color:rgba(255,255,255,0.4)}
+body.light .qpr{color:#999}
+.pbg{background:rgba(255,255,255,0.1);border-radius:8px;height:4px;margin-bottom:12px;overflow:hidden}
 body.light .pbg{background:#e0e0e0}
-.pf{height:100%;background:linear-gradient(135deg,#4ecca3,#667eea);border-radius:10px;transition:width 0.5s}
-.qbox{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:22px;text-align:center;margin-bottom:10px}
+.pf{height:100%;background:linear-gradient(135deg,#4ecca3,#667eea);border-radius:8px;transition:width 0.5s}
+.qbox{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px;text-align:center;margin-bottom:10px}
 body.light .qbox{background:#f8f9ff;border-color:#e0e0e0}
-.qlb{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-body.light .qlb{color:#aaa}
-.qt{font-size:26px;font-weight:700;color:#fff;margin-bottom:4px;line-height:1.4}
-body.light .qt{color:#1a1a2e}
-.qh{font-size:11px;color:rgba(255,255,255,0.4)}
-body.light .qh{color:#aaa}
-.ai{width:100%;padding:14px;background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.2);border-radius:14px;color:#fff;font-size:20px;font-family:'Poppins',sans-serif;outline:none;text-align:center;transition:all 0.3s;font-weight:600;margin-bottom:10px}
-body.light .ai{background:#f8f9ff;border-color:#ddd;color:#333}
-.ai.correct{border-color:#27ae60;background:rgba(39,174,96,0.1)}
-.ai.wrong{border-color:#e94560;background:rgba(233,69,96,0.1)}
-.subbtn{width:100%;padding:13px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;margin-bottom:8px}
-.fb{border-radius:12px;padding:14px;text-align:center;display:none;font-size:13px;font-weight:600;line-height:1.6;margin-bottom:8px}
-.fb.show{display:block}
-.fb.correct{background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);color:#4ecca3}
-.fb.wrong{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);color:#ff6b6b}
-body.light .fb.correct{background:rgba(39,174,96,0.1);color:#27ae60}
-body.light .fb.wrong{background:rgba(233,69,96,0.05);color:#e94560}
-.nxbtn{width:100%;padding:13px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:14px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;display:none}
-.nxbtn.show{display:block}
-.qres{display:none;text-align:center;padding:20px}
-.qres.show{display:block}
-.re{font-size:56px;margin-bottom:12px}
-.rt{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
-body.light .rt{color:#1a1a2e}
-.rs{font-size:44px;font-weight:700;color:#4ecca3;margin-bottom:6px}
-body.light .rs{color:#667eea}
-.rd{font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;line-height:1.8}
-body.light .rd{color:#666}
-.pabtn{padding:13px 28px;background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#1a1a2e;border:none;border-radius:14px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
-/* HISTORY */
-.hhdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.ht{font-size:12px;color:rgba(255,255,255,0.6);font-weight:600;text-transform:uppercase;letter-spacing:1px}
-body.light .ht{color:#888}
-.clrbtn{padding:4px 10px;background:rgba(233,69,96,0.2);border:1px solid rgba(233,69,96,0.3);border-radius:8px;color:#e94560;font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer}
-.hlist{display:flex;flex-direction:column;gap:7px;max-height:280px;overflow-y:auto}
-.hi{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:9px 12px;cursor:pointer;transition:all 0.2s}
+.qtxt{font-size:24px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:4px}
+body.light .qtxt{color:#1a1a2e}
+.qhnt{font-size:11px;color:rgba(255,255,255,0.4)}
+body.light .qhnt{color:#aaa}
+.qinp{width:100%;padding:12px;background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.2);border-radius:12px;color:#fff;font-size:18px;font-family:'Poppins',sans-serif;outline:none;text-align:center;font-weight:600;margin-bottom:8px}
+body.light .qinp{background:#f8f9ff;border-color:#ddd;color:#333}
+.qinp.ok{border-color:#27ae60;background:rgba(39,174,96,0.1)}
+.qinp.no{border-color:#e94560;background:rgba(233,69,96,0.1)}
+.fb{border-radius:10px;padding:12px;text-align:center;display:none;font-size:12px;font-weight:600;margin-bottom:8px}
+.fb.on{display:block}
+.fb.ok{background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);color:#4ecca3}
+.fb.no{background:rgba(233,69,96,0.15);border:1px solid rgba(233,69,96,0.3);color:#ff6b6b}
+.nxbtn{width:100%;padding:12px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:12px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;display:none;margin-top:6px}
+.nxbtn.on{display:block}
+.tsec{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:14px}
+body.light .tsec{background:#f8f9ff;border-color:#e0e0e0}
+.ttl{font-size:13px;font-weight:700;color:#4ecca3;margin-bottom:12px}
+body.light .ttl{color:#667eea}
+.trow{display:flex;gap:8px;margin-bottom:8px;align-items:center;flex-wrap:wrap}
+.tlbl{font-size:11px;color:rgba(255,255,255,0.5);min-width:90px}
+body.light .tlbl{color:#888}
+.ti{flex:1;min-width:80px;padding:9px 11px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none}
+body.light .ti{background:#fff;border-color:#ddd;color:#333}
+.tsel{flex:1;padding:9px 11px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none}
+body.light .tsel{background:#fff;border-color:#ddd;color:#333}
+.tbtn{padding:9px 16px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:8px;font-size:12px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
+body.light .tbtn{background:linear-gradient(135deg,#667eea,#764ba2)}
+.tres{background:rgba(78,204,163,0.08);border:1px solid rgba(78,204,163,0.15);border-radius:8px;padding:12px;margin-top:8px;display:none}
+body.light .tres{background:rgba(102,126,234,0.05);border-color:rgba(102,126,234,0.15)}
+.tres.on{display:block}
+.trv{font-size:18px;font-weight:700;color:#4ecca3;margin-bottom:4px}
+body.light .trv{color:#667eea}
+.trd{font-size:11px;color:rgba(255,255,255,0.65);line-height:1.8;white-space:pre-wrap}
+body.light .trd{color:#555}
+.bsec{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;margin-bottom:10px}
+body.light .bsec{background:#fafafa;border-color:#eee}
+.bttl{font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:8px;font-weight:600;text-transform:uppercase}
+body.light .bttl{color:#bbb}
+.hhdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.hlist{display:flex;flex-direction:column;gap:6px;max-height:260px;overflow-y:auto}
+.hi{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:8px 11px;cursor:pointer}
 body.light .hi{background:#f5f5f5;border-color:#e0e0e0}
-.hp{font-size:12px;color:rgba(255,255,255,0.8);font-weight:500}
+.hp{font-size:12px;color:rgba(255,255,255,0.75);font-weight:500}
 body.light .hp{color:#333}
-.ha{font-size:11px;color:#4ecca3;font-weight:600;margin-top:2px}
+.ha{font-size:11px;color:#4ecca3;font-weight:600}
 body.light .ha{color:#667eea}
-.eh{text-align:center;color:rgba(255,255,255,0.3);font-size:13px;padding:20px 0}
-body.light .eh{color:#bbb}
-
-/* ===== TOOL STYLES ===== */
-.tool-section{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:18px;margin-bottom:16px}
-body.light .tool-section{background:#f8f9ff;border-color:#e0e0e0}
-.tool-title{font-size:14px;font-weight:700;color:#4ecca3;margin-bottom:14px}
-body.light .tool-title{color:#667eea}
-.tool-row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center}
-.tool-label{font-size:12px;color:rgba(255,255,255,0.6);min-width:80px;font-weight:500}
-body.light .tool-label{color:#666}
-.tool-input{flex:1;min-width:80px;padding:10px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none}
-body.light .tool-input{background:#fff;border-color:#ddd;color:#333}
-.tool-select{flex:1;padding:10px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none;cursor:pointer}
-body.light .tool-select{background:#fff;border-color:#ddd;color:#333}
-.tool-btn{padding:10px 18px;background:linear-gradient(135deg,#e94560,#c0392b);color:white;border:none;border-radius:10px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;white-space:nowrap}
-body.light .tool-btn{background:linear-gradient(135deg,#667eea,#764ba2)}
-.tool-result{background:rgba(78,204,163,0.1);border:1px solid rgba(78,204,163,0.2);border-radius:10px;padding:14px;margin-top:10px;display:none}
-body.light .tool-result{background:rgba(102,126,234,0.05);border-color:rgba(102,126,234,0.2)}
-.tool-result.show{display:block}
-.tool-result-value{font-size:20px;font-weight:700;color:#4ecca3;margin-bottom:6px}
-body.light .tool-result-value{color:#667eea}
-.tool-result-detail{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.8;white-space:pre-wrap}
-body.light .tool-result-detail{color:#555}
-.bn-section{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;margin-bottom:12px}
-body.light .bn-section{background:#fafafa;border-color:#eee}
-.bn-title{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
-body.light .bn-title{color:#aaa}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="header">
     <h1>🔢 Math Solver</h1>
-    <button id="theme-btn" onclick="toggleTheme()">☀️ Light</button>
+    <button id="tbtn" onclick="toggleTheme()">☀️ Light</button>
   </div>
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('solver',this)">🧮 Solver</button>
-    <button class="tab" onclick="switchTab('calculator',this)">🔢 Calc</button>
-    <button class="tab" onclick="switchTab('graph',this)">📊 Graph</button>
-    <button class="tab" onclick="switchTab('quiz',this)">📝 Quiz</button>
-    <button class="tab" onclick="switchTab('tools',this)">🛠️ Tools</button>
-    <button class="tab" onclick="switchTab('history',this)">📜 History</button>
+    <button class="tab on" onclick="goTab('s',this)">🧮 Solver</button>
+    <button class="tab" onclick="goTab('c',this)">🔢 Calc</button>
+    <button class="tab" onclick="goTab('g',this)">📊 Graph</button>
+    <button class="tab" onclick="goTab('q',this)">📝 Quiz</button>
+    <button class="tab" onclick="goTab('t',this)">🛠️ Tools</button>
+    <button class="tab" onclick="goTab('h',this)">📜 History</button>
   </div>
 
-  <!-- SOLVER TAB -->
-  <div id="tab-solver">
-    <div class="lang-row">
-      <button class="lang-btn active" onclick="setLang('en',this)">🇬🇧 English</button>
-      <button class="lang-btn" onclick="setLang('bn',this)">🇧🇩 বাংলা</button>
+  <!-- SOLVER -->
+  <div id="ps" class="page on">
+    <div class="lgrow">
+      <button class="lgbtn on" onclick="setL('en',this)">🇬🇧 English</button>
+      <button class="lgbtn" onclick="setL('bn',this)">🇧🇩 বাংলা</button>
     </div>
-    <div style="margin-bottom:16px">
-      <span class="lbl">তোমার math problem লেখো:</span>
-      <textarea class="ibox" id="problem-input" rows="3" placeholder="যেমন: 2+2, x+5=10, sqrt(144), 15% of 200"></textarea>
-      <div class="exs">
-        <button class="ex" onclick="setEx('2+2')">2+2</button>
-        <button class="ex" onclick="setEx('15% of 200')">15% of 200</button>
-        <button class="ex" onclick="setEx('sqrt(144)')">√144</button>
-        <button class="ex" onclick="setEx('x+5=10')">x+5=10</button>
-        <button class="ex" onclick="setEx('2^10')">2¹⁰</button>
-        <button class="ex" onclick="setEx('sin(30 deg)')">sin(30°)</button>
-        <button class="ex" onclick="setEx('log(1000)')">log(1000)</button>
-        <button class="ex" onclick="setEx('5!')">5!</button>
-      </div>
+    <span class="lbl">Math problem লেখো:</span>
+    <textarea id="prob" rows="3" placeholder="যেমন: 2+2, x+5=10, sqrt(144)"></textarea>
+    <div class="chips">
+      <button class="chip" onclick="sp('2+2')">2+2</button>
+      <button class="chip" onclick="sp('15% of 200')">15%of200</button>
+      <button class="chip" onclick="sp('sqrt(144)')">√144</button>
+      <button class="chip" onclick="sp('x+5=10')">x+5=10</button>
+      <button class="chip" onclick="sp('2^10')">2¹⁰</button>
+      <button class="chip" onclick="sp('sin(30 deg)')">sin30°</button>
+      <button class="chip" onclick="sp('5!')">5!</button>
     </div>
-    <button class="btn" onclick="solveProblem()">⚡ Solve & Explain</button>
-    <div class="err" id="error-box"></div>
-    <div class="res" id="result-box">
-      <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">✅ Solution</div>
-      <div class="ans" id="answer-display"></div>
-      <div class="steps" id="steps-display"></div>
+    <button class="rbtn" onclick="doSolve()">⚡ Solve & Explain</button>
+    <div class="ebox" id="eb"></div>
+    <div class="res" id="rb">
+      <div class="big" id="rans"></div>
+      <div class="slist" id="rstps"></div>
     </div>
   </div>
 
-  <!-- CALCULATOR TAB -->
-  <div id="tab-calculator" style="display:none">
-    <input class="cdis" id="calc-display" readonly placeholder="0"/>
+  <!-- CALC -->
+  <div id="pc" class="page">
+    <input class="cdis" id="cdis" readonly placeholder="0"/>
     <div class="cgrid">
-      <button class="cb cl" onclick="calcClear()">C</button>
-      <button class="cb cl" onclick="calcDel()">⌫</button>
-      <button class="cb op" onclick="calcInput('%')">%</button>
-      <button class="cb op" onclick="calcInput('/')">÷</button>
-      <button class="cb" onclick="calcInput('7')">7</button>
-      <button class="cb" onclick="calcInput('8')">8</button>
-      <button class="cb" onclick="calcInput('9')">9</button>
-      <button class="cb op" onclick="calcInput('*')">×</button>
-      <button class="cb" onclick="calcInput('4')">4</button>
-      <button class="cb" onclick="calcInput('5')">5</button>
-      <button class="cb" onclick="calcInput('6')">6</button>
-      <button class="cb op" onclick="calcInput('-')">−</button>
-      <button class="cb" onclick="calcInput('1')">1</button>
-      <button class="cb" onclick="calcInput('2')">2</button>
-      <button class="cb" onclick="calcInput('3')">3</button>
-      <button class="cb op" onclick="calcInput('+')">+</button>
-      <button class="cb" onclick="calcInput('0')" style="grid-column:span 2">0</button>
-      <button class="cb" onclick="calcInput('.')">.</button>
-      <button class="cb eq" onclick="calcEquals()">=</button>
+      <button class="cb cl" onclick="cc()">C</button>
+      <button class="cb cl" onclick="cd()">⌫</button>
+      <button class="cb op" onclick="ci('%')">%</button>
+      <button class="cb op" onclick="ci('/')">÷</button>
+      <button class="cb" onclick="ci('7')">7</button>
+      <button class="cb" onclick="ci('8')">8</button>
+      <button class="cb" onclick="ci('9')">9</button>
+      <button class="cb op" onclick="ci('*')">×</button>
+      <button class="cb" onclick="ci('4')">4</button>
+      <button class="cb" onclick="ci('5')">5</button>
+      <button class="cb" onclick="ci('6')">6</button>
+      <button class="cb op" onclick="ci('-')">−</button>
+      <button class="cb" onclick="ci('1')">1</button>
+      <button class="cb" onclick="ci('2')">2</button>
+      <button class="cb" onclick="ci('3')">3</button>
+      <button class="cb op" onclick="ci('+')">+</button>
+      <button class="cb" onclick="ci('0')" style="grid-column:span 2">0</button>
+      <button class="cb" onclick="ci('.')">.</button>
+      <button class="cb eq" onclick="ceq()">=</button>
     </div>
-    <div class="exs">
-      <button class="ex" onclick="calcInput('sqrt(')">√</button>
-      <button class="ex" onclick="calcInput('^')">xⁿ</button>
-      <button class="ex" onclick="calcInput('(')">( </button>
-      <button class="ex" onclick="calcInput(')')"> )</button>
-      <button class="ex" onclick="calcInput('pi')">π</button>
-      <button class="ex" onclick="calcInput('e')">e</button>
+    <div class="chips">
+      <button class="chip" onclick="ci('sqrt(')">√</button>
+      <button class="chip" onclick="ci('^')">xⁿ</button>
+      <button class="chip" onclick="ci('(')">( </button>
+      <button class="chip" onclick="ci(')')"> )</button>
+      <button class="chip" onclick="ci('pi')">π</button>
+      <button class="chip" onclick="ci('e')">e</button>
     </div>
   </div>
 
-  <!-- GRAPH TAB -->
-  <div id="tab-graph" style="display:none">
+  <!-- GRAPH -->
+  <div id="pg" class="page">
     <div class="ginrow">
-      <input class="gi" id="graph-input" placeholder="e.g. x^2 or sin(x)"/>
-      <button class="gbtn" onclick="plotGraph()">📊 Plot</button>
+      <input class="gi" id="gexp" placeholder="e.g. x^2 or sin(x)"/>
+      <button class="gpbtn" onclick="doPlot()">📊 Plot</button>
     </div>
-    <div class="exs" style="margin-bottom:10px">
-      <button class="ex" onclick="gex('x^2')">x²</button>
-      <button class="ex" onclick="gex('x^3')">x³</button>
-      <button class="ex" onclick="gex('sin(x)')">sin(x)</button>
-      <button class="ex" onclick="gex('cos(x)')">cos(x)</button>
-      <button class="ex" onclick="gex('2*x+3')">2x+3</button>
-      <button class="ex" onclick="gex('sqrt(x)')">√x</button>
-      <button class="ex" onclick="gex('1/x')">1/x</button>
-      <button class="ex" onclick="gex('abs(x)')">|x|</button>
+    <div class="chips" style="margin-bottom:8px">
+      <button class="chip" onclick="gp('x^2')">x²</button>
+      <button class="chip" onclick="gp('x^3')">x³</button>
+      <button class="chip" onclick="gp('sin(x)')">sin(x)</button>
+      <button class="chip" onclick="gp('cos(x)')">cos(x)</button>
+      <button class="chip" onclick="gp('2*x+3')">2x+3</button>
+      <button class="chip" onclick="gp('sqrt(x)')">√x</button>
+      <button class="chip" onclick="gp('1/x')">1/x</button>
     </div>
     <div class="rrow">
       <span class="rl">x from:</span>
-      <input class="ri" id="x-min" value="-10"/>
+      <input class="ri" id="xmn" value="-10"/>
       <span class="rl">to:</span>
-      <input class="ri" id="x-max" value="10"/>
+      <input class="ri" id="xmx" value="10"/>
     </div>
-    <div class="gcont"><canvas id="graph-canvas" width="560" height="280"></canvas></div>
-    <div class="ginfo" id="graph-info">Enter a function and press Plot</div>
+    <div class="gcont"><canvas id="gc" width="560" height="260"></canvas></div>
+    <div class="ginfo" id="gi">Enter a function and press Plot</div>
   </div>
 
-  <!-- QUIZ TAB -->
-  <div id="tab-quiz" style="display:none">
-    <div id="quiz-setup" style="display:flex;flex-direction:column;gap:14px">
-      <div>
-        <span class="lbl">Difficulty:</span>
-        <div class="qlrow">
-          <button class="lb easy active" onclick="setLevel('easy',this)">🟢 Easy</button>
-          <button class="lb medium" onclick="setLevel('medium',this)">🟡 Medium</button>
-          <button class="lb hard" onclick="setLevel('hard',this)">🔴 Hard</button>
-        </div>
+  <!-- QUIZ -->
+  <div id="pq" class="page">
+    <div id="qset">
+      <span class="lbl">Difficulty:</span>
+      <div class="lvlrow">
+        <button class="lvl e" id="le" onclick="setLv('easy')">🟢 Easy</button>
+        <button class="lvl" id="lm" onclick="setLv('medium')">🟡 Medium</button>
+        <button class="lvl" id="lh" onclick="setLv('hard')">🔴 Hard</button>
       </div>
-      <div>
-        <span class="lbl">Topic:</span>
-        <div class="qtrow">
-          <button class="tb active" onclick="setTopic('all',this)">🔢 All</button>
-          <button class="tb" onclick="setTopic('addition',this)">➕ Add</button>
-          <button class="tb" onclick="setTopic('multiply',this)">✖️ Multiply</button>
-          <button class="tb" onclick="setTopic('percentage',this)">% Percent</button>
-          <button class="tb" onclick="setTopic('algebra',this)">📐 Algebra</button>
-          <button class="tb" onclick="setTopic('square',this)">² Square</button>
-        </div>
+      <span class="lbl">Topic:</span>
+      <div class="chips" style="margin-bottom:10px">
+        <button class="chip on" id="tall" onclick="setTp('all',this)">All</button>
+        <button class="chip" id="tadd" onclick="setTp('add',this)">➕ Add</button>
+        <button class="chip" id="tmul" onclick="setTp('mul',this)">✖️ Mul</button>
+        <button class="chip" id="tpct" onclick="setTp('pct',this)">% Pct</button>
+        <button class="chip" id="talg" onclick="setTp('alg',this)">📐 Alg</button>
+        <button class="chip" id="tsq" onclick="setTp('sq',this)">² Sq</button>
       </div>
-      <div>
-        <span class="lbl">Questions:</span>
-        <div style="display:flex;gap:8px">
-          <button class="tb active" id="q5" onclick="setQC(5,this)">5</button>
-          <button class="tb" id="q10" onclick="setQC(10,this)">10</button>
-          <button class="tb" id="q15" onclick="setQC(15,this)">15</button>
-          <button class="tb" id="q20" onclick="setQC(20,this)">20</button>
-        </div>
+      <span class="lbl">Questions:</span>
+      <div class="chips" style="margin-bottom:14px">
+        <button class="chip on" id="qn5" onclick="setQN(5,this)">5</button>
+        <button class="chip" id="qn10" onclick="setQN(10,this)">10</button>
+        <button class="chip" id="qn15" onclick="setQN(15,this)">15</button>
+        <button class="chip" id="qn20" onclick="setQN(20,this)">20</button>
       </div>
-      <button class="sqbtn" onclick="startQuiz()">🚀 Start Quiz!</button>
+      <button class="rbtn gbtn" onclick="startQ()">🚀 Start Quiz!</button>
     </div>
-    <div id="quiz-game" style="display:none;flex-direction:column;gap:10px">
+    <div id="qgame" style="display:none">
       <div class="qhdr">
-        <div class="qsc">⭐ <span id="score-display">0</span></div>
-        <div class="qpr"><span id="q-current">1</span>/<span id="q-total">10</span></div>
-        <div class="qtm">⏱️ <span id="timer-display">30</span>s</div>
+        <div class="qsc">⭐ <span id="qsc">0</span></div>
+        <div class="qpr"><span id="qcr">1</span>/<span id="qtl">5</span></div>
+        <div class="qtm">⏱️ <span id="qtmr">30</span>s</div>
       </div>
-      <div class="pbg"><div class="pf" id="progress-fill" style="width:0%"></div></div>
+      <div class="pbg"><div class="pf" id="qpf" style="width:0%"></div></div>
       <div class="qbox">
-        <div class="qlb">Solve this:</div>
-        <div class="qt" id="question-text">2 + 2 = ?</div>
-        <div class="qh" id="question-hint"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Solve:</div>
+        <div class="qtxt" id="qtxt">2+2=?</div>
+        <div class="qhnt" id="qhnt"></div>
       </div>
-      <input class="ai" id="answer-input" type="number" placeholder="Your answer..." onkeypress="handleEnter(event)"/>
-      <div class="fb" id="feedback-box"></div>
-      <button class="subbtn" id="submit-btn" onclick="checkAnswer()">✅ Check Answer</button>
-      <button class="nxbtn" id="next-btn" onclick="nextQuestion()">➡️ Next Question</button>
+      <input class="qinp" id="qinp" type="number" placeholder="Answer..."/>
+      <div class="fb" id="qfb"></div>
+      <button class="rbtn" id="qsub" onclick="chkA()" style="margin-bottom:6px">✅ Check Answer</button>
+      <button class="nxbtn" id="qnxt" onclick="nxtQ()">➡️ Next Question</button>
     </div>
-    <div id="quiz-result" class="qres">
-      <div class="re" id="result-emoji">🎉</div>
-      <div class="rt" id="result-title">Excellent!</div>
-      <div class="rs" id="result-score-display">10/10</div>
-      <div class="rd" id="result-detail"></div>
-      <button class="pabtn" onclick="resetQuiz()">🔄 Play Again</button>
+    <div id="qres" style="display:none;text-align:center;padding:16px">
+      <div style="font-size:50px;margin-bottom:10px" id="qremj">🎉</div>
+      <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:6px" id="qrttl">Excellent!</div>
+      <div style="font-size:40px;font-weight:700;color:#4ecca3;margin-bottom:6px" id="qrsc">5/5</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:16px;line-height:1.8" id="qrdt"></div>
+      <button class="rbtn gbtn" onclick="resetQ()">🔄 Play Again</button>
     </div>
   </div>
 
-  <!-- TOOLS TAB -->
-  <div id="tab-tools" style="display:none">
-
-    <!-- বাংলা Explanation -->
-    <div class="tool-section">
-      <div class="tool-title">🇧🇩 বাংলায় Math Explanation</div>
-      <div class="tool-row">
-        <input class="tool-input" id="bn-input" placeholder="যেমন: 2+2, sqrt(16), 5!"/>
-        <button class="tool-btn" onclick="solveBangla()">বাংলায় বলো</button>
+  <!-- TOOLS -->
+  <div id="pt" class="page">
+    <div class="tsec">
+      <div class="ttl">🇧🇩 বাংলায় Explanation</div>
+      <div class="trow">
+        <input class="ti" id="bni" type="text" placeholder="যেমন: 2+2, sqrt(16)"/>
+        <button class="tbtn" onclick="doBn()">বাংলায়</button>
       </div>
-      <div class="tool-result" id="bn-result">
-        <div class="tool-result-value" id="bn-answer"></div>
-        <div class="tool-result-detail" id="bn-steps"></div>
+      <div class="tres" id="bnr">
+        <div class="trv" id="bnav"></div>
+        <div class="trd" id="bnst"></div>
       </div>
     </div>
-
-    <!-- Statistics -->
-    <div class="tool-section">
-      <div class="tool-title">📊 Statistics Calculator</div>
-      <div class="tool-row">
-        <input class="tool-input" id="stat-input" placeholder="Numbers: 5, 10, 15, 20, 25"/>
-        <button class="tool-btn" onclick="calcStats()">Calculate</button>
+    <div class="tsec">
+      <div class="ttl">📊 Statistics Calculator</div>
+      <div class="trow">
+        <input class="ti" id="sti" type="text" placeholder="5, 10, 15, 20, 25"/>
+        <button class="tbtn" onclick="doStat()">Calculate</button>
       </div>
-      <div class="tool-result" id="stat-result">
-        <div class="tool-result-detail" id="stat-detail"></div>
+      <div class="tres" id="str">
+        <div class="trd" id="std"></div>
       </div>
     </div>
-
-    <!-- Interest Calculator -->
-    <div class="tool-section">
-      <div class="tool-title">💰 Interest Calculator</div>
-      <div class="bn-section">
-        <div class="bn-title">Simple Interest</div>
-        <div class="tool-row">
-          <span class="tool-label">Principal (P)</span>
-          <input class="tool-input" id="si-p" type="number" placeholder="10000"/>
-        </div>
-        <div class="tool-row">
-          <span class="tool-label">Rate % (R)</span>
-          <input class="tool-input" id="si-r" type="number" placeholder="5"/>
-        </div>
-        <div class="tool-row">
-          <span class="tool-label">Time (T) years</span>
-          <input class="tool-input" id="si-t" type="number" placeholder="2"/>
-        </div>
-        <button class="tool-btn" style="width:100%" onclick="calcSI()">Calculate SI</button>
-        <div class="tool-result" id="si-result">
-          <div class="tool-result-detail" id="si-detail"></div>
-        </div>
+    <div class="tsec">
+      <div class="ttl">💰 Interest Calculator</div>
+      <div class="bsec">
+        <div class="bttl">Simple Interest</div>
+        <div class="trow"><span class="tlbl">Principal (P)</span><input class="ti" id="sip" type="number" placeholder="10000"/></div>
+        <div class="trow"><span class="tlbl">Rate % (R)</span><input class="ti" id="sir" type="number" placeholder="5"/></div>
+        <div class="trow"><span class="tlbl">Time (years)</span><input class="ti" id="sit" type="number" placeholder="2"/></div>
+        <button class="tbtn" style="width:100%" onclick="doSI()">Calculate SI</button>
+        <div class="tres" id="sir2"><div class="trd" id="sid"></div></div>
       </div>
-      <div class="bn-section">
-        <div class="bn-title">Compound Interest</div>
-        <div class="tool-row">
-          <span class="tool-label">Principal (P)</span>
-          <input class="tool-input" id="ci-p" type="number" placeholder="10000"/>
-        </div>
-        <div class="tool-row">
-          <span class="tool-label">Rate % (R)</span>
-          <input class="tool-input" id="ci-r" type="number" placeholder="5"/>
-        </div>
-        <div class="tool-row">
-          <span class="tool-label">Time (T) years</span>
-          <input class="tool-input" id="ci-t" type="number" placeholder="2"/>
-        </div>
-        <div class="tool-row">
-          <span class="tool-label">Compound</span>
-          <select class="tool-select" id="ci-n">
+      <div class="bsec">
+        <div class="bttl">Compound Interest</div>
+        <div class="trow"><span class="tlbl">Principal (P)</span><input class="ti" id="cip" type="number" placeholder="10000"/></div>
+        <div class="trow"><span class="tlbl">Rate % (R)</span><input class="ti" id="cir" type="number" placeholder="5"/></div>
+        <div class="trow"><span class="tlbl">Time (years)</span><input class="ti" id="cit" type="number" placeholder="2"/></div>
+        <div class="trow"><span class="tlbl">Compound</span>
+          <select class="tsel" id="cin">
             <option value="1">Yearly</option>
             <option value="2">Half-yearly</option>
             <option value="4">Quarterly</option>
             <option value="12">Monthly</option>
           </select>
         </div>
-        <button class="tool-btn" style="width:100%" onclick="calcCI()">Calculate CI</button>
-        <div class="tool-result" id="ci-result">
-          <div class="tool-result-detail" id="ci-detail"></div>
-        </div>
+        <button class="tbtn" style="width:100%" onclick="doCI()">Calculate CI</button>
+        <div class="tres" id="cir2"><div class="trd" id="cid"></div></div>
       </div>
     </div>
-
-    <!-- Unit Converter -->
-    <div class="tool-section">
-      <div class="tool-title">🔄 Unit Converter</div>
-      <div class="tool-row">
-        <input class="tool-input" id="uc-value" type="number" placeholder="Value"/>
-        <select class="tool-select" id="uc-from">
-          <optgroup label="📏 Length">
-            <option value="km">km</option>
-            <option value="mile">mile</option>
-            <option value="meter">meter</option>
-            <option value="cm">cm</option>
-            <option value="inch">inch</option>
-            <option value="foot">foot</option>
-          </optgroup>
-          <optgroup label="⚖️ Weight">
-            <option value="kg">kg</option>
-            <option value="lb">pound</option>
-            <option value="gram">gram</option>
-            <option value="oz">ounce</option>
-          </optgroup>
-          <optgroup label="🌡️ Temperature">
-            <option value="celsius">°C Celsius</option>
-            <option value="fahrenheit">°F Fahrenheit</option>
-            <option value="kelvin">K Kelvin</option>
-          </optgroup>
-          <optgroup label="📐 Area">
-            <option value="sqm">m²</option>
-            <option value="sqft">ft²</option>
-            <option value="acre">acre</option>
-            <option value="hectare">hectare</option>
-          </optgroup>
+    <div class="tsec">
+      <div class="ttl">🔄 Unit Converter</div>
+      <div class="trow">
+        <input class="ti" id="ucv" type="number" placeholder="Value" style="max-width:90px"/>
+        <select class="tsel" id="ucf">
+          <optgroup label="Length"><option value="km">km</option><option value="mile">mile</option><option value="meter">meter</option><option value="cm">cm</option><option value="inch">inch</option><option value="foot">foot</option></optgroup>
+          <optgroup label="Weight"><option value="kg">kg</option><option value="lb">pound</option><option value="gram">gram</option><option value="oz">oz</option></optgroup>
+          <optgroup label="Temp"><option value="c">°C</option><option value="f">°F</option><option value="k">K</option></optgroup>
         </select>
-        <span style="color:rgba(255,255,255,0.5);padding:0 4px">→</span>
-        <select class="tool-select" id="uc-to">
-          <optgroup label="📏 Length">
-            <option value="km">km</option>
-            <option value="mile">mile</option>
-            <option value="meter">meter</option>
-            <option value="cm">cm</option>
-            <option value="inch">inch</option>
-            <option value="foot">foot</option>
-          </optgroup>
-          <optgroup label="⚖️ Weight">
-            <option value="kg">kg</option>
-            <option value="lb">pound</option>
-            <option value="gram">gram</option>
-            <option value="oz">ounce</option>
-          </optgroup>
-          <optgroup label="🌡️ Temperature">
-            <option value="celsius">°C Celsius</option>
-            <option value="fahrenheit">°F Fahrenheit</option>
-            <option value="kelvin">K Kelvin</option>
-          </optgroup>
-          <optgroup label="📐 Area">
-            <option value="sqm">m²</option>
-            <option value="sqft">ft²</option>
-            <option value="acre">acre</option>
-            <option value="hectare">hectare</option>
-          </optgroup>
+        <span style="color:rgba(255,255,255,0.4)">→</span>
+        <select class="tsel" id="uct">
+          <optgroup label="Length"><option value="km">km</option><option value="mile">mile</option><option value="meter">meter</option><option value="cm">cm</option><option value="inch">inch</option><option value="foot">foot</option></optgroup>
+          <optgroup label="Weight"><option value="kg">kg</option><option value="lb">pound</option><option value="gram">gram</option><option value="oz">oz</option></optgroup>
+          <optgroup label="Temp"><option value="c">°C</option><option value="f">°F</option><option value="k">K</option></optgroup>
         </select>
       </div>
-      <button class="tool-btn" style="width:100%;margin-top:4px" onclick="convertUnit()">🔄 Convert</button>
-      <div class="tool-result" id="uc-result">
-        <div class="tool-result-value" id="uc-answer"></div>
-        <div class="tool-result-detail" id="uc-detail"></div>
+      <button class="tbtn" style="width:100%;margin-top:6px" onclick="doUC()">🔄 Convert</button>
+      <div class="tres" id="ucr">
+        <div class="trv" id="ucav"></div>
+        <div class="trd" id="ucd"></div>
       </div>
     </div>
   </div>
 
-  <!-- HISTORY TAB -->
-  <div id="tab-history" style="display:none">
+  <!-- HISTORY -->
+  <div id="ph" class="page">
     <div class="hhdr">
-      <span class="ht">📜 History</span>
-      <button class="clrbtn" onclick="clearHistory()">Clear All</button>
+      <span style="font-size:12px;color:rgba(255,255,255,0.5);font-weight:600;text-transform:uppercase;letter-spacing:1px">📜 History</span>
+      <button class="chip" onclick="clrH()">Clear</button>
     </div>
-    <div class="hlist" id="history-list"></div>
+    <div class="hlist" id="hlist"></div>
   </div>
 </div>
 
 <script>
-let historyData=JSON.parse(localStorage.getItem('mathHistory'))||[];
-let calcExpr='';
-let currentLang='en';
-let quizLevel='easy',quizTopic='all',quizQC=5;
-let currentQ=0,score=0,correctAnswer=0,timerInterval=null,timeLeft=30,streak=0,totalCorrect=0;
+var hist=JSON.parse(localStorage.getItem('mh'))||[];
+var cexp='';
+var lang='en';
+var qlv='easy',qtp='all',qnum=5;
+var qcur=0,qsc=0,qca=0,qtmr=null,qtl=30,qstr=0,qcok=0;
 
-// THEME
 function toggleTheme(){
   document.body.classList.toggle('light');
-  const isLight=document.body.classList.contains('light');
-  document.getElementById('theme-btn').textContent=isLight?'🌙 Dark':'☀️ Light';
-  localStorage.setItem('mathTheme',isLight?'light':'dark');
-  if(document.getElementById('tab-graph').style.display!=='none') plotGraph();
-}
-if(localStorage.getItem('mathTheme')==='light'){document.body.classList.add('light');document.getElementById('theme-btn').textContent='🌙 Dark';}
-
-// TABS
-function switchTab(tab,btn){
-  ['solver','calculator','graph','quiz','tools','history'].forEach(t=>{document.getElementById('tab-'+t).style.display='none';});
-  document.getElementById('tab-'+tab).style.display='block';
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  if(tab==='history') renderHistory();
-  if(tab==='graph') plotGraph();
+  var l=document.body.classList.contains('light');
+  document.getElementById('tbtn').textContent=l?'🌙 Dark':'☀️ Light';
+  if(document.getElementById('pg').classList.contains('on')) doPlot();
 }
 
-// LANGUAGE
-function setLang(lang,btn){
-  currentLang=lang;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-// SOLVER
-function setEx(val){document.getElementById('problem-input').value=val;}
-function solveProblem(){
-  const input=document.getElementById('problem-input').value.trim();
-  const eb=document.getElementById('error-box');
-  const rb=document.getElementById('result-box');
-  eb.classList.remove('show');rb.classList.remove('show');
-  if(!input){eb.textContent='❌ Please type a math problem!';eb.classList.add('show');return;}
-  try{
-    const result=solveIt(input,currentLang);
-    document.getElementById('answer-display').textContent='= '+result.answer;
-    document.getElementById('steps-display').innerHTML=result.steps.map((s,i)=>
-      `<div class="step"><div class="sn">${i+1}</div><div class="st">${s}</div></div>`).join('');
-    rb.classList.add('show');
-    saveHistory(input,result.answer);
-  }catch(e){eb.textContent='❌ Could not solve: '+e.message;eb.classList.add('show');}
-}
-
-function solveIt(input,lang='en'){
-  const clean=input.trim();
-  const isBn=lang==='bn';
-
-  if(/(\d+\.?\d*)%\s*of\s*(\d+\.?\d*)/i.test(clean)){
-    const m=clean.match(/(\d+\.?\d*)%\s*of\s*(\d+\.?\d*)/i);
-    const pct=parseFloat(m[1]),num=parseFloat(m[2]),ans=(pct/100)*num;
-    return isBn?{answer:ans,steps:[
-      `সমস্যা: ${pct}% of ${num} বের করতে হবে`,
-      `সূত্র: (শতকরা ÷ ১০০) × সংখ্যা`,
-      `ধাপ: (${pct} ÷ ১০০) × ${num}`,
-      `= ${pct/100} × ${num}`,
-      `✅ উত্তর: ${ans}`
-    ]}:{answer:ans,steps:[
-      `Find ${pct}% of ${num}`,
-      `Formula: (${pct} ÷ 100) × ${num}`,
-      `= ${pct/100} × ${num}`,
-      `✅ Answer: ${ans}`
-    ]};
+function goTab(id,btn){
+  var pages=['s','c','g','q','t','h'];
+  for(var i=0;i<pages.length;i++){
+    var p=document.getElementById('p'+pages[i]);
+    p.classList.remove('on');
   }
+  document.getElementById('p'+id).classList.add('on');
+  var tabs=document.querySelectorAll('.tab');
+  for(var i=0;i<tabs.length;i++) tabs[i].classList.remove('on');
+  btn.classList.add('on');
+  if(id==='h') showH();
+  if(id==='g') doPlot();
+}
 
-  if(/[a-zA-Z]/.test(clean)&&clean.includes('=')){
-    const sides=clean.split('=');
-    const left=sides[0].trim(),right=sides[1].trim();
-    const varName=(left.match(/[a-zA-Z]/)||right.match(/[a-zA-Z]/))[0];
-    const match=left.match(/^(-?\d*\.?\d*)\s*\*?\s*([a-zA-Z])\s*([+-]\s*\d+\.?\d*)?$/);
-    if(match){
-      let a=match[1]===''||!match[1]?1:(match[1]==='-'?-1:parseFloat(match[1]));
-      const b=match[3]?parseFloat(match[3].replace(/\s/g,'')):0;
-      const c=parseFloat(right);
-      const ans=(c-b)/a;
-      return isBn?{answer:`${varName} = ${ans}`,steps:[
-        `সমীকরণ: ${clean}`,
-        `${varName} এর মান বের করতে হবে`,
-        `${b} ডানদিকে নিয়ে: ${varName} = ${c} - ${b} = ${c-b}`,
-        `${a} দিয়ে ভাগ করে: ${varName} = ${c-b} ÷ ${a}`,
-        `✅ উত্তর: ${varName} = ${ans}`
-      ]}:{answer:`${varName} = ${ans}`,steps:[
-        `Equation: ${clean}`,
-        `Find ${varName}`,
-        `Move ${b}: ${varName} = ${c} - ${b} = ${c-b}`,
-        `Divide by ${a}: ${varName} = ${c-b} ÷ ${a}`,
-        `✅ ${varName} = ${ans}`
-      ]};
+function setL(l,btn){
+  lang=l;
+  var bs=document.querySelectorAll('.lgbtn');
+  for(var i=0;i<bs.length;i++) bs[i].classList.remove('on');
+  btn.classList.add('on');
+}
+
+function sp(v){document.getElementById('prob').value=v;}
+
+function doSolve(){
+  var inp=document.getElementById('prob').value.trim();
+  var eb=document.getElementById('eb');
+  var rb=document.getElementById('rb');
+  eb.classList.remove('on');
+  rb.classList.remove('on');
+  if(!inp){eb.textContent='❌ Please type a math problem!';eb.classList.add('on');return;}
+  try{
+    var r=calcIt(inp,lang);
+    document.getElementById('rans').textContent='= '+r.ans;
+    var h='';
+    for(var i=0;i<r.steps.length;i++){
+      h+='<div class="srow"><div class="snum">'+(i+1)+'</div><div class="stxt">'+r.steps[i]+'</div></div>';
     }
-  }
-
-  const result=math.evaluate(clean);
-  const steps=isBn?getBnSteps(clean,result):getEnSteps(clean,result);
-  return{answer:result,steps};
-}
-
-function getEnSteps(expr,result){
-  const s=[`Problem: ${expr}`];
-  if(expr.includes('+')) s.push(`Adding the numbers together`);
-  else if(expr.includes('-')) s.push(`Subtracting`);
-  else if(expr.includes('*')) s.push(`Multiplying`);
-  else if(expr.includes('/')) s.push(`Dividing`);
-  else if(expr.includes('sqrt')) s.push(`Finding square root — what number × itself = the value inside?`);
-  else if(expr.includes('^')){const p=expr.split('^');s.push(`${p[0]} to the power ${p[1]} — multiply ${p[0]} by itself ${p[1]} times`);}
-  else if(expr.includes('sin')||expr.includes('cos')||expr.includes('tan')) s.push(`Trigonometry — ratio of sides in right triangle`);
-  else if(expr.includes('log')) s.push(`Logarithm — what power gives this number?`);
-  else if(expr.includes('!')) s.push(`Factorial — multiply all numbers from 1 to this number`);
-  s.push(`✅ Answer: ${result}`);
-  return s;
-}
-
-function getBnSteps(expr,result){
-  const s=[`সমস্যা: ${expr}`];
-  if(expr.includes('+')) s.push(`সংখ্যাগুলো যোগ করতে হবে`);
-  else if(expr.includes('-')) s.push(`সংখ্যা বিয়োগ করতে হবে`);
-  else if(expr.includes('*')) s.push(`সংখ্যাগুলো গুণ করতে হবে`);
-  else if(expr.includes('/')) s.push(`সংখ্যাগুলো ভাগ করতে হবে`);
-  else if(expr.includes('sqrt')) s.push(`বর্গমূল বের করতে হবে — কোন সংখ্যা নিজেকে নিজে গুণ করলে এই মান হয়?`);
-  else if(expr.includes('^')){const p=expr.split('^');s.push(`${p[0]} কে ${p[1]} ঘাতে উন্নীত করতে হবে — ${p[0]} কে ${p[1]} বার গুণ করো`);}
-  else if(expr.includes('sin')||expr.includes('cos')||expr.includes('tan')) s.push(`ত্রিকোণমিতি — সমকোণী ত্রিভুজের বাহুর অনুপাত`);
-  else if(expr.includes('log')) s.push(`লগারিদম — কোন ঘাতে উন্নীত করলে এই সংখ্যা পাওয়া যাবে?`);
-  else if(expr.includes('!')) s.push(`ফ্যাক্টরিয়াল — ১ থেকে এই সংখ্যা পর্যন্ত সব সংখ্যা গুণ করো`);
-  s.push(`✅ উত্তর: ${result}`);
-  return s;
-}
-
-// BANGLA SOLVER
-function solveBangla(){
-  const input=document.getElementById('bn-input').value.trim();
-  const res=document.getElementById('bn-result');
-  if(!input){alert('কিছু লেখো!');return;}
-  try{
-    const result=solveIt(input,'bn');
-    document.getElementById('bn-answer').textContent='= '+result.answer;
-    document.getElementById('bn-steps').textContent=result.steps.join('\n');
-    res.classList.add('show');
+    document.getElementById('rstps').innerHTML=h;
+    rb.classList.add('on');
+    addH(inp,r.ans);
   }catch(e){
-    document.getElementById('bn-answer').textContent='❌ সমাধান হয়নি';
-    document.getElementById('bn-steps').textContent=e.message;
-    res.classList.add('show');
+    eb.textContent='❌ '+e.message;
+    eb.classList.add('on');
   }
 }
 
-// STATISTICS
-function calcStats(){
-  const input=document.getElementById('stat-input').value.trim();
-  const res=document.getElementById('stat-result');
-  if(!input){alert('Numbers দাও!');return;}
-  try{
-    const nums=input.split(/[,\s]+/).map(n=>parseFloat(n)).filter(n=>!isNaN(n));
-    if(nums.length===0) throw new Error('No valid numbers');
-    const sorted=[...nums].sort((a,b)=>a-b);
-    const n=nums.length;
-    const sum=nums.reduce((a,b)=>a+b,0);
-    const mean=sum/n;
-    const mid=Math.floor(n/2);
-    const median=n%2===0?(sorted[mid-1]+sorted[mid])/2:sorted[mid];
-    const freq={};
-    nums.forEach(x=>{freq[x]=(freq[x]||0)+1;});
-    const maxF=Math.max(...Object.values(freq));
-    const mode=Object.keys(freq).filter(k=>freq[k]===maxF).join(', ');
-    const variance=nums.reduce((a,b)=>a+Math.pow(b-mean,2),0)/n;
-    const stddev=Math.sqrt(variance);
-    const range=sorted[n-1]-sorted[0];
-    document.getElementById('stat-detail').textContent=
-      `Numbers: ${nums.join(', ')}\nCount (n): ${n}\n\n` +
-      `Sum: ${sum}\nMean (Average): ${mean.toFixed(4)}\n` +
-      `Median: ${median}\nMode: ${mode}\n\n` +
-      `Range: ${range}\nVariance: ${variance.toFixed(4)}\n` +
-      `Standard Deviation: ${stddev.toFixed(4)}\n\n` +
-      `Min: ${sorted[0]}  |  Max: ${sorted[n-1]}`;
-    res.classList.add('show');
-  }catch(e){alert('Error: '+e.message);}
-}
-
-// SIMPLE INTEREST
-function calcSI(){
-  const p=parseFloat(document.getElementById('si-p').value);
-  const r=parseFloat(document.getElementById('si-r').value);
-  const t=parseFloat(document.getElementById('si-t').value);
-  if(isNaN(p)||isNaN(r)||isNaN(t)){alert('সব value দাও!');return;}
-  const si=(p*r*t)/100;
-  const total=p+si;
-  document.getElementById('si-detail').textContent=
-    `Formula: SI = (P × R × T) / 100\n\n` +
-    `Principal (P): ${p}\nRate (R): ${r}%\nTime (T): ${t} years\n\n` +
-    `SI = (${p} × ${r} × ${t}) / 100\nSI = ${si}\n\n` +
-    `Total Amount = P + SI\n= ${p} + ${si}\n= ${total}`;
-  document.getElementById('si-result').classList.add('show');
-}
-
-// COMPOUND INTEREST
-function calcCI(){
-  const p=parseFloat(document.getElementById('ci-p').value);
-  const r=parseFloat(document.getElementById('ci-r').value);
-  const t=parseFloat(document.getElementById('ci-t').value);
-  const n=parseFloat(document.getElementById('ci-n').value);
-  if(isNaN(p)||isNaN(r)||isNaN(t)){alert('সব value দাও!');return;}
-  const amount=p*Math.pow(1+(r/100)/n,n*t);
-  const ci=amount-p;
-  const nMap={1:'Yearly',2:'Half-yearly',4:'Quarterly',12:'Monthly'};
-  document.getElementById('ci-detail').textContent=
-    `Formula: A = P(1 + R/100n)^(nT)\n\n` +
-    `Principal: ${p}\nRate: ${r}%\nTime: ${t} years\nCompound: ${nMap[n]}\n\n` +
-    `Amount = ${p}(1 + ${r/100}/n)^(n×${t})\nAmount = ${amount.toFixed(2)}\n\n` +
-    `Compound Interest = ${ci.toFixed(2)}\nTotal Amount = ${amount.toFixed(2)}`;
-  document.getElementById('ci-result').classList.add('show');
-}
-
-// UNIT CONVERTER
-function convertUnit(){
-  const val=parseFloat(document.getElementById('uc-value').value);
-  const from=document.getElementById('uc-from').value;
-  const to=document.getElementById('uc-to').value;
-  if(isNaN(val)){alert('Value দাও!');return;}
-
-  const toMeter={km:1000,mile:1609.34,meter:1,cm:0.01,inch:0.0254,foot:0.3048};
-  const toKg={kg:1,lb:0.453592,gram:0.001,oz:0.0283495};
-  const toSqm={sqm:1,sqft:0.092903,acre:4046.86,hectare:10000};
-
-  let result,detail='';
-  try{
-    if(from==='celsius'||from==='fahrenheit'||from==='kelvin'){
-      let celsius;
-      if(from==='celsius') celsius=val;
-      else if(from==='fahrenheit') celsius=(val-32)*5/9;
-      else celsius=val-273.15;
-      if(to==='celsius') result=celsius;
-      else if(to==='fahrenheit') result=celsius*9/5+32;
-      else result=celsius+273.15;
-      detail=`${val} ${from} → ${result.toFixed(4)} ${to}`;
-    } else if(toMeter[from]&&toMeter[to]){
-      const meters=val*toMeter[from];
-      result=meters/toMeter[to];
-      detail=`${val} ${from} → ${result.toFixed(6)} ${to}`;
-    } else if(toKg[from]&&toKg[to]){
-      const kg=val*toKg[from];
-      result=kg/toKg[to];
-      detail=`${val} ${from} → ${result.toFixed(6)} ${to}`;
-    } else if(toSqm[from]&&toSqm[to]){
-      const sqm=val*toSqm[from];
-      result=sqm/toSqm[to];
-      detail=`${val} ${from} → ${result.toFixed(6)} ${to}`;
-    } else {
-      throw new Error('Cannot convert between different unit types!');
+function calcIt(inp,lg){
+  var c=inp.trim();
+  var bn=lg==='bn';
+  var m=c.match(/(\d+\.?\d*)%\s*of\s*(\d+\.?\d*)/i);
+  if(m){
+    var p=parseFloat(m[1]),n=parseFloat(m[2]),a=(p/100)*n;
+    return bn?{ans:a,steps:['সমস্যা: '+p+'% of '+n,'সূত্র: ('+p+'/১০০)×'+n,'= '+a,'✅ উত্তর: '+a]}
+             :{ans:a,steps:['Find '+p+'% of '+n,'('+p+'/100)×'+n,'= '+a,'✅ Answer: '+a]};
+  }
+  if(/[a-zA-Z]/.test(c)&&c.indexOf('=')>=0){
+    var sides=c.split('=');
+    var lf=sides[0].trim(),rt=sides[1].trim();
+    var vn=(lf.match(/[a-zA-Z]/)||rt.match(/[a-zA-Z]/))[0];
+    var mm=lf.match(/^(-?\d*\.?\d*)\*?([a-zA-Z])([+-]\d+\.?\d*)?$/);
+    if(mm){
+      var a2=!mm[1]||mm[1]===''?1:(mm[1]==='-'?-1:parseFloat(mm[1]));
+      var b=mm[3]?parseFloat(mm[3]):0;
+      var cv=parseFloat(rt);
+      var ans=(cv-b)/a2;
+      return bn?{ans:vn+'='+ans,steps:['সমীকরণ: '+c,vn+' বের করো',b+' সরাও: '+vn+'='+(cv-b),a2+' দিয়ে ভাগ: '+vn+'='+ans,'✅ '+vn+'='+ans]}
+               :{ans:vn+'='+ans,steps:['Equation: '+c,'Find '+vn,'Move '+b+': '+vn+'='+(cv-b),'Divide by '+a2+': '+vn+'='+ans,'✅ '+vn+'='+ans]};
     }
-    document.getElementById('uc-answer').textContent=`${result.toFixed(4)} ${to}`;
-    document.getElementById('uc-detail').textContent=detail;
-    document.getElementById('uc-result').classList.add('show');
-  }catch(e){alert('❌ '+e.message);}
+  }
+  var result=math.evaluate(c);
+  var steps=[];
+  if(bn){
+    steps.push('সমস্যা: '+c);
+    if(c.indexOf('+')>=0) steps.push('যোগ করো');
+    else if(c.indexOf('-')>=0) steps.push('বিয়োগ করো');
+    else if(c.indexOf('*')>=0) steps.push('গুণ করো');
+    else if(c.indexOf('/')>=0) steps.push('ভাগ করো');
+    else if(c.indexOf('sqrt')>=0) steps.push('বর্গমূল বের করো');
+    else if(c.indexOf('^')>=0) steps.push('ঘাতে উন্নীত করো');
+    steps.push('✅ উত্তর: '+result);
+  } else {
+    steps.push('Problem: '+c);
+    if(c.indexOf('+')>=0) steps.push('Adding numbers');
+    else if(c.indexOf('-')>=0) steps.push('Subtracting');
+    else if(c.indexOf('*')>=0) steps.push('Multiplying');
+    else if(c.indexOf('/')>=0) steps.push('Dividing');
+    else if(c.indexOf('sqrt')>=0) steps.push('Finding square root');
+    else if(c.indexOf('^')>=0) steps.push('Raising to power');
+    steps.push('✅ Answer: '+result);
+  }
+  return{ans:result,steps:steps};
 }
 
-// HISTORY
-function saveHistory(problem,answer){
-  historyData.unshift({problem,answer:String(answer),time:new Date().toLocaleTimeString()});
-  if(historyData.length>30) historyData.pop();
-  localStorage.setItem('mathHistory',JSON.stringify(historyData));
+function addH(p,a){
+  hist.unshift({p:String(p),a:String(a)});
+  if(hist.length>30) hist.pop();
+  localStorage.setItem('mh',JSON.stringify(hist));
 }
-function renderHistory(){
-  const list=document.getElementById('history-list');
-  if(historyData.length===0){list.innerHTML='<div class="eh">No history yet!</div>';return;}
-  list.innerHTML=historyData.map((h,i)=>`
-    <div class="hi" onclick="loadH(${i})">
-      <div class="hp">${h.problem.substring(0,50)}</div>
-      <div class="ha">= ${String(h.answer).substring(0,40)}</div>
-    </div>`).join('');
+function showH(){
+  var l=document.getElementById('hlist');
+  if(!hist.length){l.innerHTML='<div style="text-align:center;color:rgba(255,255,255,0.3);padding:20px;font-size:12px">No history</div>';return;}
+  var h='';
+  for(var i=0;i<hist.length;i++){
+    h+='<div class="hi" onclick="sp(\''+hist[i].p.replace(/'/g,"\\'")+'\')" ><div class="hp">'+hist[i].p.substring(0,50)+'</div><div class="ha">= '+hist[i].a.substring(0,40)+'</div></div>';
+  }
+  l.innerHTML=h;
 }
-function loadH(i){
-  document.getElementById('problem-input').value=historyData[i].problem;
-  switchTab('solver',document.querySelectorAll('.tab')[0]);
-}
-function clearHistory(){if(confirm('Clear all?')){historyData=[];localStorage.removeItem('mathHistory');renderHistory();}}
+function clrH(){if(confirm('Clear?')){hist=[];localStorage.removeItem('mh');showH();}}
 
-// CALCULATOR
-function calcInput(val){calcExpr+=val;document.getElementById('calc-display').value=calcExpr;}
-function calcClear(){calcExpr='';document.getElementById('calc-display').value='';}
-function calcDel(){calcExpr=calcExpr.slice(0,-1);document.getElementById('calc-display').value=calcExpr;}
-function calcEquals(){
-  try{const r=math.evaluate(calcExpr);document.getElementById('calc-display').value=r;saveHistory(calcExpr,r);calcExpr=String(r);}
-  catch(e){document.getElementById('calc-display').value='Error';calcExpr='';}
+function ci(v){cexp+=v;document.getElementById('cdis').value=cexp;}
+function cc(){cexp='';document.getElementById('cdis').value='';}
+function cd(){cexp=cexp.slice(0,-1);document.getElementById('cdis').value=cexp;}
+function ceq(){
+  try{var r=math.evaluate(cexp);document.getElementById('cdis').value=r;addH(cexp,r);cexp=String(r);}
+  catch(e){document.getElementById('cdis').value='Error';cexp='';}
 }
 
-// GRAPH
-function gex(val){document.getElementById('graph-input').value=val;plotGraph();}
-function plotGraph(){
-  const expr=document.getElementById('graph-input').value.trim();
-  const canvas=document.getElementById('graph-canvas');
-  const ctx=canvas.getContext('2d');
-  const W=canvas.width=canvas.offsetWidth||560;
-  const H=canvas.height=280;
-  const isLight=document.body.classList.contains('light');
-  ctx.fillStyle=isLight?'#f8f9ff':'#0d1b2a';
+function gp(v){document.getElementById('gexp').value=v;doPlot();}
+function doPlot(){
+  var expr=document.getElementById('gexp').value.trim();
+  var c=document.getElementById('gc');
+  var ctx=c.getContext('2d');
+  var W=c.width=c.offsetWidth||560,H=c.height=260;
+  var lt=document.body.classList.contains('light');
+  ctx.fillStyle=lt?'#f0f4ff':'#0a1628';
   ctx.fillRect(0,0,W,H);
-  if(!expr){ctx.fillStyle=isLight?'#aaa':'rgba(255,255,255,0.3)';ctx.font='13px Poppins,sans-serif';ctx.textAlign='center';ctx.fillText('Enter a function above',W/2,H/2);return;}
-  const xMin=parseFloat(document.getElementById('x-min').value)||(-10);
-  const xMax=parseFloat(document.getElementById('x-max').value)||10;
-  const xRange=xMax-xMin;
-  const pts=[];
-  for(let i=0;i<=300;i++){const x=xMin+(xRange*i/300);try{const y=math.evaluate(expr,{x});pts.push(typeof y==='number'&&isFinite(y)?{x,y}:null);}catch(e){pts.push(null);}}
-  const vy=pts.filter(p=>p).map(p=>p.y);
-  if(!vy.length){document.getElementById('graph-info').textContent='❌ Could not plot';return;}
-  let yMin=Math.min(...vy),yMax=Math.max(...vy);
-  if(yMin===yMax){yMin-=1;yMax+=1;}
-  const yPad=(yMax-yMin)*0.1;yMin-=yPad;yMax+=yPad;
-  const yRange=yMax-yMin;
-  const cx=x=>((x-xMin)/xRange)*W;
-  const cy=y=>H-((y-yMin)/yRange)*H;
-  ctx.strokeStyle=isLight?'rgba(0,0,0,0.07)':'rgba(255,255,255,0.05)';ctx.lineWidth=1;
-  for(let gx=Math.ceil(xMin);gx<=xMax;gx++){ctx.beginPath();ctx.moveTo(cx(gx),0);ctx.lineTo(cx(gx),H);ctx.stroke();}
-  for(let gy=Math.ceil(yMin);gy<=yMax;gy++){ctx.beginPath();ctx.moveTo(0,cy(gy));ctx.lineTo(W,cy(gy));ctx.stroke();}
-  ctx.strokeStyle=isLight?'rgba(0,0,0,0.2)':'rgba(255,255,255,0.2)';ctx.lineWidth=1.5;
-  if(yMin<=0&&yMax>=0){ctx.beginPath();ctx.moveTo(0,cy(0));ctx.lineTo(W,cy(0));ctx.stroke();}
-  if(xMin<=0&&xMax>=0){ctx.beginPath();ctx.moveTo(cx(0),0);ctx.lineTo(cx(0),H);ctx.stroke();}
-  ctx.strokeStyle=isLight?'#667eea':'#e94560';ctx.lineWidth=2.5;ctx.lineJoin='round';
-  ctx.beginPath();let started=false;
-  pts.forEach(p=>{if(!p){started=false;return;}if(!started){ctx.moveTo(cx(p.x),cy(p.y));started=true;}else ctx.lineTo(cx(p.x),cy(p.y));});
+  if(!expr){
+    ctx.fillStyle=lt?'#aaa':'rgba(255,255,255,0.3)';
+    ctx.font='12px sans-serif';ctx.textAlign='center';
+    ctx.fillText('Enter a function above',W/2,H/2);return;
+  }
+  var xmn=parseFloat(document.getElementById('xmn').value)||(-10);
+  var xmx=parseFloat(document.getElementById('xmx').value)||10;
+  var xr=xmx-xmn;
+  var pts=[];
+  for(var i=0;i<=300;i++){
+    var x=xmn+(xr*i/300);
+    try{var y=math.evaluate(expr,{x:x});pts.push(typeof y==='number'&&isFinite(y)?{x:x,y:y}:null);}
+    catch(ex){pts.push(null);}
+  }
+  var vy=[];
+  for(var i=0;i<pts.length;i++){if(pts[i]) vy.push(pts[i].y);}
+  if(!vy.length){document.getElementById('gi').textContent='Cannot plot';return;}
+  var ymn=Math.min.apply(null,vy),ymx=Math.max.apply(null,vy);
+  if(ymn===ymx){ymn-=1;ymx+=1;}
+  var yp=(ymx-ymn)*0.1;ymn-=yp;ymx+=yp;
+  var yr=ymx-ymn;
+  var fx=function(x){return((x-xmn)/xr)*W;};
+  var fy=function(y){return H-((y-ymn)/yr)*H;};
+  ctx.strokeStyle=lt?'rgba(0,0,0,0.06)':'rgba(255,255,255,0.04)';ctx.lineWidth=1;
+  for(var gx=Math.ceil(xmn);gx<=xmx;gx++){ctx.beginPath();ctx.moveTo(fx(gx),0);ctx.lineTo(fx(gx),H);ctx.stroke();}
+  for(var gy=Math.ceil(ymn);gy<=ymx;gy++){ctx.beginPath();ctx.moveTo(0,fy(gy));ctx.lineTo(W,fy(gy));ctx.stroke();}
+  ctx.strokeStyle=lt?'rgba(0,0,0,0.18)':'rgba(255,255,255,0.18)';ctx.lineWidth=1.5;
+  if(ymn<=0&&ymx>=0){ctx.beginPath();ctx.moveTo(0,fy(0));ctx.lineTo(W,fy(0));ctx.stroke();}
+  if(xmn<=0&&xmx>=0){ctx.beginPath();ctx.moveTo(fx(0),0);ctx.lineTo(fx(0),H);ctx.stroke();}
+  ctx.strokeStyle=lt?'#667eea':'#e94560';ctx.lineWidth=2.5;ctx.lineJoin='round';
+  ctx.beginPath();var st=false;
+  for(var i=0;i<pts.length;i++){
+    if(!pts[i]){st=false;continue;}
+    if(!st){ctx.moveTo(fx(pts[i].x),fy(pts[i].y));st=true;}
+    else ctx.lineTo(fx(pts[i].x),fy(pts[i].y));
+  }
   ctx.stroke();
-  ctx.fillStyle=isLight?'#667eea':'#4ecca3';ctx.font='bold 12px Poppins,sans-serif';ctx.textAlign='left';
-  ctx.fillText('y = '+expr,10,16);
-  document.getElementById('graph-info').textContent=`y = ${expr} | x: [${xMin}, ${xMax}]`;
+  ctx.fillStyle=lt?'#667eea':'#4ecca3';ctx.font='bold 11px sans-serif';ctx.textAlign='left';
+  ctx.fillText('y='+expr,8,14);
+  document.getElementById('gi').textContent='y='+expr+' | x:['+xmn+','+xmx+']';
 }
-window.addEventListener('resize',()=>{if(document.getElementById('tab-graph').style.display!=='none')plotGraph();});
+window.addEventListener('resize',function(){if(document.getElementById('pg').classList.contains('on'))doPlot();});
 
-// QUIZ
-function setLevel(l,btn){quizLevel=l;document.querySelectorAll('.lb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
-function setTopic(t,btn){quizTopic=t;document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
-function setQC(n,btn){quizQC=n;['q5','q10','q15','q20'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});btn.classList.add('active');}
+function setLv(l){
+  qlv=l;
+  document.getElementById('le').className='lvl';
+  document.getElementById('lm').className='lvl';
+  document.getElementById('lh').className='lvl';
+  document.getElementById('l'+l.charAt(0)).className='lvl '+l.charAt(0);
+}
+function setTp(t,btn){
+  qtp=t;
+  var ids=['tall','tadd','tmul','tpct','talg','tsq'];
+  for(var i=0;i<ids.length;i++) document.getElementById(ids[i]).classList.remove('on');
+  btn.classList.add('on');
+}
+function setQN(n,btn){
+  qnum=n;
+  var ids=['qn5','qn10','qn15','qn20'];
+  for(var i=0;i<ids.length;i++) document.getElementById(ids[i]).classList.remove('on');
+  btn.classList.add('on');
+}
 function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
-function generateQ(){
-  const easy={addition:()=>{const a=rnd(1,20),b=rnd(1,20);return{q:`${a} + ${b} = ?`,a:a+b,hint:'Add'};},multiply:()=>{const a=rnd(1,10),b=rnd(1,10);return{q:`${a} × ${b} = ?`,a:a*b,hint:'Multiply'};},subtraction:()=>{const a=rnd(10,30),b=rnd(1,a);return{q:`${a} - ${b} = ?`,a:a-b,hint:'Subtract'};},divide:()=>{const b=rnd(1,10),a=b*rnd(1,10);return{q:`${a} ÷ ${b} = ?`,a:a/b,hint:'Divide'};}};
-  const medium={addition:()=>{const a=rnd(20,100),b=rnd(20,100);return{q:`${a} + ${b} = ?`,a:a+b,hint:''};},multiply:()=>{const a=rnd(5,20),b=rnd(5,20);return{q:`${a} × ${b} = ?`,a:a*b,hint:''};},percentage:()=>{const p=[10,20,25,50][rnd(0,3)],n=rnd(2,20)*10;return{q:`${p}% of ${n} = ?`,a:(p/100)*n,hint:`${p}/100 × ${n}`};},algebra:()=>{const b=rnd(1,20),c=rnd(b+1,30);return{q:`x + ${b} = ${c}\nx = ?`,a:c-b,hint:'Move to other side'};},square:()=>{const a=rnd(2,12);return{q:`${a}² = ?`,a:a*a,hint:`${a} × ${a}`};}};
-  const hard={algebra:()=>{const a=rnd(2,5),b=rnd(1,20),c=rnd(10,50);return{q:`${a}x + ${b} = ${c}\nx = ?`,a:(c-b)/a,hint:`Subtract ${b}, divide by ${a}`};},percentage:()=>{const p=rnd(1,9)*10,n=rnd(1,20)*5;return{q:`${p}% of ${n} = ?`,a:(p/100)*n,hint:''};},square:()=>{const a=rnd(10,20);return{q:`${a}² = ?`,a:a*a,hint:'';},multiply:()=>{const a=rnd(11,25),b=rnd(11,25);return{q:`${a} × ${b} = ?`,a:a*b,hint:''};},mixed:()=>{const a=rnd(2,10),b=rnd(2,10),c=rnd(2,10);return{q:`${a}×${b}+${c}=?`,a:a*b+c,hint:'Multiply first, then add'};}};
-  const pool=quizLevel==='easy'?easy:quizLevel==='medium'?medium:hard;
-  const keys=Object.keys(pool);
-  const type=(quizTopic!=='all'&&pool[quizTopic])?quizTopic:keys[rnd(0,keys.length-1)];
+function genQ(){
+  var easy={
+    add:function(){var a=rnd(1,20),b=rnd(1,20);return{q:a+'+'+b+'=?',a:a+b,h:'Add'};},
+    sub:function(){var a=rnd(10,30),b=rnd(1,a);return{q:a+'-'+b+'=?',a:a-b,h:'Subtract'};},
+    mul:function(){var a=rnd(1,10),b=rnd(1,10);return{q:a+'×'+b+'=?',a:a*b,h:'Multiply'};},
+    div:function(){var b=rnd(1,10),a=b*rnd(1,10);return{q:a+'÷'+b+'=?',a:a/b,h:'Divide'};}
+  };
+  var medium={
+    add:function(){var a=rnd(20,100),b=rnd(20,100);return{q:a+'+'+b+'=?',a:a+b,h:''};},
+    mul:function(){var a=rnd(5,20),b=rnd(5,20);return{q:a+'×'+b+'=?',a:a*b,h:''};},
+    pct:function(){var p=[10,20,25,50][rnd(0,3)],n=rnd(2,20)*10;return{q:p+'%of'+n+'=?',a:(p/100)*n,h:p+'/100×'+n};},
+    alg:function(){var b=rnd(1,20),c=rnd(b+1,30);return{q:'x+'+b+'='+c+', x=?',a:c-b,h:'Move to other side'};},
+    sq:function(){var a=rnd(2,12);return{q:a+'²=?',a:a*a,h:a+'×'+a};}
+  };
+  var hard={
+    alg:function(){var a=rnd(2,5),b=rnd(1,20),c=rnd(10,50);return{q:a+'x+'+b+'='+c+', x=?',a:(c-b)/a,h:'Subtract '+b+', divide by '+a};},
+    pct:function(){var p=rnd(1,9)*10,n=rnd(1,20)*5;return{q:p+'%of'+n+'=?',a:(p/100)*n,h:''};},
+    sq:function(){var a=rnd(10,20);return{q:a+'²=?',a:a*a,h:a+'×'+a};},
+    mul:function(){var a=rnd(11,25),b=rnd(11,25);return{q:a+'×'+b+'=?',a:a*b,h:''};},
+    mix:function(){var a=rnd(2,10),b=rnd(2,10),c=rnd(2,10);return{q:a+'×'+b+'+'+c+'=?',a:a*b+c,h:'Multiply first'};}
+  };
+  var pool=qlv==='easy'?easy:(qlv==='medium'?medium:hard);
+  var keys=Object.keys(pool);
+  var type=(qtp!=='all'&&pool[qtp])?qtp:keys[rnd(0,keys.length-1)];
   return pool[type]();
 }
-function startQuiz(){
-  currentQ=0;score=0;totalCorrect=0;streak=0;
-  document.getElementById('quiz-setup').style.display='none';
-  document.getElementById('quiz-result').classList.remove('show');
-  document.getElementById('quiz-game').style.display='flex';
-  document.getElementById('q-total').textContent=quizQC;
+function startQ(){
+  qcur=0;qsc=0;qcok=0;qstr=0;
+  document.getElementById('qset').style.display='none';
+  document.getElementById('qres').style.display='none';
+  document.getElementById('qgame').style.display='block';
+  document.getElementById('qtl').textContent=qnum;
   loadQ();
 }
 function loadQ(){
-  clearInterval(timerInterval);
-  timeLeft=quizLevel==='easy'?30:quizLevel==='medium'?20:15;
-  const qd=generateQ();
-  correctAnswer=qd.a;
-  document.getElementById('question-text').textContent=qd.q;
-  document.getElementById('question-hint').textContent=qd.hint?'💡 '+qd.hint:'';
-  document.getElementById('q-current').textContent=currentQ+1;
-  document.getElementById('score-display').textContent=score;
-  document.getElementById('answer-input').value='';
-  document.getElementById('answer-input').className='ai';
-  document.getElementById('feedback-box').className='fb';
-  document.getElementById('next-btn').className='nxbtn';
-  document.getElementById('submit-btn').style.display='block';
-  document.getElementById('progress-fill').style.width=((currentQ/quizQC)*100)+'%';
-  document.getElementById('answer-input').focus();
-  timerInterval=setInterval(()=>{timeLeft--;document.getElementById('timer-display').textContent=timeLeft;if(timeLeft<=0){clearInterval(timerInterval);timeUp();}},1000);
+  clearInterval(qtmr);
+  qtl=qlv==='easy'?30:(qlv==='medium'?20:15);
+  var qd=genQ();
+  qca=qd.a;
+  document.getElementById('qtxt').textContent=qd.q;
+  document.getElementById('qhnt').textContent=qd.h?'💡 '+qd.h:'';
+  document.getElementById('qcr').textContent=qcur+1;
+  document.getElementById('qsc').textContent=qsc;
+  document.getElementById('qinp').value='';
+  document.getElementById('qinp').className='qinp';
+  document.getElementById('qfb').className='fb';
+  document.getElementById('qnxt').className='nxbtn';
+  document.getElementById('qsub').style.display='block';
+  document.getElementById('qpf').style.width=((qcur/qnum)*100)+'%';
+  document.getElementById('qtmr').textContent=qtl;
+  document.getElementById('qinp').focus();
+  qtmr=setInterval(function(){
+    qtl--;
+    document.getElementById('qtmr').textContent=qtl;
+    if(qtl<=0){clearInterval(qtmr);timeUp();}
+  },1000);
 }
 function timeUp(){
-  document.getElementById('answer-input').className='ai wrong';
-  document.getElementById('feedback-box').textContent=`⏰ Time up! Answer: ${correctAnswer}`;
-  document.getElementById('feedback-box').className='fb wrong show';
-  document.getElementById('submit-btn').style.display='none';
-  document.getElementById('next-btn').className='nxbtn show';
-  streak=0;
+  document.getElementById('qinp').className='qinp no';
+  document.getElementById('qfb').textContent='⏰ Time up! Answer: '+qca;
+  document.getElementById('qfb').className='fb no on';
+  document.getElementById('qsub').style.display='none';
+  document.getElementById('qnxt').className='nxbtn on';
+  qstr=0;
 }
-function checkAnswer(){
-  clearInterval(timerInterval);
-  const ua=parseFloat(document.getElementById('answer-input').value);
-  const ok=Math.abs(ua-correctAnswer)<0.01;
-  if(ok){const pts=10+Math.floor(timeLeft/5);score+=pts;streak++;totalCorrect++;document.getElementById('answer-input').className='ai correct';let msg=`✅ Correct! +${pts}pts`;if(streak>=3)msg+=` 🔥${streak} streak!`;document.getElementById('feedback-box').textContent=msg;document.getElementById('feedback-box').className='fb correct show';}
-  else{streak=0;document.getElementById('answer-input').className='ai wrong';document.getElementById('feedback-box').textContent=`❌ Wrong! Answer: ${correctAnswer}`;document.getElementById('feedback-box').className='fb wrong show';}
-  document.getElementById('score-display').textContent=score;
-  document.getElementById('submit-btn').style.display='none';
-  document.getElementById('next-btn').className='nxbtn show';
+function chkA(){
+  clearInterval(qtmr);
+  var ua=parseFloat(document.getElementById('qinp').value);
+  var ok=Math.abs(ua-qca)<0.01;
+  if(ok){
+    var pts=10+Math.floor(qtl/5);qsc+=pts;qstr++;qcok++;
+    document.getElementById('qinp').className='qinp ok';
+    var msg='✅ Correct! +'+pts+'pts';
+    if(qstr>=3) msg+=' 🔥'+qstr+'!';
+    document.getElementById('qfb').textContent=msg;
+    document.getElementById('qfb').className='fb ok on';
+  } else {
+    qstr=0;
+    document.getElementById('qinp').className='qinp no';
+    document.getElementById('qfb').textContent='❌ Wrong! Answer: '+qca;
+    document.getElementById('qfb').className='fb no on';
+  }
+  document.getElementById('qsc').textContent=qsc;
+  document.getElementById('qsub').style.display='none';
+  document.getElementById('qnxt').className='nxbtn on';
 }
-function nextQuestion(){currentQ++;if(currentQ>=quizQC)showResult();else loadQ();}
-function showResult(){
-  clearInterval(timerInterval);
-  document.getElementById('quiz-game').style.display='none';
-  document.getElementById('quiz-result').classList.add('show');
-  const pct=Math.round((totalCorrect/quizQC)*100);
-  const e=pct===100?'🏆':pct>=80?'🎉':pct>=60?'👍':pct>=40?'📚':'💪';
-  const t=pct===100?'Perfect!':pct>=80?'Excellent!':pct>=60?'Well Done!':pct>=40?'Keep Practicing!':'Keep Going!';
-  document.getElementById('result-emoji').textContent=e;
-  document.getElementById('result-title').textContent=t;
-  document.getElementById('result-score-display').textContent=`${totalCorrect}/${quizQC}`;
-  document.getElementById('result-detail').innerHTML=`Score: ${score} pts<br>Correct: ${totalCorrect}/${quizQC}<br>Accuracy: ${pct}%`;
+function nxtQ(){qcur++;if(qcur>=qnum)showQR();else loadQ();}
+function showQR(){
+  clearInterval(qtmr);
+  document.getElementById('qgame').style.display='none';
+  document.getElementById('qres').style.display='block';
+  var pct=Math.round((qcok/qnum)*100);
+  document.getElementById('qremj').textContent=pct===100?'🏆':(pct>=80?'🎉':(pct>=60?'👍':'💪'));
+  document.getElementById('qrttl').textContent=pct===100?'Perfect!':(pct>=80?'Excellent!':(pct>=60?'Well Done!':'Keep Going!'));
+  document.getElementById('qrsc').textContent=qcok+'/'+qnum;
+  document.getElementById('qrdt').innerHTML='Score: '+qsc+' pts<br>Correct: '+qcok+'/'+qnum+'<br>Accuracy: '+pct+'%';
 }
-function resetQuiz(){document.getElementById('quiz-result').classList.remove('show');document.getElementById('quiz-game').style.display='none';document.getElementById('quiz-setup').style.display='flex';}
-function handleEnter(e){if(e.key==='Enter')checkAnswer();}
+function resetQ(){
+  document.getElementById('qres').style.display='none';
+  document.getElementById('qgame').style.display='none';
+  document.getElementById('qset').style.display='block';
+}
+
+document.getElementById('qinp').addEventListener('keypress',function(e){if(e.key==='Enter')chkA();});
+
+function doBn(){
+  var inp=document.getElementById('bni').value.trim();
+  if(!inp){alert('কিছু লেখো!');return;}
+  try{
+    var r=calcIt(inp,'bn');
+    document.getElementById('bnav').textContent='= '+r.ans;
+    document.getElementById('bnst').textContent=r.steps.join('\n');
+    document.getElementById('bnr').classList.add('on');
+  }catch(e){
+    document.getElementById('bnav').textContent='❌ হয়নি';
+    document.getElementById('bnst').textContent=e.message;
+    document.getElementById('bnr').classList.add('on');
+  }
+}
+
+function doStat(){
+  var inp=document.getElementById('sti').value.trim();
+  if(!inp){alert('Numbers দাও!');return;}
+  var nums=inp.split(/[,\s]+/).map(Number).filter(function(n){return !isNaN(n);});
+  if(!nums.length){alert('Valid numbers নেই!');return;}
+  var s=nums.slice().sort(function(a,b){return a-b;});
+  var n=nums.length;
+  var sum=nums.reduce(function(a,b){return a+b;},0);
+  var mean=sum/n;
+  var mid=Math.floor(n/2);
+  var median=n%2===0?(s[mid-1]+s[mid])/2:s[mid];
+  var freq={};
+  nums.forEach(function(x){freq[x]=(freq[x]||0)+1;});
+  var mxf=Math.max.apply(null,Object.keys(freq).map(function(k){return freq[k];}));
+  var mode=Object.keys(freq).filter(function(k){return freq[k]===mxf;}).join(', ');
+  var vr=nums.reduce(function(a,b){return a+Math.pow(b-mean,2);},0)/n;
+  document.getElementById('std').textContent=
+    'Count: '+n+'\nSum: '+sum+'\nMean: '+mean.toFixed(4)+
+    '\nMedian: '+median+'\nMode: '+mode+
+    '\nRange: '+(s[n-1]-s[0])+'\nVariance: '+vr.toFixed(4)+
+    '\nStd Dev: '+Math.sqrt(vr).toFixed(4)+
+    '\nMin: '+s[0]+'  Max: '+s[n-1];
+  document.getElementById('str').classList.add('on');
+}
+
+function doSI(){
+  var p=parseFloat(document.getElementById('sip').value);
+  var r=parseFloat(document.getElementById('sir').value);
+  var t=parseFloat(document.getElementById('sit').value);
+  if(isNaN(p)||isNaN(r)||isNaN(t)){alert('সব value দাও!');return;}
+  var si=(p*r*t)/100;
+  document.getElementById('sid').textContent='SI = ('+p+'×'+r+'×'+t+')/100 = '+si+'\nTotal = '+p+'+'+si+' = '+(p+si);
+  document.getElementById('sir2').classList.add('on');
+}
+
+function doCI(){
+  var p=parseFloat(document.getElementById('cip').value);
+  var r=parseFloat(document.getElementById('cir').value);
+  var t=parseFloat(document.getElementById('cit').value);
+  var n=parseFloat(document.getElementById('cin').value);
+  if(isNaN(p)||isNaN(r)||isNaN(t)){alert('সব value দাও!');return;}
+  var amt=p*Math.pow(1+(r/100)/n,n*t);
+  var ci=amt-p;
+  document.getElementById('cid').textContent='Amount = '+amt.toFixed(2)+'\nCI = '+ci.toFixed(2)+'\nTotal = '+amt.toFixed(2);
+  document.getElementById('cir2').classList.add('on');
+}
+
+function doUC(){
+  var v=parseFloat(document.getElementById('ucv').value);
+  var f=document.getElementById('ucf').value;
+  var t=document.getElementById('uct').value;
+  if(isNaN(v)){alert('Value দাও!');return;}
+  var toM={km:1000,mile:1609.34,meter:1,cm:0.01,inch:0.0254,foot:0.3048};
+  var toK={kg:1,lb:0.453592,gram:0.001,oz:0.0283495};
+  var result;
+  try{
+    if(f==='c'||f==='f'||f==='k'){
+      var cv=f==='c'?v:(f==='f'?(v-32)*5/9:v-273.15);
+      result=t==='c'?cv:(t==='f'?cv*9/5+32:cv+273.15);
+    } else if(toM[f]&&toM[t]){
+      result=(v*toM[f])/toM[t];
+    } else if(toK[f]&&toK[t]){
+      result=(v*toK[f])/toK[t];
+    } else {
+      throw new Error('Same unit type select করো!');
+    }
+    document.getElementById('ucav').textContent=result.toFixed(4)+' '+t;
+    document.getElementById('ucd').textContent=v+' '+f+' = '+result.toFixed(6)+' '+t;
+    document.getElementById('ucr').classList.add('on');
+  }catch(e){alert('❌ '+e.message);}
+}
 </script>
 </body>
 </html>
