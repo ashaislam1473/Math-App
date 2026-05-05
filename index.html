@@ -8,19 +8,19 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;min-height:100vh;display:flex;justify-content:center;padding:20px 12px;background:#0f0c29;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);position:relative;overflow-x:hidden}
+body{font-family:'Poppins',sans-serif;min-height:100vh;display:flex;justify-content:center;padding:20px 12px;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);position:relative;overflow-x:hidden}
 body::before{content:'';position:fixed;width:400px;height:400px;background:radial-gradient(circle,rgba(102,126,234,0.25),transparent 70%);top:-100px;left:-100px;border-radius:50%;animation:b1 8s infinite alternate;pointer-events:none}
 body::after{content:'';position:fixed;width:350px;height:350px;background:radial-gradient(circle,rgba(233,69,96,0.2),transparent 70%);bottom:-80px;right:-80px;border-radius:50%;animation:b2 10s infinite alternate;pointer-events:none}
-@keyframes b1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(60px,80px) scale(1.2)}}
-@keyframes b2{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-50px,-60px) scale(1.15)}}
-.app{width:100%;max-width:640px;height:fit-content;position:relative;z-index:1}
-.glass{background:rgba(255,255,255,0.06);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:24px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.12);padding:24px 20px;margin-bottom:16px}
+@keyframes b1{0%{transform:translate(0,0)}100%{transform:translate(60px,80px)}}
+@keyframes b2{0%{transform:translate(0,0)}100%{transform:translate(-50px,-60px)}}
+.app{width:100%;max-width:640px;position:relative;z-index:1}
+.glass{background:rgba(255,255,255,0.06);backdrop-filter:blur(24px);border-radius:24px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.3);padding:24px 20px;margin-bottom:16px}
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .logo{display:flex;align-items:center;gap:10px}
 .logo-icon{width:40px;height:40px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 15px rgba(102,126,234,0.4)}
-.logo h1{font-size:18px;font-weight:700;color:#fff;letter-spacing:-0.3px}
+.logo h1{font-size:18px;font-weight:700;color:#fff}
 .logo span{font-size:10px;color:rgba(255,255,255,0.45);display:block}
-#tbtn{padding:7px 14px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500;transition:all 0.3s}
+#tbtn{padding:7px 14px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500}
 .tabs{display:flex;gap:4px;margin-bottom:18px;flex-wrap:wrap;background:rgba(255,255,255,0.04);padding:5px;border-radius:14px;border:1px solid rgba(255,255,255,0.07)}
 .tab{flex:1;min-width:fit-content;padding:7px 8px;border:none;border-radius:10px;background:transparent;color:rgba(255,255,255,0.45);font-size:10px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s;white-space:nowrap}
 .tab.on{background:linear-gradient(135deg,#667eea,#764ba2);color:white;box-shadow:0 3px 12px rgba(102,126,234,0.35)}
@@ -35,14 +35,12 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.25)}
 .chip{padding:4px 10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.09);border-radius:20px;color:rgba(255,255,255,0.6);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;transition:all 0.2s}
 .chip:hover{background:rgba(255,255,255,0.12);color:#fff}
 .chip.on{background:rgba(102,126,234,0.22);border-color:rgba(102,126,234,0.45);color:#a5b4fc}
-.rbtn{width:100%;padding:13px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:12px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;margin-bottom:12px;transition:all 0.3s;box-shadow:0 4px 18px rgba(102,126,234,0.28);letter-spacing:0.2px}
-.rbtn:hover{transform:translateY(-2px);box-shadow:0 7px 22px rgba(102,126,234,0.42)}
+.rbtn{width:100%;padding:13px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:12px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;margin-bottom:12px;transition:all 0.3s;box-shadow:0 4px 18px rgba(102,126,234,0.28)}
+.rbtn:hover{transform:translateY(-2px)}
 .gbtn{background:linear-gradient(135deg,#4ecca3,#2ecc71);box-shadow:0 4px 18px rgba(78,204,163,0.28);color:#0f2027}
-.gbtn:hover{box-shadow:0 7px 22px rgba(78,204,163,0.42)}
-.rbtn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
 .res{background:rgba(78,204,163,0.07);border:1px solid rgba(78,204,163,0.18);border-radius:14px;padding:18px;display:none;margin-bottom:12px}
 .res.on{display:block}
-.big{font-size:26px;font-weight:700;color:#4ecca3;margin-bottom:10px;letter-spacing:-0.3px}
+.big{font-size:26px;font-weight:700;color:#4ecca3;margin-bottom:10px}
 .slist{display:flex;flex-direction:column;gap:7px}
 .srow{display:flex;gap:8px}
 .snum{width:20px;height:20px;min-width:20px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white;margin-top:2px}
@@ -50,28 +48,26 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.25)}
 .ebox{background:rgba(233,69,96,0.09);border:1px solid rgba(233,69,96,0.22);border-radius:10px;padding:11px 14px;display:none;color:#ff8fa3;font-size:12px;margin-bottom:11px}
 .ebox.on{display:block}
 .lgrow{display:flex;gap:7px;margin-bottom:12px}
-.lgbtn{padding:5px 12px;border:1px solid rgba(255,255,255,0.1);border-radius:20px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;transition:all 0.3s}
+.lgbtn{padding:5px 12px;border:1px solid rgba(255,255,255,0.1);border-radius:20px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600}
 .lgbtn.on{background:rgba(78,204,163,0.18);border-color:rgba(78,204,163,0.38);color:#4ecca3}
 .cdis{width:100%;padding:14px 18px;background:rgba(0,0,0,0.28);border:1px solid rgba(255,255,255,0.07);border-radius:14px;color:#fff;font-size:20px;font-family:'Poppins',sans-serif;outline:none;margin-bottom:10px;text-align:right;letter-spacing:1px}
 .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:10px}
 .cb{padding:13px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:#fff;font-size:15px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500;text-align:center;transition:all 0.2s}
 .cb:hover{background:rgba(255,255,255,0.12);transform:scale(1.04)}
-.cb:active{transform:scale(0.95)}
 .cb.op{background:rgba(102,126,234,0.14);border-color:rgba(102,126,234,0.22);color:#a5b4fc}
-.cb.eq{background:linear-gradient(135deg,#667eea,#764ba2);border-color:transparent;color:white;grid-column:span 2;box-shadow:0 3px 12px rgba(102,126,234,0.28)}
+.cb.eq{background:linear-gradient(135deg,#667eea,#764ba2);border-color:transparent;color:white;grid-column:span 2}
 .cb.cl{background:rgba(250,173,20,0.13);border-color:rgba(250,173,20,0.22);color:#fbbf24}
 .gcont{background:rgba(0,0,0,0.28);border-radius:14px;padding:12px;margin-bottom:8px;border:1px solid rgba(255,255,255,0.05)}
 canvas{width:100%;display:block;border-radius:8px}
 .ginrow{display:flex;gap:7px;margin-bottom:7px}
 .gi{flex:1;padding:10px 13px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none}
-.gi:focus{border-color:rgba(102,126,234,0.45)}
-.gpbtn{padding:10px 16px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:10px;font-size:12px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(102,126,234,0.28)}
+.gpbtn{padding:10px 16px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:10px;font-size:12px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer}
 .rrow{display:flex;gap:7px;align-items:center;margin-bottom:7px;flex-wrap:wrap}
 .rl{font-size:11px;color:rgba(255,255,255,0.38)}
 .ri{width:60px;padding:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;color:#fff;font-size:11px;font-family:'Poppins',sans-serif;outline:none;text-align:center}
 .ginfo{font-size:10px;color:rgba(255,255,255,0.3);text-align:center;margin-top:4px}
 .lvlrow{display:flex;gap:7px;margin-bottom:10px}
-.lvl{flex:1;padding:9px;border:1px solid rgba(255,255,255,0.1);border-radius:11px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.45);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;text-align:center;transition:all 0.3s}
+.lvl{flex:1;padding:9px;border:1px solid rgba(255,255,255,0.1);border-radius:11px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.45);font-size:11px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;text-align:center}
 .lvl.e{background:rgba(39,174,96,0.2);border-color:rgba(46,204,113,0.35);color:#4ade80}
 .lvl.m{background:rgba(243,156,18,0.2);border-color:rgba(243,156,18,0.35);color:#fbbf24}
 .lvl.h{background:rgba(233,69,96,0.2);border-color:rgba(233,69,96,0.35);color:#f87171}
@@ -91,63 +87,60 @@ canvas{width:100%;display:block;border-radius:8px}
 .fb.on{display:block}
 .fb.ok{background:rgba(78,204,163,0.13);border:1px solid rgba(78,204,163,0.27);color:#4ecca3}
 .fb.no{background:rgba(233,69,96,0.1);border:1px solid rgba(233,69,96,0.22);color:#f87171}
-.nxbtn{width:100%;padding:12px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:12px;font-size:12px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;display:none;box-shadow:0 3px 12px rgba(102,126,234,0.28)}
+.nxbtn{width:100%;padding:12px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:12px;font-size:12px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;display:none}
 .nxbtn.on{display:block}
 .tsec{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px;margin-bottom:12px}
 .ttl{font-size:12px;font-weight:700;color:#a5b4fc;margin-bottom:12px;display:flex;align-items:center;gap:7px}
 .ttl::before{content:'';width:3px;height:14px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:2px}
 .trow{display:flex;gap:7px;margin-bottom:7px;align-items:center;flex-wrap:wrap}
 .tlbl{font-size:11px;color:rgba(255,255,255,0.38);min-width:85px}
-.ti{flex:1;min-width:75px;padding:8px 11px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:9px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none;transition:all 0.3s}
-.ti:focus{border-color:rgba(102,126,234,0.45);background:rgba(255,255,255,0.09)}
+.ti{flex:1;min-width:75px;padding:8px 11px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:9px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none}
 .tsel{flex:1;padding:8px 11px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:9px;color:#fff;font-size:11px;font-family:'Poppins',sans-serif;outline:none;cursor:pointer}
-.tbtn{padding:8px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:9px;font-size:11px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(102,126,234,0.22);transition:all 0.3s;white-space:nowrap}
-.tbtn:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(102,126,234,0.38)}
+.tbtn{padding:8px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:9px;font-size:11px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s;white-space:nowrap}
 .tres{background:rgba(78,204,163,0.06);border:1px solid rgba(78,204,163,0.13);border-radius:10px;padding:12px;margin-top:9px;display:none}
 .tres.on{display:block}
 .trv{font-size:17px;font-weight:700;color:#4ecca3;margin-bottom:5px}
-.trd{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.9;white-space:pre-wrap}
+.trd{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.9;white-space:pre-wrap;font-family:'Courier New',monospace}
 .bsec{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.055);border-radius:10px;padding:12px;margin-bottom:9px}
 .bttl{font-size:9px;color:rgba(255,255,255,0.32);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
 .hlist{display:flex;flex-direction:column;gap:7px;max-height:300px;overflow-y:auto}
 .hi{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:9px 12px;cursor:pointer;transition:all 0.2s}
-.hi:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.13);transform:translateX(3px)}
+.hi:hover{background:rgba(255,255,255,0.08);transform:translateX(3px)}
 .hp{font-size:12px;color:rgba(255,255,255,0.72);font-weight:500}
 .ha{font-size:11px;color:#4ecca3;font-weight:600;margin-top:1px}
+/* Number system */
+.ns-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.ns-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px}
+.ns-card-label{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.ns-card-value{font-size:15px;font-weight:700;color:#4ecca3;font-family:'Courier New',monospace;word-break:break-all}
+.ns-step-box{background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;margin-top:10px;font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,0.65);line-height:1.8;white-space:pre-wrap;max-height:200px;overflow-y:auto;display:none}
+.ns-step-box.on{display:block}
+/* Blockchain */
+.bc-card{background:rgba(102,126,234,0.08);border:1px solid rgba(102,126,234,0.2);border-radius:12px;padding:14px;margin-bottom:10px}
+.bc-label{font-size:10px;color:#a5b4fc;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;font-weight:600}
+.bc-value{font-size:12px;color:#fff;font-family:'Courier New',monospace;word-break:break-all;line-height:1.6}
+.bc-highlight{color:#4ecca3;font-weight:700}
 /* Stopwatch */
-.sw-display{text-align:center;padding:24px;background:rgba(0,0,0,0.2);border-radius:16px;margin-bottom:14px;border:1px solid rgba(255,255,255,0.07)}
-.sw-time{font-size:48px;font-weight:700;color:#fff;letter-spacing:2px;font-family:'Courier New',monospace}
-.sw-laps{max-height:180px;overflow-y:auto;margin-bottom:12px}
-.sw-lap{display:flex;justify-content:space-between;padding:7px 12px;background:rgba(255,255,255,0.04);border-radius:8px;margin-bottom:5px;font-size:12px;color:rgba(255,255,255,0.7)}
+.sw-display{text-align:center;padding:22px;background:rgba(0,0,0,0.2);border-radius:16px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.07)}
+.sw-time{font-size:46px;font-weight:700;color:#fff;letter-spacing:2px;font-family:'Courier New',monospace}
+.sw-laps{max-height:160px;overflow-y:auto;margin-bottom:10px}
+.sw-lap{display:flex;justify-content:space-between;padding:6px 12px;background:rgba(255,255,255,0.04);border-radius:8px;margin-bottom:4px;font-size:11px;color:rgba(255,255,255,0.65)}
 .sw-lap span{color:#4ecca3;font-weight:600}
-.btn-row{display:flex;gap:8px;margin-bottom:10px}
+.btn-row{display:flex;gap:7px;margin-bottom:9px}
 .btn-row .rbtn{margin-bottom:0}
-/* Timer */
-.timer-display{text-align:center;padding:20px;background:rgba(0,0,0,0.2);border-radius:16px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.07)}
-.timer-time{font-size:44px;font-weight:700;color:#fff;letter-spacing:2px;font-family:'Courier New',monospace}
-.timer-ring{width:120px;height:120px;margin:0 auto 12px;position:relative}
+.timer-display{text-align:center;padding:18px;background:rgba(0,0,0,0.2);border-radius:16px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.07)}
+.timer-time{font-size:42px;font-weight:700;color:#fff;letter-spacing:2px;font-family:'Courier New',monospace}
+.timer-ring{width:110px;height:110px;margin:0 auto 10px;position:relative}
 .timer-ring svg{transform:rotate(-90deg)}
-.timer-ring circle{fill:none;stroke-width:8;transition:stroke-dashoffset 1s linear}
-.ring-bg{stroke:rgba(255,255,255,0.08)}
-.ring-fill{stroke:url(#rg);stroke-linecap:round}
-/* BMI */
-.bmi-result{text-align:center;padding:16px;background:rgba(255,255,255,0.04);border-radius:12px;margin-top:10px;display:none}
+.bmi-result{text-align:center;padding:14px;background:rgba(255,255,255,0.04);border-radius:12px;margin-top:10px;display:none}
 .bmi-result.on{display:block}
-.bmi-val{font-size:36px;font-weight:700;margin-bottom:6px}
-.bmi-cat{font-size:14px;font-weight:600;margin-bottom:4px}
-.bmi-bar{height:8px;border-radius:4px;background:linear-gradient(90deg,#4ecca3,#fbbf24,#f87171);margin:10px 0 4px;position:relative;overflow:visible}
-.bmi-marker{width:12px;height:12px;background:#fff;border-radius:50%;position:absolute;top:-2px;transition:left 0.5s;box-shadow:0 2px 8px rgba(0,0,0,0.4)}
-/* Number System */
-.ns-result{display:flex;flex-direction:column;gap:8px;margin-top:10px}
-.ns-item{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
-.ns-label{font-size:11px;color:rgba(255,255,255,0.45);font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
-.ns-value{font-size:14px;font-weight:700;color:#4ecca3;font-family:'Courier New',monospace;word-break:break-all;text-align:right;max-width:70%}
-/* Currency */
-.curr-result{background:rgba(78,204,163,0.07);border:1px solid rgba(78,204,163,0.15);border-radius:12px;padding:14px;margin-top:10px;display:none}
+.bmi-val{font-size:34px;font-weight:700;margin-bottom:5px}
+.bmi-cat{font-size:13px;font-weight:600;margin-bottom:4px}
+.bmi-bar{height:7px;border-radius:4px;background:linear-gradient(90deg,#4ecca3,#fbbf24,#f87171);margin:8px 0 4px;position:relative}
+.bmi-marker{width:12px;height:12px;background:#fff;border-radius:50%;position:absolute;top:-3px;transition:left 0.5s;box-shadow:0 2px 8px rgba(0,0,0,0.4)}
+.curr-result{background:rgba(78,204,163,0.07);border:1px solid rgba(78,204,163,0.15);border-radius:12px;padding:12px;margin-top:9px;display:none}
 .curr-result.on{display:block}
-.curr-note{font-size:10px;color:rgba(255,255,255,0.3);margin-top:6px}
 ::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:rgba(255,255,255,0.03)}
 ::-webkit-scrollbar-thumb{background:rgba(102,126,234,0.35);border-radius:2px}
 </style>
 </head>
@@ -157,7 +150,7 @@ canvas{width:100%;display:block;border-radius:8px}
   <div class="header">
     <div class="logo">
       <div class="logo-icon">🔢</div>
-      <div><h1>Math Solver Pro</h1><span>All-in-One Calculator</span></div>
+      <div><h1>Math Solver Pro</h1><span>Number Systems & Blockchain</span></div>
     </div>
     <button id="tbtn" onclick="toggleTheme()">☀️ Light</button>
   </div>
@@ -165,6 +158,8 @@ canvas{width:100%;display:block;border-radius:8px}
     <button class="tab on" onclick="goTab('s',this)">🧮 Solve</button>
     <button class="tab" onclick="goTab('c',this)">🔢 Calc</button>
     <button class="tab" onclick="goTab('g',this)">📊 Graph</button>
+    <button class="tab" onclick="goTab('n',this)">🔣 Numbers</button>
+    <button class="tab" onclick="goTab('b',this)">⛓️ Blockchain</button>
     <button class="tab" onclick="goTab('q',this)">📝 Quiz</button>
     <button class="tab" onclick="goTab('t',this)">🛠️ Tools</button>
     <button class="tab" onclick="goTab('x',this)">⚡ Extra</button>
@@ -251,6 +246,217 @@ canvas{width:100%;display:block;border-radius:8px}
     </div>
     <div class="gcont"><canvas id="gc" width="560" height="240"></canvas></div>
     <div class="ginfo" id="gi">Enter a function and press Plot</div>
+  </div>
+
+  <!-- NUMBER SYSTEMS -->
+  <div id="pn" class="page">
+    <div class="tsec">
+      <div class="ttl">🔢 Number Base Converter</div>
+      <span class="lbl">Input Number</span>
+      <div class="trow" style="margin-bottom:10px">
+        <select class="tsel" id="ns-from">
+          <option value="10">🔟 Decimal (Base 10)</option>
+          <option value="2">⚡ Binary (Base 2)</option>
+          <option value="8">8️⃣ Octal (Base 8)</option>
+          <option value="16">#️⃣ Hexadecimal (Base 16)</option>
+        </select>
+      </div>
+      <div class="trow">
+        <input class="ti" id="ns-input" type="text" placeholder="Enter number here..."/>
+        <button class="tbtn" onclick="convertNS()">Convert</button>
+      </div>
+      <div class="ns-grid" id="ns-grid" style="display:none">
+        <div class="ns-card">
+          <div class="ns-card-label">🔟 Decimal</div>
+          <div class="ns-card-value" id="ns-dec">-</div>
+        </div>
+        <div class="ns-card">
+          <div class="ns-card-label">⚡ Binary</div>
+          <div class="ns-card-value" id="ns-bin">-</div>
+        </div>
+        <div class="ns-card">
+          <div class="ns-card-label">8️⃣ Octal</div>
+          <div class="ns-card-value" id="ns-oct">-</div>
+        </div>
+        <div class="ns-card">
+          <div class="ns-card-label">#️⃣ Hex</div>
+          <div class="ns-card-value" id="ns-hex">-</div>
+        </div>
+      </div>
+      <button class="tbtn" id="ns-step-btn" style="width:100%;margin-top:10px;display:none" onclick="toggleSteps()">📖 Show Steps</button>
+      <div class="ns-step-box" id="ns-steps"></div>
+    </div>
+
+    <div class="tsec">
+      <div class="ttl">🔄 Any Base Arithmetic</div>
+      <div class="trow">
+        <input class="ti" id="arith-a" type="text" placeholder="Number A"/>
+        <select class="tsel" id="arith-base-a" style="max-width:120px">
+          <option value="10">Decimal</option>
+          <option value="2">Binary</option>
+          <option value="8">Octal</option>
+          <option value="16">Hex</option>
+        </select>
+      </div>
+      <div class="trow">
+        <input class="ti" id="arith-b" type="text" placeholder="Number B"/>
+        <select class="tsel" id="arith-base-b" style="max-width:120px">
+          <option value="10">Decimal</option>
+          <option value="2">Binary</option>
+          <option value="8">Octal</option>
+          <option value="16">Hex</option>
+        </select>
+      </div>
+      <div class="chips">
+        <button class="chip" onclick="doArith('+')">➕ Add</button>
+        <button class="chip" onclick="doArith('-')">➖ Subtract</button>
+        <button class="chip" onclick="doArith('*')">✖️ Multiply</button>
+        <button class="chip" onclick="doArith('/')">➗ Divide</button>
+      </div>
+      <div class="tres" id="arith-res">
+        <div class="trv" id="arith-ans"></div>
+        <div class="trd" id="arith-detail"></div>
+      </div>
+    </div>
+
+    <div class="tsec">
+      <div class="ttl">⚙️ Bitwise Operations</div>
+      <div class="trow">
+        <input class="ti" id="bit-a" type="text" placeholder="Number A (decimal)"/>
+        <input class="ti" id="bit-b" type="text" placeholder="Number B (decimal)"/>
+      </div>
+      <div class="chips">
+        <button class="chip" onclick="doBit('AND')">AND</button>
+        <button class="chip" onclick="doBit('OR')">OR</button>
+        <button class="chip" onclick="doBit('XOR')">XOR</button>
+        <button class="chip" onclick="doBit('NOT')">NOT</button>
+        <button class="chip" onclick="doBit('LSHIFT')">Left Shift</button>
+        <button class="chip" onclick="doBit('RSHIFT')">Right Shift</button>
+      </div>
+      <div class="tres" id="bit-res">
+        <div class="trv" id="bit-ans"></div>
+        <div class="trd" id="bit-detail"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOCKCHAIN MATH -->
+  <div id="pb" class="page">
+    <div class="tsec">
+      <div class="ttl">⛓️ Blockchain Math Explorer</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:14px;line-height:1.7">
+        Blockchain এ যে math ব্যবহার হয় সেগুলো এখানে practice করতে পারবে।
+      </div>
+
+      <!-- Hash Simulator -->
+      <div class="bsec">
+        <div class="bttl">🔐 Hash Function Simulator</div>
+        <div class="trow">
+          <input class="ti" id="hash-input" type="text" placeholder="কিছু লেখো... (যেমন: Hello, Bitcoin, 123)"/>
+          <button class="tbtn" onclick="doHash()">Hash করো</button>
+        </div>
+        <div class="tres" id="hash-res">
+          <div class="trd" id="hash-detail"></div>
+        </div>
+      </div>
+
+      <!-- Modular Arithmetic -->
+      <div class="bsec">
+        <div class="bttl">🔢 Modular Arithmetic (Blockchain এ ব্যবহার হয়)</div>
+        <div class="trow">
+          <input class="ti" id="mod-a" type="number" placeholder="a"/>
+          <span style="color:rgba(255,255,255,0.4);font-size:14px">mod</span>
+          <input class="ti" id="mod-n" type="number" placeholder="n"/>
+          <button class="tbtn" onclick="doMod()">Calculate</button>
+        </div>
+        <div class="tres" id="mod-res">
+          <div class="trv" id="mod-ans"></div>
+          <div class="trd" id="mod-detail"></div>
+        </div>
+      </div>
+
+      <!-- Modular Exponentiation -->
+      <div class="bsec">
+        <div class="bttl">💪 Modular Exponentiation (RSA Cryptography)</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:8px">Calculate: base^exp mod n</div>
+        <div class="trow">
+          <input class="ti" id="modexp-base" type="number" placeholder="Base"/>
+          <input class="ti" id="modexp-exp" type="number" placeholder="Exponent"/>
+          <input class="ti" id="modexp-mod" type="number" placeholder="Mod (n)"/>
+        </div>
+        <button class="tbtn" style="width:100%" onclick="doModExp()">Calculate base^exp mod n</button>
+        <div class="tres" id="modexp-res">
+          <div class="trv" id="modexp-ans"></div>
+          <div class="trd" id="modexp-detail"></div>
+        </div>
+      </div>
+
+      <!-- GCD & LCM -->
+      <div class="bsec">
+        <div class="bttl">🔑 GCD & LCM (Key Generation তে ব্যবহার হয়)</div>
+        <div class="trow">
+          <input class="ti" id="gcd-a" type="number" placeholder="Number A"/>
+          <input class="ti" id="gcd-b" type="number" placeholder="Number B"/>
+          <button class="tbtn" onclick="doGCDLCM()">Calculate</button>
+        </div>
+        <div class="tres" id="gcd-res">
+          <div class="trd" id="gcd-detail"></div>
+        </div>
+      </div>
+
+      <!-- Prime Check -->
+      <div class="bsec">
+        <div class="bttl">🔍 Prime Number Check (RSA এ prime numbers লাগে)</div>
+        <div class="trow">
+          <input class="ti" id="prime-input" type="number" placeholder="Number চেক করো..."/>
+          <button class="tbtn" onclick="doPrime()">Check</button>
+        </div>
+        <div class="tres" id="prime-res">
+          <div class="trv" id="prime-ans"></div>
+          <div class="trd" id="prime-detail"></div>
+        </div>
+      </div>
+
+      <!-- XOR Encryption -->
+      <div class="bsec">
+        <div class="bttl">🔒 XOR Encryption (Basic Blockchain Concept)</div>
+        <div class="trow">
+          <input class="ti" id="xor-text" type="text" placeholder="Message (e.g. Hello)"/>
+          <input class="ti" id="xor-key" type="number" placeholder="Key (number)"/>
+        </div>
+        <button class="tbtn" style="width:100%" onclick="doXOR()">Encrypt / Decrypt</button>
+        <div class="tres" id="xor-res">
+          <div class="trd" id="xor-detail"></div>
+        </div>
+      </div>
+
+      <!-- Fibonacci (used in some blockchains) -->
+      <div class="bsec">
+        <div class="bttl">🌀 Fibonacci Sequence</div>
+        <div class="trow">
+          <input class="ti" id="fib-n" type="number" placeholder="How many terms? (e.g. 10)"/>
+          <button class="tbtn" onclick="doFib()">Generate</button>
+        </div>
+        <div class="tres" id="fib-res">
+          <div class="trd" id="fib-detail"></div>
+        </div>
+      </div>
+
+      <!-- Block Structure Simulator -->
+      <div class="bsec">
+        <div class="bttl">📦 Blockchain Block Simulator</div>
+        <div class="trow">
+          <input class="ti" id="block-data" type="text" placeholder="Block data (e.g. Alice sends 5 BTC to Bob)"/>
+        </div>
+        <div class="trow">
+          <input class="ti" id="block-prev" type="text" placeholder="Previous hash (e.g. 0000abc123)" value="0000000000000000"/>
+        </div>
+        <button class="tbtn" style="width:100%" onclick="simulateBlock()">📦 Create Block</button>
+        <div class="tres" id="block-res">
+          <div class="trd" id="block-detail"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- QUIZ -->
@@ -359,15 +565,11 @@ canvas{width:100%;display:block;border-radius:8px}
     </div>
   </div>
 
-  <!-- EXTRA FEATURES -->
+  <!-- EXTRA -->
   <div id="px" class="page">
-
-    <!-- Stopwatch & Timer -->
     <div class="tsec">
       <div class="ttl">⏱️ Stopwatch</div>
-      <div class="sw-display">
-        <div class="sw-time" id="sw-display">00:00:00.0</div>
-      </div>
+      <div class="sw-display"><div class="sw-time" id="sw-display">00:00:00.0</div></div>
       <div class="btn-row">
         <button class="rbtn" id="sw-btn" onclick="swToggle()" style="background:linear-gradient(135deg,#4ecca3,#2ecc71);color:#0f2027">▶ Start</button>
         <button class="rbtn" onclick="swLap()" style="background:rgba(255,255,255,0.08);color:#fff;box-shadow:none">🏁 Lap</button>
@@ -375,113 +577,67 @@ canvas{width:100%;display:block;border-radius:8px}
       </div>
       <div class="sw-laps" id="sw-laps"></div>
     </div>
-
-    <!-- Countdown Timer -->
     <div class="tsec">
       <div class="ttl">⏰ Countdown Timer</div>
       <div class="timer-display">
-        <svg class="timer-ring" width="120" height="120" viewBox="0 0 120 120">
+        <svg class="timer-ring" width="110" height="110" viewBox="0 0 110 110">
           <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#667eea"/><stop offset="100%" style="stop-color:#4ecca3"/></linearGradient></defs>
-          <circle class="ring-bg" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="0"/>
-          <circle class="ring-fill" id="timer-ring" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="0"/>
+          <circle cx="55" cy="55" r="48" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="7" stroke-dasharray="301.6" stroke-dashoffset="0"/>
+          <circle id="timer-ring" cx="55" cy="55" r="48" fill="none" stroke="url(#rg)" stroke-width="7" stroke-dasharray="301.6" stroke-dashoffset="0" stroke-linecap="round" style="transform:rotate(-90deg);transform-origin:55px 55px;transition:stroke-dashoffset 1s linear"/>
         </svg>
         <div class="timer-time" id="timer-display">00:00</div>
       </div>
-      <div class="trow" style="margin-bottom:10px">
+      <div class="trow" style="margin-bottom:9px">
         <input class="ti" id="timer-min" type="number" placeholder="Min" style="max-width:80px"/>
         <span style="color:rgba(255,255,255,0.4)">:</span>
         <input class="ti" id="timer-sec" type="number" placeholder="Sec" style="max-width:80px"/>
         <button class="tbtn" onclick="timerSet()">Set</button>
       </div>
       <div class="btn-row">
-        <button class="rbtn" id="timer-btn" onclick="timerToggle()" style="background:linear-gradient(135deg,#667eea,#764ba2)">▶ Start</button>
+        <button class="rbtn" id="timer-btn" onclick="timerToggle()">▶ Start</button>
         <button class="rbtn" onclick="timerReset()" style="background:rgba(233,69,96,0.2);color:#f87171;box-shadow:none">↺ Reset</button>
       </div>
     </div>
-
-    <!-- Age Calculator -->
     <div class="tsec">
       <div class="ttl">📅 Age Calculator</div>
-      <div class="trow">
-        <span class="tlbl">Date of Birth</span>
-        <input class="ti" id="dob" type="date"/>
-      </div>
+      <div class="trow"><span class="tlbl">Date of Birth</span><input class="ti" id="dob" type="date"/></div>
       <button class="tbtn" style="width:100%;margin-bottom:0" onclick="calcAge()">Calculate Age</button>
       <div class="tres" id="age-res"><div class="trd" id="age-detail"></div></div>
     </div>
-
-    <!-- BMI Calculator -->
     <div class="tsec">
       <div class="ttl">📊 BMI Calculator</div>
       <div class="trow"><span class="tlbl">Weight (kg)</span><input class="ti" id="bmi-w" type="number" placeholder="70"/></div>
       <div class="trow"><span class="tlbl">Height (cm)</span><input class="ti" id="bmi-h" type="number" placeholder="170"/></div>
-      <div class="trow">
-        <span class="tlbl">Gender</span>
-        <select class="tsel" id="bmi-g"><option value="m">Male</option><option value="f">Female</option></select>
-      </div>
       <button class="tbtn" style="width:100%" onclick="calcBMI()">Calculate BMI</button>
       <div class="bmi-result" id="bmi-res">
         <div class="bmi-val" id="bmi-val">0</div>
         <div class="bmi-cat" id="bmi-cat">Normal</div>
         <div class="bmi-bar"><div class="bmi-marker" id="bmi-marker" style="left:0%"></div></div>
-        <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,0.3);margin-top:4px"><span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obese</span></div>
-        <div class="trd" id="bmi-detail" style="margin-top:8px"></div>
+        <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,0.3);margin-top:4px"><span>Under</span><span>Normal</span><span>Over</span><span>Obese</span></div>
+        <div class="trd" id="bmi-detail" style="margin-top:8px;text-align:left"></div>
       </div>
     </div>
-
-    <!-- Number System Converter -->
-    <div class="tsec">
-      <div class="ttl">🔢 Number System Converter</div>
-      <div class="trow">
-        <select class="tsel" id="ns-from">
-          <option value="10">Decimal (10)</option>
-          <option value="2">Binary (2)</option>
-          <option value="8">Octal (8)</option>
-          <option value="16">Hex (16)</option>
-        </select>
-        <input class="ti" id="ns-input" type="text" placeholder="Enter number"/>
-        <button class="tbtn" onclick="convertNS()">Convert</button>
-      </div>
-      <div class="ns-result" id="ns-result" style="display:none">
-        <div class="ns-item"><span class="ns-label">Decimal</span><span class="ns-value" id="ns-dec">0</span></div>
-        <div class="ns-item"><span class="ns-label">Binary</span><span class="ns-value" id="ns-bin">0</span></div>
-        <div class="ns-item"><span class="ns-label">Octal</span><span class="ns-value" id="ns-oct">0</span></div>
-        <div class="ns-item"><span class="ns-label">Hex</span><span class="ns-value" id="ns-hex">0</span></div>
-      </div>
-    </div>
-
-    <!-- Currency Converter -->
     <div class="tsec">
       <div class="ttl">💱 Currency Converter</div>
       <div class="trow">
         <input class="ti" id="curr-val" type="number" placeholder="Amount" style="max-width:100px"/>
         <select class="tsel" id="curr-from">
-          <option value="USD">🇺🇸 USD</option>
-          <option value="BDT">🇧🇩 BDT</option>
-          <option value="INR">🇮🇳 INR</option>
-          <option value="EUR">🇪🇺 EUR</option>
-          <option value="GBP">🇬🇧 GBP</option>
-          <option value="SAR">🇸🇦 SAR</option>
-          <option value="AED">🇦🇪 AED</option>
-          <option value="MYR">🇲🇾 MYR</option>
+          <option value="USD">🇺🇸 USD</option><option value="BDT">🇧🇩 BDT</option><option value="INR">🇮🇳 INR</option>
+          <option value="EUR">🇪🇺 EUR</option><option value="GBP">🇬🇧 GBP</option><option value="SAR">🇸🇦 SAR</option>
+          <option value="AED">🇦🇪 AED</option><option value="MYR">🇲🇾 MYR</option>
         </select>
         <span style="color:rgba(255,255,255,0.3)">→</span>
         <select class="tsel" id="curr-to">
-          <option value="BDT">🇧🇩 BDT</option>
-          <option value="USD">🇺🇸 USD</option>
-          <option value="INR">🇮🇳 INR</option>
-          <option value="EUR">🇪🇺 EUR</option>
-          <option value="GBP">🇬🇧 GBP</option>
-          <option value="SAR">🇸🇦 SAR</option>
-          <option value="AED">🇦🇪 AED</option>
-          <option value="MYR">🇲🇾 MYR</option>
+          <option value="BDT">🇧🇩 BDT</option><option value="USD">🇺🇸 USD</option><option value="INR">🇮🇳 INR</option>
+          <option value="EUR">🇪🇺 EUR</option><option value="GBP">🇬🇧 GBP</option><option value="SAR">🇸🇦 SAR</option>
+          <option value="AED">🇦🇪 AED</option><option value="MYR">🇲🇾 MYR</option>
         </select>
       </div>
       <button class="tbtn" style="width:100%;margin-top:6px" onclick="convertCurr()">💱 Convert</button>
       <div class="curr-result" id="curr-res">
         <div class="trv" id="curr-ans"></div>
         <div class="trd" id="curr-detail"></div>
-        <div class="curr-note">⚠️ Approximate rates (offline)</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.28);margin-top:5px">⚠️ Approximate offline rates</div>
       </div>
     </div>
   </div>
@@ -501,17 +657,14 @@ canvas{width:100%;display:block;border-radius:8px}
 var hist=JSON.parse(localStorage.getItem('mh'))||[];
 var cexp='';var lang='en';
 var qlv='easy',qtp='all',qnum=5,qcur=0,qsc=0,qca=0,qtmr=null,qtl=30,qstr=0,qcok=0;
+var swRunning=false,swTime=0,swTimer=null,swLaps=[];
+var timerRunning=false,timerTotal=0,timerLeft=0,timerInterval2=null;
+var nsStepsVisible=false;
 
-// THEME
-function toggleTheme(){
-  document.body.classList.toggle('lt');
-  document.getElementById('tbtn').textContent=document.body.classList.contains('lt')?'🌙 Dark':'☀️ Light';
-  if(document.getElementById('pg').classList.contains('on')) doPlot();
-}
+function toggleTheme(){document.body.classList.toggle('lt');document.getElementById('tbtn').textContent=document.body.classList.contains('lt')?'🌙 Dark':'☀️ Light';if(document.getElementById('pg').classList.contains('on'))doPlot();}
 
-// TABS
 function goTab(id,btn){
-  ['s','c','g','q','t','x','h'].forEach(function(t){document.getElementById('p'+t).classList.remove('on');});
+  ['s','c','g','n','b','q','t','x','h'].forEach(function(t){document.getElementById('p'+t).classList.remove('on');});
   document.getElementById('p'+id).classList.add('on');
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
   btn.classList.add('on');
@@ -519,11 +672,9 @@ function goTab(id,btn){
   if(id==='g') doPlot();
 }
 
-// LANG
 function setL(l,btn){lang=l;document.querySelectorAll('.lgbtn').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');}
 function sp(v){document.getElementById('prob').value=v;}
 
-// SOLVER
 function doSolve(){
   var inp=document.getElementById('prob').value.trim();
   var eb=document.getElementById('eb'),rb=document.getElementById('rb');
@@ -532,8 +683,7 @@ function doSolve(){
   try{
     var r=calcIt(inp,lang);
     document.getElementById('rans').textContent='= '+r.ans;
-    var h='';
-    for(var i=0;i<r.steps.length;i++) h+='<div class="srow"><div class="snum">'+(i+1)+'</div><div class="stxt">'+r.steps[i]+'</div></div>';
+    var h='';for(var i=0;i<r.steps.length;i++) h+='<div class="srow"><div class="snum">'+(i+1)+'</div><div class="stxt">'+r.steps[i]+'</div></div>';
     document.getElementById('rstps').innerHTML=h;
     rb.classList.add('on');addH(inp,r.ans);
   }catch(e){eb.textContent='❌ '+e.message;eb.classList.add('on');}
@@ -542,77 +692,39 @@ function doSolve(){
 function calcIt(inp,lg){
   var c=inp.trim(),bn=lg==='bn';
   var m=c.match(/(\d+\.?\d*)%\s*of\s*(\d+\.?\d*)/i);
-  if(m){
-    var p=parseFloat(m[1]),n=parseFloat(m[2]),a=(p/100)*n;
-    return bn?{ans:a,steps:['সমস্যা: '+p+'% of '+n,'('+p+'/১০০)×'+n,'= '+a,'✅ উত্তর: '+a]}
-             :{ans:a,steps:['Find '+p+'% of '+n,'('+p+'/100)×'+n,'= '+a,'✅ Answer: '+a]};
-  }
+  if(m){var p=parseFloat(m[1]),n=parseFloat(m[2]),a=(p/100)*n;return bn?{ans:a,steps:['সমস্যা: '+p+'% of '+n,'('+p+'/১০০)×'+n,'= '+a,'✅ উত্তর: '+a]}:{ans:a,steps:['Find '+p+'% of '+n,'('+p+'/100)×'+n,'= '+a,'✅ Answer: '+a]};}
   if(/[a-zA-Z]/.test(c)&&c.indexOf('=')>=0){
     var sides=c.split('='),lf=sides[0].trim(),rt=sides[1].trim();
     var vn=(lf.match(/[a-zA-Z]/)||rt.match(/[a-zA-Z]/))[0];
     var mm=lf.match(/^(-?\d*\.?\d*)\*?([a-zA-Z])([+-]\d+\.?\d*)?$/);
-    if(mm){
-      var a2=!mm[1]||mm[1]===''?1:(mm[1]==='-'?-1:parseFloat(mm[1]));
-      var b=mm[3]?parseFloat(mm[3]):0,cv=parseFloat(rt),ans=(cv-b)/a2;
-      return bn?{ans:vn+'='+ans,steps:['সমীকরণ: '+c,vn+' বের করো',b+' সরাও: '+(cv-b),a2+' ভাগ: '+ans,'✅ '+vn+'='+ans]}
-               :{ans:vn+'='+ans,steps:['Eq: '+c,'Find '+vn,'Move '+b+': '+(cv-b),'÷'+a2+': '+ans,'✅ '+vn+'='+ans]};
-    }
+    if(mm){var a2=!mm[1]||mm[1]===''?1:(mm[1]==='-'?-1:parseFloat(mm[1])),b=mm[3]?parseFloat(mm[3]):0,cv=parseFloat(rt),ans=(cv-b)/a2;return bn?{ans:vn+'='+ans,steps:['সমীকরণ: '+c,vn+' বের করো',b+' সরাও: '+(cv-b),a2+' ভাগ: '+ans,'✅ '+vn+'='+ans]}:{ans:vn+'='+ans,steps:['Eq: '+c,'Find '+vn,'Move '+b+': '+(cv-b),'÷'+a2+': '+ans,'✅ '+vn+'='+ans]};}
   }
   var result=math.evaluate(c),steps=[];
-  if(bn){
-    steps.push('সমস্যা: '+c);
-    if(c.indexOf('+')>=0) steps.push('যোগ করো');
-    else if(c.indexOf('-')>=0) steps.push('বিয়োগ করো');
-    else if(c.indexOf('*')>=0) steps.push('গুণ করো');
-    else if(c.indexOf('/')>=0) steps.push('ভাগ করো');
-    else if(c.indexOf('sqrt')>=0) steps.push('বর্গমূল বের করো');
-    else if(c.indexOf('^')>=0) steps.push('ঘাতে উন্নীত করো');
-    steps.push('✅ উত্তর: '+result);
-  } else {
-    steps.push('Problem: '+c);
-    if(c.indexOf('+')>=0) steps.push('Add the numbers');
-    else if(c.indexOf('-')>=0) steps.push('Subtract');
-    else if(c.indexOf('*')>=0) steps.push('Multiply');
-    else if(c.indexOf('/')>=0) steps.push('Divide');
-    else if(c.indexOf('sqrt')>=0) steps.push('Find square root');
-    else if(c.indexOf('^')>=0) steps.push('Raise to power');
-    steps.push('✅ Answer: '+result);
-  }
+  if(bn){steps.push('সমস্যা: '+c);if(c.indexOf('+')>=0) steps.push('যোগ করো');else if(c.indexOf('-')>=0) steps.push('বিয়োগ করো');else if(c.indexOf('*')>=0) steps.push('গুণ করো');else if(c.indexOf('/')>=0) steps.push('ভাগ করো');else if(c.indexOf('sqrt')>=0) steps.push('বর্গমূল বের করো');else if(c.indexOf('^')>=0) steps.push('ঘাতে উন্নীত করো');steps.push('✅ উত্তর: '+result);}
+  else{steps.push('Problem: '+c);if(c.indexOf('+')>=0) steps.push('Add');else if(c.indexOf('-')>=0) steps.push('Subtract');else if(c.indexOf('*')>=0) steps.push('Multiply');else if(c.indexOf('/')>=0) steps.push('Divide');else if(c.indexOf('sqrt')>=0) steps.push('Find square root');else if(c.indexOf('^')>=0) steps.push('Raise to power');steps.push('✅ Answer: '+result);}
   return{ans:result,steps:steps};
 }
 
-// HISTORY
 function addH(p,a){hist.unshift({p:String(p),a:String(a)});if(hist.length>30) hist.pop();localStorage.setItem('mh',JSON.stringify(hist));}
-function showH(){
-  var l=document.getElementById('hlist');
-  if(!hist.length){l.innerHTML='<div style="text-align:center;color:rgba(255,255,255,0.28);padding:22px;font-size:12px">No history yet</div>';return;}
-  var h='';
-  for(var i=0;i<hist.length;i++) h+='<div class="hi" onclick="sp(\''+hist[i].p.replace(/'/g,"\\'")+'\')"><div class="hp">'+hist[i].p.substring(0,50)+'</div><div class="ha">= '+hist[i].a.substring(0,40)+'</div></div>';
-  l.innerHTML=h;
-}
+function showH(){var l=document.getElementById('hlist');if(!hist.length){l.innerHTML='<div style="text-align:center;color:rgba(255,255,255,0.28);padding:22px;font-size:12px">No history yet</div>';return;}var h='';for(var i=0;i<hist.length;i++) h+='<div class="hi" onclick="sp(\''+hist[i].p.replace(/'/g,"\\'")+'\')"><div class="hp">'+hist[i].p.substring(0,50)+'</div><div class="ha">= '+hist[i].a.substring(0,40)+'</div></div>';l.innerHTML=h;}
 function clrH(){if(confirm('Clear?')){hist=[];localStorage.removeItem('mh');showH();}}
 
-// CALCULATOR
 function ci(v){cexp+=v;document.getElementById('cdis').value=cexp;}
 function cc(){cexp='';document.getElementById('cdis').value='';}
 function cd(){cexp=cexp.slice(0,-1);document.getElementById('cdis').value=cexp;}
 function ceq(){try{var r=math.evaluate(cexp);document.getElementById('cdis').value=r;addH(cexp,r);cexp=String(r);}catch(e){document.getElementById('cdis').value='Error';cexp='';}}
 
-// GRAPH
 function gp(v){document.getElementById('gexp').value=v;doPlot();}
 function doPlot(){
-  var expr=document.getElementById('gexp').value.trim();
-  var c=document.getElementById('gc'),ctx=c.getContext('2d');
+  var expr=document.getElementById('gexp').value.trim(),c=document.getElementById('gc'),ctx=c.getContext('2d');
   var W=c.width=c.offsetWidth||560,H=c.height=240;
   ctx.fillStyle='#0a1628';ctx.fillRect(0,0,W,H);
   if(!expr){ctx.fillStyle='rgba(255,255,255,0.22)';ctx.font='12px sans-serif';ctx.textAlign='center';ctx.fillText('Enter a function above',W/2,H/2);return;}
   var xmn=parseFloat(document.getElementById('xmn').value)||(-10),xmx=parseFloat(document.getElementById('xmx').value)||10,xr=xmx-xmn;
-  var pts=[];
-  for(var i=0;i<=300;i++){var x=xmn+(xr*i/300);try{var y=math.evaluate(expr,{x:x});pts.push(typeof y==='number'&&isFinite(y)?{x:x,y:y}:null);}catch(ex){pts.push(null);}}
+  var pts=[];for(var i=0;i<=300;i++){var x=xmn+(xr*i/300);try{var y=math.evaluate(expr,{x:x});pts.push(typeof y==='number'&&isFinite(y)?{x:x,y:y}:null);}catch(ex){pts.push(null);}}
   var vy=[];for(var i=0;i<pts.length;i++){if(pts[i]) vy.push(pts[i].y);}
   if(!vy.length){document.getElementById('gi').textContent='Cannot plot';return;}
-  var ymn=Math.min.apply(null,vy),ymx=Math.max.apply(null,vy);
-  if(ymn===ymx){ymn-=1;ymx+=1;}
+  var ymn=Math.min.apply(null,vy),ymx=Math.max.apply(null,vy);if(ymn===ymx){ymn-=1;ymx+=1;}
   var yp=(ymx-ymn)*0.1;ymn-=yp;ymx+=yp;var yr=ymx-ymn;
   var fx=function(x){return((x-xmn)/xr)*W;},fy=function(y){return H-((y-ymn)/yr)*H;};
   ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;
@@ -622,14 +734,314 @@ function doPlot(){
   if(ymn<=0&&ymx>=0){ctx.beginPath();ctx.moveTo(0,fy(0));ctx.lineTo(W,fy(0));ctx.stroke();}
   if(xmn<=0&&xmx>=0){ctx.beginPath();ctx.moveTo(fx(0),0);ctx.lineTo(fx(0),H);ctx.stroke();}
   var gr=ctx.createLinearGradient(0,0,W,0);gr.addColorStop(0,'#667eea');gr.addColorStop(1,'#764ba2');
-  ctx.strokeStyle=gr;ctx.lineWidth=2.5;ctx.lineJoin='round';
-  ctx.beginPath();var st=false;
+  ctx.strokeStyle=gr;ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.beginPath();var st=false;
   for(var i=0;i<pts.length;i++){if(!pts[i]){st=false;continue;}if(!st){ctx.moveTo(fx(pts[i].x),fy(pts[i].y));st=true;}else ctx.lineTo(fx(pts[i].x),fy(pts[i].y));}
-  ctx.stroke();
-  ctx.fillStyle='#a5b4fc';ctx.font='bold 11px sans-serif';ctx.textAlign='left';ctx.fillText('y='+expr,7,14);
+  ctx.stroke();ctx.fillStyle='#a5b4fc';ctx.font='bold 11px sans-serif';ctx.textAlign='left';ctx.fillText('y='+expr,7,14);
   document.getElementById('gi').textContent='y='+expr+' | x:['+xmn+','+xmx+']';
 }
 window.addEventListener('resize',function(){if(document.getElementById('pg').classList.contains('on'))doPlot();});
+
+// ===== NUMBER SYSTEMS =====
+function convertNS(){
+  var inp=document.getElementById('ns-input').value.trim();
+  var base=parseInt(document.getElementById('ns-from').value);
+  if(!inp){alert('Number দাও!');return;}
+  try{
+    var dec=parseInt(inp,base);
+    if(isNaN(dec)) throw new Error('Invalid number for base '+base+'!');
+    document.getElementById('ns-dec').textContent=dec.toString(10);
+    document.getElementById('ns-bin').textContent=dec.toString(2);
+    document.getElementById('ns-oct').textContent=dec.toString(8);
+    document.getElementById('ns-hex').textContent=dec.toString(16).toUpperCase();
+    document.getElementById('ns-grid').style.display='grid';
+    document.getElementById('ns-step-btn').style.display='block';
+    // Generate steps
+    var steps=generateNSSteps(dec,inp,base);
+    document.getElementById('ns-steps').textContent=steps;
+    nsStepsVisible=false;
+    document.getElementById('ns-step-btn').textContent='📖 Show Steps';
+    document.getElementById('ns-steps').classList.remove('on');
+  }catch(e){alert('❌ '+e.message);}
+}
+
+function generateNSSteps(dec,original,fromBase){
+  var steps='INPUT: '+original+' (Base '+fromBase+')\n';
+  steps+='════════════════════════════\n\n';
+  if(fromBase!==10){
+    steps+='STEP 1: Convert to Decimal\n';
+    var chars=original.toUpperCase().split('').reverse();
+    var hexC='0123456789ABCDEF';
+    var total=0;
+    for(var i=0;i<chars.length;i++){
+      var val=hexC.indexOf(chars[i])*Math.pow(fromBase,i);
+      total+=val;
+      steps+='  '+chars[i]+' × '+fromBase+'^'+i+' = '+val+'\n';
+    }
+    steps+='  Total = '+dec+'\n\n';
+  }
+  steps+='DECIMAL → BINARY\n';
+  var temp=dec,divs=[];
+  while(temp>0){divs.push('  '+temp+' ÷ 2 = '+Math.floor(temp/2)+' R '+temp%2);temp=Math.floor(temp/2);}
+  steps+=divs.join('\n')+'\n  Read bottom→top: '+dec.toString(2)+'\n\n';
+  steps+='DECIMAL → OCTAL\n';
+  temp=dec;var divs2=[];
+  while(temp>0){divs2.push('  '+temp+' ÷ 8 = '+Math.floor(temp/8)+' R '+temp%8);temp=Math.floor(temp/8);}
+  steps+=divs2.join('\n')+'\n  Read bottom→top: '+dec.toString(8)+'\n\n';
+  steps+='DECIMAL → HEXADECIMAL\n';
+  var hexChars='0123456789ABCDEF';temp=dec;var divs3=[];
+  while(temp>0){var r=temp%16;divs3.push('  '+temp+' ÷ 16 = '+Math.floor(temp/16)+' R '+r+' ('+hexChars[r]+')');temp=Math.floor(temp/16);}
+  steps+=divs3.join('\n')+'\n  Read bottom→top: '+dec.toString(16).toUpperCase();
+  return steps;
+}
+
+function toggleSteps(){
+  nsStepsVisible=!nsStepsVisible;
+  var box=document.getElementById('ns-steps');
+  if(nsStepsVisible){box.classList.add('on');document.getElementById('ns-step-btn').textContent='📖 Hide Steps';}
+  else{box.classList.remove('on');document.getElementById('ns-step-btn').textContent='📖 Show Steps';}
+}
+
+function doArith(op){
+  var a=document.getElementById('arith-a').value.trim();
+  var b=document.getElementById('arith-b').value.trim();
+  var ba=parseInt(document.getElementById('arith-base-a').value);
+  var bb=parseInt(document.getElementById('arith-base-b').value);
+  if(!a||!b){alert('দুটো number দাও!');return;}
+  try{
+    var da=parseInt(a,ba),db=parseInt(b,bb);
+    if(isNaN(da)||isNaN(db)) throw new Error('Invalid numbers!');
+    var result,sym;
+    if(op==='+'){result=da+db;sym='+';}
+    else if(op==='-'){result=da-db;sym='-';}
+    else if(op==='*'){result=da*db;sym='×';}
+    else{if(db===0) throw new Error('Cannot divide by zero!');result=Math.floor(da/db);sym='÷';}
+    var detail='A = '+a+' (base '+ba+') = '+da+' (decimal)\n';
+    detail+='B = '+b+' (base '+bb+') = '+db+' (decimal)\n\n';
+    detail+=da+' '+sym+' '+db+' = '+result+' (decimal)\n';
+    detail+='Binary: '+result.toString(2)+'\n';
+    detail+='Octal: '+result.toString(8)+'\n';
+    detail+='Hex: '+result.toString(16).toUpperCase();
+    document.getElementById('arith-ans').textContent=result+' (decimal)';
+    document.getElementById('arith-detail').textContent=detail;
+    document.getElementById('arith-res').classList.add('on');
+  }catch(e){alert('❌ '+e.message);}
+}
+
+function doBit(op){
+  var a=parseInt(document.getElementById('bit-a').value);
+  var b=parseInt(document.getElementById('bit-b').value);
+  if(isNaN(a)){alert('Number A দাও!');return;}
+  var result,detail='';
+  if(op==='AND'){if(isNaN(b)){alert('B দাও!');return;}result=a&b;detail='A = '+a+'\nBin A: '+a.toString(2).padStart(8,'0')+'\nB = '+b+'\nBin B: '+b.toString(2).padStart(8,'0')+'\n\nA AND B = '+result+'\nBin: '+result.toString(2)+'\n\nRule: 1 AND 1 = 1, otherwise 0';}
+  else if(op==='OR'){if(isNaN(b)){alert('B দাও!');return;}result=a|b;detail='A = '+a+'\nBin A: '+a.toString(2).padStart(8,'0')+'\nB = '+b+'\nBin B: '+b.toString(2).padStart(8,'0')+'\n\nA OR B = '+result+'\nBin: '+result.toString(2)+'\n\nRule: 0 OR 0 = 0, otherwise 1';}
+  else if(op==='XOR'){if(isNaN(b)){alert('B দাও!');return;}result=a^b;detail='A = '+a+'\nBin A: '+a.toString(2).padStart(8,'0')+'\nB = '+b+'\nBin B: '+b.toString(2).padStart(8,'0')+'\n\nA XOR B = '+result+'\nBin: '+result.toString(2)+'\n\nRule: same=0, different=1';}
+  else if(op==='NOT'){result=~a&0xFF;detail='A = '+a+'\nBin A: '+a.toString(2).padStart(8,'0')+'\n\nNOT A = '+result+'\nBin: '+result.toString(2).padStart(8,'0')+'\n\nRule: 0→1, 1→0 (flip all bits)';}
+  else if(op==='LSHIFT'){result=a<<1;detail='A = '+a+'\nBin: '+a.toString(2)+'\n\nA << 1 = '+result+'\nBin: '+result.toString(2)+'\n\nLeft shift = multiply by 2';}
+  else{result=a>>1;detail='A = '+a+'\nBin: '+a.toString(2)+'\n\nA >> 1 = '+result+'\nBin: '+result.toString(2)+'\n\nRight shift = divide by 2';}
+  document.getElementById('bit-ans').textContent=op+' Result: '+result;
+  document.getElementById('bit-detail').textContent=detail;
+  document.getElementById('bit-res').classList.add('on');
+}
+
+// ===== BLOCKCHAIN MATH =====
+function simpleHash(str){
+  var hash=0;
+  for(var i=0;i<str.length;i++){hash=((hash<<5)-hash)+str.charCodeAt(i);hash=hash&hash;}
+  return Math.abs(hash).toString(16).padStart(8,'0');
+}
+function betterHash(str){
+  var h1=0x9dc5,h2=0x1b87;
+  for(var i=0;i<str.length;i++){var c=str.charCodeAt(i);h1=Math.imul(h1^c,0x9e37);h2=Math.imul(h2^c,0x5bd1);}
+  h1=Math.imul(h1^(h1>>>16),0x45ca);h1^=Math.imul(h2^(h2>>>13),0xb5ee);
+  return(((h2^(h1>>>8))>>>0).toString(16).padStart(8,'0'))+((h1>>>0).toString(16).padStart(8,'0'));
+}
+
+function doHash(){
+  var inp=document.getElementById('hash-input').value;
+  if(!inp){alert('কিছু লেখো!');return;}
+  var h1=simpleHash(inp);
+  var h2=betterHash(inp);
+  var h3=betterHash(h2+inp); // double hash
+  var detail='Input: "'+inp+'"\nLength: '+inp.length+' characters\n\n';
+  detail+='━━━━━━━━━━━━━━━━━━━━━━\n';
+  detail+='Hash v1: '+h1+'\n';
+  detail+='Hash v2: '+h2+'\n';
+  detail+='Double Hash: '+h3+'\n\n';
+  detail+='━━━━━━━━━━━━━━━━━━━━━━\n';
+  detail+='Avalanche Effect Test:\n';
+  var inp2=inp.charAt(0)==='A'?'B'+inp.substring(1):'A'+inp.substring(1);
+  var h4=betterHash(inp2);
+  detail+='"'+inp+'" → '+h2+'\n';
+  detail+='"'+inp2+'" → '+h4+'\n';
+  detail+='\nEven 1 char change = completely different hash!\nThis is why blockchain is secure.';
+  document.getElementById('hash-detail').textContent=detail;
+  document.getElementById('hash-res').classList.add('on');
+}
+
+function doMod(){
+  var a=parseInt(document.getElementById('mod-a').value);
+  var n=parseInt(document.getElementById('mod-n').value);
+  if(isNaN(a)||isNaN(n)){alert('a এবং n দাও!');return;}
+  if(n<=0){alert('n must be positive!');return;}
+  var result=((a%n)+n)%n;
+  var detail='a mod n = '+a+' mod '+n+' = '+result+'\n\n';
+  detail+='How: '+a+' = '+Math.floor(a/n)+' × '+n+' + '+result+'\n\n';
+  detail+='Blockchain Usage:\n';
+  detail+='• Address generation uses mod operations\n';
+  detail+='• Hash functions use modular arithmetic\n';
+  detail+='• ECDSA signatures use mod prime numbers\n\n';
+  detail+='Example: Private key operations:\n';
+  detail+='If key = '+a+', prime = '+n+'\n';
+  detail+='key mod prime = '+result;
+  document.getElementById('mod-ans').textContent=a+' mod '+n+' = '+result;
+  document.getElementById('mod-detail').textContent=detail;
+  document.getElementById('mod-res').classList.add('on');
+}
+
+function doModExp(){
+  var base=parseInt(document.getElementById('modexp-base').value);
+  var exp=parseInt(document.getElementById('modexp-exp').value);
+  var mod=parseInt(document.getElementById('modexp-mod').value);
+  if(isNaN(base)||isNaN(exp)||isNaN(mod)){alert('সব value দাও!');return;}
+  if(mod<=0){alert('mod must be positive!');return;}
+  // Fast modular exponentiation
+  var result=1,b=base%mod,e=exp;
+  while(e>0){if(e%2===1) result=(result*b)%mod;e=Math.floor(e/2);b=(b*b)%mod;}
+  var detail=base+'^'+exp+' mod '+mod+' = '+result+'\n\n';
+  detail+='━━━━━━━━━━━━━━━━━━━━━━\n';
+  detail+='Fast Exponentiation Steps:\n';
+  var b2=base%mod,e2=exp,r2=1,step=1;
+  while(e2>0&&step<=10){
+    detail+='Step '+step+': exp='+e2+', base='+b2+', result='+r2+'\n';
+    if(e2%2===1) r2=(r2*b2)%mod;
+    e2=Math.floor(e2/2);b2=(b2*b2)%mod;step++;
+  }
+  detail+='\nRSA Encryption uses this!\n';
+  detail+='C = M^e mod n (encrypt)\n';
+  detail+='M = C^d mod n (decrypt)\n\n';
+  detail+='Example with your numbers:\n';
+  detail+='Message^'+exp+' mod '+mod+' = '+result+' (encrypted)';
+  document.getElementById('modexp-ans').textContent=base+'^'+exp+' mod '+mod+' = '+result;
+  document.getElementById('modexp-detail').textContent=detail;
+  document.getElementById('modexp-res').classList.add('on');
+}
+
+function doGCDLCM(){
+  var a=parseInt(document.getElementById('gcd-a').value);
+  var b=parseInt(document.getElementById('gcd-b').value);
+  if(isNaN(a)||isNaN(b)){alert('দুটো number দাও!');return;}
+  var origA=a,origB=b;
+  // Euclidean algorithm
+  var steps='Euclidean Algorithm:\n';
+  var ta=a,tb=b;
+  while(tb!==0){steps+='gcd('+ta+','+tb+') → '+ta+' = '+Math.floor(ta/tb)+'×'+tb+'+'+ta%tb+'\n';var temp=tb;tb=ta%tb;ta=temp;}
+  var gcd=ta;
+  var lcm=(origA*origB)/gcd;
+  steps+='\nGCD = '+gcd+'\nLCM = '+origA+'×'+origB+'/'+gcd+' = '+lcm+'\n\n';
+  steps+='Blockchain Usage:\n';
+  steps+='• RSA key generation: p,q must be prime\n';
+  steps+='• GCD(e, φ(n)) = 1 for public exponent\n';
+  steps+='• Coprime numbers ensure unique keys\n\n';
+  steps+='Coprime? GCD = 1 means '+origA+' and '+origB+' are '+(gcd===1?'COPRIME ✅ (good for crypto)':'NOT coprime (gcd='+gcd+')');
+  document.getElementById('gcd-detail').textContent=steps;
+  document.getElementById('gcd-res').classList.add('on');
+}
+
+function doPrime(){
+  var n=parseInt(document.getElementById('prime-input').value);
+  if(isNaN(n)||n<2){alert('2 বা তার বেশি number দাও!');return;}
+  var isPrime=true,factors=[];
+  for(var i=2;i<=Math.sqrt(n);i++){if(n%i===0){isPrime=false;factors.push(i);if(factors.length>=5) break;}}
+  var detail='Number: '+n+'\n\n';
+  if(isPrime){
+    detail+='✅ PRIME NUMBER!\n\n';
+    detail+='Why Prime?\n→ Only divisible by 1 and '+n+'\n\n';
+    detail+='Blockchain Usage:\n';
+    detail+='• RSA uses two large prime numbers (p, q)\n';
+    detail+='• n = p × q (public modulus)\n';
+    detail+='• Larger primes = more secure\n\n';
+    detail+='Real crypto uses primes with 1024+ digits!';
+  } else {
+    detail+='❌ NOT PRIME\n\n';
+    detail+='Factors found: '+factors.join(', ')+'...\n';
+    detail+='Not suitable for cryptography.\n\n';
+    detail+='Next primes after '+n+': ';
+    var count=0,next=n+1;
+    while(count<5){var p=true;for(var i=2;i<=Math.sqrt(next);i++){if(next%i===0){p=false;break;}}if(p){detail+=next+' ';count++;}next++;}
+  }
+  document.getElementById('prime-ans').textContent=n+' is '+(isPrime?'PRIME ✅':'NOT PRIME ❌');
+  document.getElementById('prime-ans').style.color=isPrime?'#4ecca3':'#f87171';
+  document.getElementById('prime-detail').textContent=detail;
+  document.getElementById('prime-res').classList.add('on');
+}
+
+function doXOR(){
+  var text=document.getElementById('xor-text').value;
+  var key=parseInt(document.getElementById('xor-key').value);
+  if(!text||isNaN(key)){alert('Text ও key দাও!');return;}
+  var encrypted='',detail='XOR Encryption/Decryption\n\n';
+  detail+='Key: '+key+' ('+key.toString(2)+' in binary)\n\n';
+  detail+='Char | ASCII | XOR Key | Result | Char\n';
+  detail+='─────┼───────┼─────────┼────────┼─────\n';
+  for(var i=0;i<Math.min(text.length,20);i++){
+    var code=text.charCodeAt(i),enc=code^key;
+    encrypted+=String.fromCharCode(enc);
+    detail+=' '+text[i]+'   |  '+code.toString().padStart(3)+' |  '+key.toString().padStart(4)+' XOR | '+enc.toString().padStart(4)+' |  '+String.fromCharCode(enc)+'\n';
+  }
+  detail+='\nOriginal: "'+text+'"\n';
+  detail+='Encrypted: "'+encrypted+'"\n\n';
+  detail+='XOR same key again = decrypt:\n"'+encrypted+'" → decrypt → "'+text+'"\n\n';
+  detail+='Blockchain uses XOR in:\n• Merkle tree calculations\n• Hash mixing\n• Simple cipher operations';
+  document.getElementById('xor-detail').textContent=detail;
+  document.getElementById('xor-res').classList.add('on');
+}
+
+function doFib(){
+  var n=parseInt(document.getElementById('fib-n').value);
+  if(isNaN(n)||n<1){alert('Positive number দাও!');return;}
+  if(n>50){alert('50 এর বেশি দেবে না!');return;}
+  var seq=[0,1];
+  for(var i=2;i<n;i++) seq.push(seq[i-1]+seq[i-2]);
+  var result=seq.slice(0,n);
+  var detail='Fibonacci ('+n+' terms):\n'+result.join(', ')+'\n\n';
+  detail+='Formula: F(n) = F(n-1) + F(n-2)\n\n';
+  detail+='Golden Ratio: φ = '+( result[n-1]/result[n-2]).toFixed(8)+'\n(approaches 1.61803398...)\n\n';
+  detail+='Blockchain Connection:\n';
+  detail+='• Some proof-of-work uses number sequences\n';
+  detail+='• Fibonacci used in network delay calculations\n';
+  detail+='• Hash rate prediction uses sequence patterns';
+  document.getElementById('fib-detail').textContent=detail;
+  document.getElementById('fib-res').classList.add('on');
+}
+
+function simulateBlock(){
+  var data=document.getElementById('block-data').value||'Genesis Block';
+  var prevHash=document.getElementById('block-prev').value||'0000000000000000';
+  var timestamp=new Date().toISOString();
+  var blockNum=Math.floor(Math.random()*1000000);
+  var nonce=0;
+  var blockHash=betterHash(data+prevHash+timestamp+nonce);
+  // Simulate mining (find hash starting with 00)
+  while(!blockHash.startsWith('00')&&nonce<10000){nonce++;blockHash=betterHash(data+prevHash+blockNum+nonce);}
+  var detail='╔══════════════════════════╗\n';
+  detail+='║      BLOCK #'+blockNum+'      ║\n';
+  detail+='╚══════════════════════════╝\n\n';
+  detail+='📦 Data: "'+data+'"\n';
+  detail+='🔗 Previous Hash:\n   '+prevHash+'\n\n';
+  detail+='⏰ Timestamp: '+timestamp+'\n';
+  detail+='🔢 Nonce: '+nonce+' (mining attempts)\n\n';
+  detail+='🔐 Block Hash:\n   '+blockHash+'\n\n';
+  detail+='━━━━━━━━━━━━━━━━━━━━━━\n';
+  detail+='How this works:\n';
+  detail+='1. Data + PrevHash + Nonce = input\n';
+  detail+='2. Hash(input) calculated\n';
+  detail+='3. If hash starts with "00" → valid!\n';
+  detail+='4. Otherwise nonce++ and try again\n';
+  detail+='5. This is called Proof of Work (PoW)!\n\n';
+  detail+='Bitcoin needs hash starting with\n000000000000... (much harder!)';
+  document.getElementById('block-detail').textContent=detail;
+  document.getElementById('block-res').classList.add('on');
+}
 
 // QUIZ
 function setLv(l){qlv=l;document.getElementById('le').className='lvl';document.getElementById('lm').className='lvl';document.getElementById('lh').className='lvl';document.getElementById('l'+l.charAt(0)).className='lvl '+l.charAt(0);}
@@ -645,24 +1057,9 @@ function genQ(){
   return pool[type]();
 }
 function startQ(){qcur=0;qsc=0;qcok=0;qstr=0;document.getElementById('qset').style.display='none';document.getElementById('qres').style.display='none';document.getElementById('qgame').style.display='block';document.getElementById('qtl').textContent=qnum;loadQ();}
-function loadQ(){
-  clearInterval(qtmr);qtl=qlv==='easy'?30:(qlv==='medium'?20:15);
-  var qd=genQ();qca=qd.a;
-  document.getElementById('qtxt').textContent=qd.q;document.getElementById('qhnt').textContent=qd.h?'💡 '+qd.h:'';
-  document.getElementById('qcr').textContent=qcur+1;document.getElementById('qsc').textContent=qsc;
-  document.getElementById('qinp').value='';document.getElementById('qinp').className='qinp';
-  document.getElementById('qfb').className='fb';document.getElementById('qnxt').className='nxbtn';
-  document.getElementById('qsub').style.display='block';document.getElementById('qpf').style.width=((qcur/qnum)*100)+'%';
-  document.getElementById('qtmr').textContent=qtl;document.getElementById('qinp').focus();
-  qtmr=setInterval(function(){qtl--;document.getElementById('qtmr').textContent=qtl;if(qtl<=0){clearInterval(qtmr);timeUpQ();}},1000);
-}
+function loadQ(){clearInterval(qtmr);qtl=qlv==='easy'?30:(qlv==='medium'?20:15);var qd=genQ();qca=qd.a;document.getElementById('qtxt').textContent=qd.q;document.getElementById('qhnt').textContent=qd.h?'💡 '+qd.h:'';document.getElementById('qcr').textContent=qcur+1;document.getElementById('qsc').textContent=qsc;document.getElementById('qinp').value='';document.getElementById('qinp').className='qinp';document.getElementById('qfb').className='fb';document.getElementById('qnxt').className='nxbtn';document.getElementById('qsub').style.display='block';document.getElementById('qpf').style.width=((qcur/qnum)*100)+'%';document.getElementById('qtmr').textContent=qtl;document.getElementById('qinp').focus();qtmr=setInterval(function(){qtl--;document.getElementById('qtmr').textContent=qtl;if(qtl<=0){clearInterval(qtmr);timeUpQ();}},1000);}
 function timeUpQ(){document.getElementById('qinp').className='qinp no';document.getElementById('qfb').textContent='⏰ Time up! Answer: '+qca;document.getElementById('qfb').className='fb no on';document.getElementById('qsub').style.display='none';document.getElementById('qnxt').className='nxbtn on';qstr=0;}
-function chkA(){
-  clearInterval(qtmr);var ua=parseFloat(document.getElementById('qinp').value),ok=Math.abs(ua-qca)<0.01;
-  if(ok){var pts=10+Math.floor(qtl/5);qsc+=pts;qstr++;qcok++;document.getElementById('qinp').className='qinp ok';var msg='✅ Correct! +'+pts+'pts';if(qstr>=3) msg+=' 🔥'+qstr+'!';document.getElementById('qfb').textContent=msg;document.getElementById('qfb').className='fb ok on';}
-  else{qstr=0;document.getElementById('qinp').className='qinp no';document.getElementById('qfb').textContent='❌ Wrong! Answer: '+qca;document.getElementById('qfb').className='fb no on';}
-  document.getElementById('qsc').textContent=qsc;document.getElementById('qsub').style.display='none';document.getElementById('qnxt').className='nxbtn on';
-}
+function chkA(){clearInterval(qtmr);var ua=parseFloat(document.getElementById('qinp').value),ok=Math.abs(ua-qca)<0.01;if(ok){var pts=10+Math.floor(qtl/5);qsc+=pts;qstr++;qcok++;document.getElementById('qinp').className='qinp ok';var msg='✅ Correct! +'+pts+'pts';if(qstr>=3) msg+=' 🔥'+qstr+'!';document.getElementById('qfb').textContent=msg;document.getElementById('qfb').className='fb ok on';}else{qstr=0;document.getElementById('qinp').className='qinp no';document.getElementById('qfb').textContent='❌ Wrong! Answer: '+qca;document.getElementById('qfb').className='fb no on';}document.getElementById('qsc').textContent=qsc;document.getElementById('qsub').style.display='none';document.getElementById('qnxt').className='nxbtn on';}
 function nxtQ(){qcur++;if(qcur>=qnum)showQR();else loadQ();}
 function showQR(){clearInterval(qtmr);document.getElementById('qgame').style.display='none';document.getElementById('qres').style.display='block';var pct=Math.round((qcok/qnum)*100);document.getElementById('qremj').textContent=pct===100?'🏆':(pct>=80?'🎉':(pct>=60?'👍':'💪'));document.getElementById('qrttl').textContent=pct===100?'Perfect!':(pct>=80?'Excellent!':(pct>=60?'Well Done!':'Keep Going!'));document.getElementById('qrsc').textContent=qcok+'/'+qnum;document.getElementById('qrdt').innerHTML='Score: '+qsc+' pts<br>Correct: '+qcok+'/'+qnum+'<br>Accuracy: '+pct+'%';}
 function resetQ(){document.getElementById('qres').style.display='none';document.getElementById('qgame').style.display='none';document.getElementById('qset').style.display='block';}
@@ -676,87 +1073,26 @@ function doCI(){var p=parseFloat(document.getElementById('cip').value),r=parseFl
 function doUC(){var v=parseFloat(document.getElementById('ucv').value),f=document.getElementById('ucf').value,t=document.getElementById('uct').value;if(isNaN(v)){alert('Value দাও!');return;}var toM={km:1000,mile:1609.34,meter:1,cm:0.01,inch:0.0254,foot:0.3048},toK={kg:1,lb:0.453592,gram:0.001,oz:0.0283495},result;try{if(['c','f','k'].includes(f)){var cv=f==='c'?v:(f==='f'?(v-32)*5/9:v-273.15);result=t==='c'?cv:(t==='f'?cv*9/5+32:cv+273.15);}else if(toM[f]&&toM[t]){result=(v*toM[f])/toM[t];}else if(toK[f]&&toK[t]){result=(v*toK[f])/toK[t];}else throw new Error('Same type!');document.getElementById('ucav').textContent=result.toFixed(4)+' '+t;document.getElementById('ucd').textContent=v+' '+f+' = '+result.toFixed(6)+' '+t;document.getElementById('ucr').classList.add('on');}catch(e){alert('❌ '+e.message);}}
 
 // STOPWATCH
-var swRunning=false,swTime=0,swTimer=null,swLaps=[];
-function swToggle(){
-  if(swRunning){clearInterval(swTimer);swRunning=false;document.getElementById('sw-btn').textContent='▶ Start';document.getElementById('sw-btn').style.background='linear-gradient(135deg,#4ecca3,#2ecc71)';}
-  else{swTimer=setInterval(function(){swTime+=100;document.getElementById('sw-display').textContent=formatSW(swTime);},100);swRunning=true;document.getElementById('sw-btn').textContent='⏸ Pause';document.getElementById('sw-btn').style.background='linear-gradient(135deg,#f39c12,#e67e22)';}
-}
+function swToggle(){if(swRunning){clearInterval(swTimer);swRunning=false;document.getElementById('sw-btn').textContent='▶ Start';document.getElementById('sw-btn').style.background='linear-gradient(135deg,#4ecca3,#2ecc71)';}else{swTimer=setInterval(function(){swTime+=100;document.getElementById('sw-display').textContent=formatSW(swTime);},100);swRunning=true;document.getElementById('sw-btn').textContent='⏸ Pause';document.getElementById('sw-btn').style.background='linear-gradient(135deg,#f39c12,#e67e22)';}}
 function swLap(){if(!swRunning) return;swLaps.push(swTime);var l=document.getElementById('sw-laps');l.innerHTML='<div class="sw-lap">Lap '+swLaps.length+' <span>'+formatSW(swTime)+'</span></div>'+l.innerHTML;}
 function swReset(){clearInterval(swTimer);swRunning=false;swTime=0;swLaps=[];document.getElementById('sw-display').textContent='00:00:00.0';document.getElementById('sw-laps').innerHTML='';document.getElementById('sw-btn').textContent='▶ Start';document.getElementById('sw-btn').style.background='linear-gradient(135deg,#4ecca3,#2ecc71)';}
 function formatSW(ms){var h=Math.floor(ms/3600000),m=Math.floor((ms%3600000)/60000),s=Math.floor((ms%60000)/1000),t=Math.floor((ms%1000)/100);return pad(h)+':'+pad(m)+':'+pad(s)+'.'+t;}
 function pad(n){return n<10?'0'+n:n;}
 
-// COUNTDOWN TIMER
-var timerRunning=false,timerTotal=0,timerLeft=0,timerInterval2=null;
+// TIMER
 function timerSet(){var m=parseInt(document.getElementById('timer-min').value)||0,s=parseInt(document.getElementById('timer-sec').value)||0;timerTotal=(m*60+s)*1000;timerLeft=timerTotal;updateTimerDisplay();}
-function timerToggle(){
-  if(!timerLeft){alert('Set a time first!');return;}
-  if(timerRunning){clearInterval(timerInterval2);timerRunning=false;document.getElementById('timer-btn').textContent='▶ Start';}
-  else{timerRunning=true;document.getElementById('timer-btn').textContent='⏸ Pause';timerInterval2=setInterval(function(){timerLeft-=1000;if(timerLeft<=0){timerLeft=0;clearInterval(timerInterval2);timerRunning=false;document.getElementById('timer-btn').textContent='▶ Start';alert('⏰ Timer Done!');}updateTimerDisplay();},1000);}
-}
+function timerToggle(){if(!timerLeft){alert('Set a time first!');return;}if(timerRunning){clearInterval(timerInterval2);timerRunning=false;document.getElementById('timer-btn').textContent='▶ Start';}else{timerRunning=true;document.getElementById('timer-btn').textContent='⏸ Pause';timerInterval2=setInterval(function(){timerLeft-=1000;if(timerLeft<=0){timerLeft=0;clearInterval(timerInterval2);timerRunning=false;document.getElementById('timer-btn').textContent='▶ Start';alert('⏰ Timer Done!');}updateTimerDisplay();},1000);}}
 function timerReset(){clearInterval(timerInterval2);timerRunning=false;timerLeft=timerTotal;updateTimerDisplay();document.getElementById('timer-btn').textContent='▶ Start';}
-function updateTimerDisplay(){var m=Math.floor(timerLeft/60000),s=Math.floor((timerLeft%60000)/1000);document.getElementById('timer-display').textContent=pad(m)+':'+pad(s);var pct=timerTotal>0?timerLeft/timerTotal:1,offset=326.7*(1-pct);document.getElementById('timer-ring').style.strokeDashoffset=offset;}
+function updateTimerDisplay(){var m=Math.floor(timerLeft/60000),s=Math.floor((timerLeft%60000)/1000);document.getElementById('timer-display').textContent=pad(m)+':'+pad(s);var pct=timerTotal>0?timerLeft/timerTotal:1,offset=301.6*(1-pct);document.getElementById('timer-ring').style.strokeDashoffset=offset;}
 
-// AGE CALCULATOR
-function calcAge(){
-  var dob=document.getElementById('dob').value;
-  if(!dob){alert('Date of birth দাও!');return;}
-  var bd=new Date(dob),now=new Date();
-  var yrs=now.getFullYear()-bd.getFullYear(),mnths=now.getMonth()-bd.getMonth(),days=now.getDate()-bd.getDate();
-  if(days<0){mnths--;days+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}
-  if(mnths<0){yrs--;mnths+=12;}
-  var totalDays=Math.floor((now-bd)/86400000);
-  var nextBd=new Date(now.getFullYear(),bd.getMonth(),bd.getDate());
-  if(nextBd<=now) nextBd.setFullYear(now.getFullYear()+1);
-  var daysToNext=Math.floor((nextBd-now)/86400000);
-  document.getElementById('age-detail').textContent='Age: '+yrs+' years, '+mnths+' months, '+days+' days\nTotal days lived: '+totalDays+'\nTotal hours: '+Math.floor(totalDays*24)+'\nNext birthday in: '+daysToNext+' days';
-  document.getElementById('age-res').classList.add('on');
-}
+// AGE
+function calcAge(){var dob=document.getElementById('dob').value;if(!dob){alert('Date দাও!');return;}var bd=new Date(dob),now=new Date();var yrs=now.getFullYear()-bd.getFullYear(),mnths=now.getMonth()-bd.getMonth(),days=now.getDate()-bd.getDate();if(days<0){mnths--;days+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}if(mnths<0){yrs--;mnths+=12;}var totalDays=Math.floor((now-bd)/86400000);var nextBd=new Date(now.getFullYear(),bd.getMonth(),bd.getDate());if(nextBd<=now) nextBd.setFullYear(now.getFullYear()+1);document.getElementById('age-detail').textContent='Age: '+yrs+' yrs, '+mnths+' months, '+days+' days\nTotal days: '+totalDays+'\nHours lived: '+Math.floor(totalDays*24)+'\nNext birthday: '+Math.floor((nextBd-now)/86400000)+' days away';document.getElementById('age-res').classList.add('on');}
 
-// BMI CALCULATOR
-function calcBMI(){
-  var w=parseFloat(document.getElementById('bmi-w').value),h=parseFloat(document.getElementById('bmi-h').value)/100;
-  if(isNaN(w)||isNaN(h)){alert('Weight ও Height দাও!');return;}
-  var bmi=w/(h*h),cat,col,pct;
-  if(bmi<18.5){cat='Underweight';col='#4ecca3';pct=Math.min(bmi/18.5*20,20);}
-  else if(bmi<25){cat='Normal Weight';col='#4ade80';pct=20+(bmi-18.5)/(25-18.5)*30;}
-  else if(bmi<30){cat='Overweight';col='#fbbf24';pct=50+(bmi-25)/5*25;}
-  else{cat='Obese';col='#f87171';pct=Math.min(75+(bmi-30)/10*25,99);}
-  document.getElementById('bmi-val').textContent=bmi.toFixed(1);
-  document.getElementById('bmi-val').style.color=col;
-  document.getElementById('bmi-cat').textContent=cat;
-  document.getElementById('bmi-cat').style.color=col;
-  document.getElementById('bmi-marker').style.left=pct+'%';
-  document.getElementById('bmi-detail').textContent='BMI: '+bmi.toFixed(2)+'\nCategory: '+cat+'\nHealthy range: 18.5 - 24.9\nIdeal weight: '+(18.5*h*h).toFixed(1)+' - '+(24.9*h*h).toFixed(1)+' kg';
-  document.getElementById('bmi-res').classList.add('on');
-}
-
-// NUMBER SYSTEM
-function convertNS(){
-  var inp=document.getElementById('ns-input').value.trim(),base=parseInt(document.getElementById('ns-from').value);
-  if(!inp){alert('Number দাও!');return;}
-  try{
-    var dec=parseInt(inp,base);
-    if(isNaN(dec)) throw new Error('Invalid number for this base!');
-    document.getElementById('ns-dec').textContent=dec.toString(10);
-    document.getElementById('ns-bin').textContent=dec.toString(2);
-    document.getElementById('ns-oct').textContent=dec.toString(8);
-    document.getElementById('ns-hex').textContent=dec.toString(16).toUpperCase();
-    document.getElementById('ns-result').style.display='flex';
-  }catch(e){alert('❌ '+e.message);}
-}
+// BMI
+function calcBMI(){var w=parseFloat(document.getElementById('bmi-w').value),h=parseFloat(document.getElementById('bmi-h').value)/100;if(isNaN(w)||isNaN(h)){alert('দাও!');return;}var bmi=w/(h*h),cat,col,pct;if(bmi<18.5){cat='Underweight';col='#4ecca3';pct=Math.min(bmi/18.5*20,20);}else if(bmi<25){cat='Normal Weight';col='#4ade80';pct=20+(bmi-18.5)/(25-18.5)*30;}else if(bmi<30){cat='Overweight';col='#fbbf24';pct=50+(bmi-25)/5*25;}else{cat='Obese';col='#f87171';pct=Math.min(75+(bmi-30)/10*25,99);}document.getElementById('bmi-val').textContent=bmi.toFixed(1);document.getElementById('bmi-val').style.color=col;document.getElementById('bmi-cat').textContent=cat;document.getElementById('bmi-cat').style.color=col;document.getElementById('bmi-marker').style.left=pct+'%';document.getElementById('bmi-detail').textContent='BMI: '+bmi.toFixed(2)+'\nCategory: '+cat+'\nIdeal: '+(18.5*h*h).toFixed(1)+'-'+(24.9*h*h).toFixed(1)+' kg';document.getElementById('bmi-res').classList.add('on');}
 
 // CURRENCY
-function convertCurr(){
-  var v=parseFloat(document.getElementById('curr-val').value);
-  var f=document.getElementById('curr-from').value,t=document.getElementById('curr-to').value;
-  if(isNaN(v)){alert('Amount দাও!');return;}
-  var rates={USD:1,BDT:110,INR:83,EUR:0.92,GBP:0.79,SAR:3.75,AED:3.67,MYR:4.72};
-  var result=(v/rates[f])*rates[t];
-  document.getElementById('curr-ans').textContent=result.toFixed(2)+' '+t;
-  document.getElementById('curr-detail').textContent='1 '+f+' = '+(rates[t]/rates[f]).toFixed(4)+' '+t+'\n'+v+' '+f+' = '+result.toFixed(4)+' '+t;
-  document.getElementById('curr-res').classList.add('on');
-}
+function convertCurr(){var v=parseFloat(document.getElementById('curr-val').value),f=document.getElementById('curr-from').value,t=document.getElementById('curr-to').value;if(isNaN(v)){alert('Amount দাও!');return;}var rates={USD:1,BDT:110,INR:83,EUR:0.92,GBP:0.79,SAR:3.75,AED:3.67,MYR:4.72};var result=(v/rates[f])*rates[t];document.getElementById('curr-ans').textContent=result.toFixed(2)+' '+t;document.getElementById('curr-detail').textContent='1 '+f+' = '+(rates[t]/rates[f]).toFixed(4)+' '+t+'\n'+v+' '+f+' = '+result.toFixed(4)+' '+t;document.getElementById('curr-res').classList.add('on');}
 </script>
 </body>
 </html>
