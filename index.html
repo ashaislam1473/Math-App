@@ -165,7 +165,7 @@ canvas{width:100%;display:block;border-radius:8px}
     <button class="tab" onclick="goTab('x',this)">⚡ Extra</button>
     <button class="tab" onclick="goTab('h',this)">📜 History</button>
   </div>
-
+<button class="tab" onclick="goTab('k',this)">🖥️ C Math</button>
   <!-- SOLVER -->
   <div id="ps" class="page on">
     <div class="lgrow">
@@ -458,7 +458,99 @@ canvas{width:100%;display:block;border-radius:8px}
       </div>
     </div>
   </div>
+<!-- C PROGRAMMING MATH -->
+<div id="pk" class="page">
+  <div class="tsec">
+    <div class="ttl">🖥️ C Programming Math</div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:14px;line-height:1.7">
+      C language এর math functions শেখো এবং output দেখো!
+    </div>
 
+    <!-- Function Explorer -->
+    <div class="bsec">
+      <div class="bttl">📚 math.h Functions</div>
+      <div class="trow">
+        <select class="tsel" id="c-func">
+          <option value="sqrt">sqrt() — Square Root</option>
+          <option value="pow">pow() — Power</option>
+          <option value="abs">abs() — Absolute Value</option>
+          <option value="ceil">ceil() — Ceiling</option>
+          <option value="floor">floor() — Floor</option>
+          <option value="sin">sin() — Sine</option>
+          <option value="cos">cos() — Cosine</option>
+          <option value="tan">tan() — Tangent</option>
+          <option value="log">log() — Natural Log</option>
+          <option value="log10">log10() — Log Base 10</option>
+          <option value="exp">exp() — e^x</option>
+          <option value="fmod">fmod() — Float Modulo</option>
+        </select>
+        <button class="tbtn" onclick="showCFunc()">Show</button>
+      </div>
+      <div class="tres" id="cfunc-res">
+        <div class="trd" id="cfunc-detail"></div>
+      </div>
+    </div>
+
+    <!-- C Code Runner -->
+    <div class="bsec">
+      <div class="bttl">▶️ C Math Simulator</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:8px">
+        নিচে number দাও — C code এর output দেখাবে
+      </div>
+      <div class="trow">
+        <input class="ti" id="c-num1" type="number" placeholder="Number 1"/>
+        <input class="ti" id="c-num2" type="number" placeholder="Number 2"/>
+      </div>
+      <div class="chips">
+        <button class="chip" onclick="runC('sqrt')">sqrt(a)</button>
+        <button class="chip" onclick="runC('pow')">pow(a,b)</button>
+        <button class="chip" onclick="runC('add')">a + b</button>
+        <button class="chip" onclick="runC('sub')">a - b</button>
+        <button class="chip" onclick="runC('mul')">a * b</button>
+        <button class="chip" onclick="runC('div')">a / b</button>
+        <button class="chip" onclick="runC('mod')">a % b</button>
+        <button class="chip" onclick="runC('abs')">abs(a)</button>
+        <button class="chip" onclick="runC('ceil')">ceil(a)</button>
+        <button class="chip" onclick="runC('floor')">floor(a)</button>
+      </div>
+      <div class="tres" id="crun-res">
+        <div class="trd" id="crun-detail"></div>
+      </div>
+    </div>
+
+    <!-- C Programs -->
+    <div class="bsec">
+      <div class="bttl">💡 Common C Math Programs</div>
+      <div class="chips">
+        <button class="chip" onclick="showCProg('factorial')">Factorial</button>
+        <button class="chip" onclick="showCProg('fibonacci')">Fibonacci</button>
+        <button class="chip" onclick="showCProg('prime')">Prime Check</button>
+        <button class="chip" onclick="showCProg('swap')">Swap Numbers</button>
+        <button class="chip" onclick="showCProg('armstrong')">Armstrong</button>
+        <button class="chip" onclick="showCProg('gcd')">GCD</button>
+        <button class="chip" onclick="showCProg('power')">Power</button>
+        <button class="chip" onclick="showCProg('binary')">Decimal→Binary</button>
+      </div>
+      <div class="tres" id="cprog-res">
+        <div class="trd" id="cprog-detail"></div>
+      </div>
+    </div>
+
+    <!-- C Math Quiz -->
+    <div class="bsec">
+      <div class="bttl">🧪 C Output Quiz — কোড দেখো, output বলো!</div>
+      <div id="cquiz-box">
+        <button class="tbtn" style="width:100%" onclick="newCQuiz()">🎯 New Question</button>
+      </div>
+      <div class="tres" id="cquiz-res" style="margin-top:10px">
+        <div style="font-size:13px;color:#fff;margin-bottom:10px;font-family:'Courier New',monospace;line-height:1.8" id="cquiz-code"></div>
+        <input class="ti" id="cquiz-ans" type="text" placeholder="Output কী হবে?" style="margin-bottom:8px"/>
+        <button class="tbtn" style="width:100%" onclick="checkCQuiz()">Check Answer</button>
+        <div class="trd" id="cquiz-feedback" style="margin-top:8px"></div>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- QUIZ -->
   <div id="pq" class="page">
     <div id="qset">
@@ -664,7 +756,7 @@ var nsStepsVisible=false;
 function toggleTheme(){document.body.classList.toggle('lt');document.getElementById('tbtn').textContent=document.body.classList.contains('lt')?'🌙 Dark':'☀️ Light';if(document.getElementById('pg').classList.contains('on'))doPlot();}
 
 function goTab(id,btn){
-  ['s','c','g','n','b','q','t','x','h'].forEach(function(t){document.getElementById('p'+t).classList.remove('on');});
+  ['s'['s','c','g','n','b','k','q','t','x','h'].forEach(function(t){document.getElementById('p'+t).classList.remove('on');});
   document.getElementById('p'+id).classList.add('on');
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
   btn.classList.add('on');
@@ -1090,7 +1182,151 @@ function calcAge(){var dob=document.getElementById('dob').value;if(!dob){alert('
 
 // BMI
 function calcBMI(){var w=parseFloat(document.getElementById('bmi-w').value),h=parseFloat(document.getElementById('bmi-h').value)/100;if(isNaN(w)||isNaN(h)){alert('দাও!');return;}var bmi=w/(h*h),cat,col,pct;if(bmi<18.5){cat='Underweight';col='#4ecca3';pct=Math.min(bmi/18.5*20,20);}else if(bmi<25){cat='Normal Weight';col='#4ade80';pct=20+(bmi-18.5)/(25-18.5)*30;}else if(bmi<30){cat='Overweight';col='#fbbf24';pct=50+(bmi-25)/5*25;}else{cat='Obese';col='#f87171';pct=Math.min(75+(bmi-30)/10*25,99);}document.getElementById('bmi-val').textContent=bmi.toFixed(1);document.getElementById('bmi-val').style.color=col;document.getElementById('bmi-cat').textContent=cat;document.getElementById('bmi-cat').style.color=col;document.getElementById('bmi-marker').style.left=pct+'%';document.getElementById('bmi-detail').textContent='BMI: '+bmi.toFixed(2)+'\nCategory: '+cat+'\nIdeal: '+(18.5*h*h).toFixed(1)+'-'+(24.9*h*h).toFixed(1)+' kg';document.getElementById('bmi-res').classList.add('on');}
+// ===== C PROGRAMMING MATH =====
+var cFuncs={
+  sqrt:{name:'sqrt(x)',header:'#include <math.h>',code:'double result = sqrt(x);',desc:'Square root of x. x must be >= 0.',example:'sqrt(25.0) = 5.0\nsqrt(2.0) = 1.414213\nsqrt(144.0) = 12.0',use:'Distance calculation, geometry'},
+  pow:{name:'pow(x,y)',header:'#include <math.h>',code:'double result = pow(x, y);',desc:'x raised to the power y.',example:'pow(2,10) = 1024.0\npow(3,3) = 27.0\npow(5,0) = 1.0',use:'Compound interest, area calculations'},
+  abs:{name:'abs(x)',header:'#include <stdlib.h>',code:'int result = abs(x);',desc:'Absolute value of integer x.',example:'abs(-5) = 5\nabs(7) = 7\nabs(-100) = 100',use:'Distance between points, error calculation'},
+  ceil:{name:'ceil(x)',header:'#include <math.h>',code:'double result = ceil(x);',desc:'Round UP to nearest integer.',example:'ceil(2.1) = 3.0\nceil(4.9) = 5.0\nceil(-2.1) = -2.0',use:'Memory allocation, page count'},
+  floor:{name:'floor(x)',header:'#include <math.h>',code:'double result = floor(x);',desc:'Round DOWN to nearest integer.',example:'floor(2.9) = 2.0\nfloor(4.1) = 4.0\nfloor(-2.1) = -3.0',use:'Integer division, index calculation'},
+  sin:{name:'sin(x)',header:'#include <math.h>',code:'double result = sin(x); // x in radians',desc:'Sine of x (in radians). Use x*M_PI/180 for degrees.',example:'sin(0) = 0.0\nsin(M_PI/2) = 1.0\nsin(M_PI/6) = 0.5',use:'Graphics, physics, signal processing'},
+  cos:{name:'cos(x)',header:'#include <math.h>',code:'double result = cos(x); // x in radians',desc:'Cosine of x (in radians).',example:'cos(0) = 1.0\ncos(M_PI) = -1.0\ncos(M_PI/3) = 0.5',use:'Graphics rotation, physics'},
+  tan:{name:'tan(x)',header:'#include <math.h>',code:'double result = tan(x);',desc:'Tangent of x (in radians).',example:'tan(0) = 0.0\ntan(M_PI/4) = 1.0',use:'Angle calculation, slope'},
+  log:{name:'log(x)',header:'#include <math.h>',code:'double result = log(x);',desc:'Natural logarithm (base e) of x. x must be > 0.',example:'log(1) = 0.0\nlog(M_E) = 1.0\nlog(100) = 4.6051',use:'Complexity analysis, entropy'},
+  log10:{name:'log10(x)',header:'#include <math.h>',code:'double result = log10(x);',desc:'Base-10 logarithm of x.',example:'log10(1) = 0.0\nlog10(10) = 1.0\nlog10(1000) = 3.0',use:'Decibel calculation, pH measurement'},
+  exp:{name:'exp(x)',header:'#include <math.h>',code:'double result = exp(x);',desc:'e raised to the power x (e^x).',example:'exp(0) = 1.0\nexp(1) = 2.71828\nexp(2) = 7.38906',use:'Growth models, probability'},
+  fmod:{name:'fmod(x,y)',header:'#include <math.h>',code:'double result = fmod(x, y);',desc:'Floating point remainder of x/y.',example:'fmod(10.5, 3.0) = 1.5\nfmod(7.0, 2.0) = 1.0',use:'Wrap-around values, periodic functions'}
+};
 
+function showCFunc(){
+  var f=document.getElementById('c-func').value;
+  var fn=cFuncs[f];
+  var detail='Function: '+fn.name+'\n';
+  detail+='Header: '+fn.header+'\n\n';
+  detail+='Usage:\n'+fn.code+'\n\n';
+  detail+='Description:\n'+fn.desc+'\n\n';
+  detail+='Examples:\n'+fn.example+'\n\n';
+  detail+='Common Use:\n'+fn.use;
+  document.getElementById('cfunc-detail').textContent=detail;
+  document.getElementById('cfunc-res').classList.add('on');
+}
+
+function runC(op){
+  var a=parseFloat(document.getElementById('c-num1').value);
+  var b=parseFloat(document.getElementById('c-num2').value);
+  if(isNaN(a)){alert('Number 1 দাও!');return;}
+  var code='',output='',result;
+  if(op==='sqrt'){
+    if(a<0){alert('sqrt এর জন্য positive number দাও!');return;}
+    result=Math.sqrt(a);
+    code='#include <stdio.h>\n#include <math.h>\n\nint main() {\n    double a = '+a+';\n    double result = sqrt(a);\n    printf("sqrt(%.2f) = %.4f\\n", a, result);\n    return 0;\n}';
+    output='sqrt('+a+') = '+result.toFixed(4);
+  } else if(op==='pow'){
+    if(isNaN(b)){alert('Number 2 দাও!');return;}
+    result=Math.pow(a,b);
+    code='#include <stdio.h>\n#include <math.h>\n\nint main() {\n    double a = '+a+', b = '+b+';\n    double result = pow(a, b);\n    printf("pow(%.2f, %.2f) = %.4f\\n", a, b, result);\n    return 0;\n}';
+    output='pow('+a+', '+b+') = '+result.toFixed(4);
+  } else if(op==='add'){
+    if(isNaN(b)){alert('Number 2 দাও!');return;}
+    result=a+b;
+    code='#include <stdio.h>\n\nint main() {\n    float a = '+a+', b = '+b+';\n    float sum = a + b;\n    printf("%.2f + %.2f = %.2f\\n", a, b, sum);\n    return 0;\n}';
+    output=a+' + '+b+' = '+result;
+  } else if(op==='sub'){
+    if(isNaN(b)){alert('Number 2 দাও!');return;}
+    result=a-b;
+    code='#include <stdio.h>\n\nint main() {\n    float a = '+a+', b = '+b+';\n    float diff = a - b;\n    printf("%.2f - %.2f = %.2f\\n", a, b, diff);\n    return 0;\n}';
+    output=a+' - '+b+' = '+result;
+  } else if(op==='mul'){
+    if(isNaN(b)){alert('Number 2 দাও!');return;}
+    result=a*b;
+    code='#include <stdio.h>\n\nint main() {\n    float a = '+a+', b = '+b+';\n    float product = a * b;\n    printf("%.2f * %.2f = %.2f\\n", a, b, product);\n    return 0;\n}';
+    output=a+' * '+b+' = '+result;
+  } else if(op==='div'){
+    if(isNaN(b)||b===0){alert('Number 2 দাও (0 নয়)!');return;}
+    result=a/b;
+    code='#include <stdio.h>\n\nint main() {\n    float a = '+a+', b = '+b+';\n    if(b == 0) { printf("Error: Division by zero!\\n"); return 1; }\n    float quotient = a / b;\n    printf("%.2f / %.2f = %.4f\\n", a, b, quotient);\n    return 0;\n}';
+    output=a+' / '+b+' = '+result.toFixed(4);
+  } else if(op==='mod'){
+    if(isNaN(b)||b===0){alert('Number 2 দাও (0 নয়)!');return;}
+    result=Math.trunc(a)%Math.trunc(b);
+    code='#include <stdio.h>\n\nint main() {\n    int a = '+(Math.trunc(a))+', b = '+(Math.trunc(b))+';\n    int remainder = a % b;\n    printf("%d %% %d = %d\\n", a, b, remainder);\n    return 0;\n}';
+    output=Math.trunc(a)+' % '+Math.trunc(b)+' = '+result;
+  } else if(op==='abs'){
+    result=Math.abs(a);
+    code='#include <stdio.h>\n#include <stdlib.h>\n\nint main() {\n    int a = '+(Math.trunc(a))+';\n    int result = abs(a);\n    printf("abs(%d) = %d\\n", a, result);\n    return 0;\n}';
+    output='abs('+Math.trunc(a)+') = '+result;
+  } else if(op==='ceil'){
+    result=Math.ceil(a);
+    code='#include <stdio.h>\n#include <math.h>\n\nint main() {\n    double a = '+a+';\n    double result = ceil(a);\n    printf("ceil(%.2f) = %.1f\\n", a, result);\n    return 0;\n}';
+    output='ceil('+a+') = '+result;
+  } else if(op==='floor'){
+    result=Math.floor(a);
+    code='#include <stdio.h>\n#include <math.h>\n\nint main() {\n    double a = '+a+';\n    double result = floor(a);\n    printf("floor(%.2f) = %.1f\\n", a, result);\n    return 0;\n}';
+    output='floor('+a+') = '+result;
+  }
+  var detail='C CODE:\n';
+  detail+='════════════════════\n';
+  detail+=code+'\n\n';
+  detail+='OUTPUT:\n';
+  detail+='════════════════════\n';
+  detail+=output;
+  document.getElementById('crun-detail').textContent=detail;
+  document.getElementById('crun-res').classList.add('on');
+}
+
+var cProgs={
+  factorial:'// Factorial in C\n#include <stdio.h>\n\nlong factorial(int n) {\n    if(n == 0 || n == 1)\n        return 1;\n    return n * factorial(n-1);\n}\n\nint main() {\n    int n = 5;\n    printf("%d! = %ld\\n", n, factorial(n));\n    // Output: 5! = 120\n    return 0;\n}',
+  fibonacci:'// Fibonacci in C\n#include <stdio.h>\n\nint main() {\n    int n = 10, a = 0, b = 1;\n    printf("Fibonacci: ");\n    for(int i = 0; i < n; i++) {\n        printf("%d ", a);\n        int temp = a + b;\n        a = b;\n        b = temp;\n    }\n    // Output: 0 1 1 2 3 5 8 13 21 34\n    return 0;\n}',
+  prime:'// Prime Check in C\n#include <stdio.h>\n#include <stdbool.h>\n\nbool isPrime(int n) {\n    if(n < 2) return false;\n    for(int i = 2; i*i <= n; i++)\n        if(n % i == 0) return false;\n    return true;\n}\n\nint main() {\n    int n = 17;\n    if(isPrime(n))\n        printf("%d is Prime\\n", n);\n    else\n        printf("%d is Not Prime\\n", n);\n    // Output: 17 is Prime\n    return 0;\n}',
+  swap:'// Swap Numbers in C\n#include <stdio.h>\n\nint main() {\n    int a = 5, b = 10;\n    printf("Before: a=%d, b=%d\\n", a, b);\n    \n    // Method 1: Using temp\n    int temp = a;\n    a = b;\n    b = temp;\n    printf("After:  a=%d, b=%d\\n", a, b);\n    \n    // Method 2: XOR swap\n    a ^= b; b ^= a; a ^= b;\n    printf("XOR:    a=%d, b=%d\\n", a, b);\n    // Output: Before: a=5, b=10\n    // After:  a=10, b=5\n    return 0;\n}',
+  armstrong:'// Armstrong Number in C\n#include <stdio.h>\n#include <math.h>\n\nint main() {\n    int n = 153, temp = n, sum = 0, digits = 0;\n    while(temp != 0) { digits++; temp /= 10; }\n    temp = n;\n    while(temp != 0) {\n        int d = temp % 10;\n        sum += pow(d, digits);\n        temp /= 10;\n    }\n    if(sum == n)\n        printf("%d is Armstrong\\n", n);\n    else\n        printf("%d is Not Armstrong\\n", n);\n    // 1^3 + 5^3 + 3^3 = 1+125+27 = 153\n    // Output: 153 is Armstrong\n    return 0;\n}',
+  gcd:'// GCD using Euclidean Algorithm\n#include <stdio.h>\n\nint gcd(int a, int b) {\n    while(b != 0) {\n        int temp = b;\n        b = a % b;\n        a = temp;\n    }\n    return a;\n}\n\nint main() {\n    int a = 48, b = 18;\n    printf("GCD(%d, %d) = %d\\n", a, b, gcd(a, b));\n    int lcm = (a * b) / gcd(a, b);\n    printf("LCM(%d, %d) = %d\\n", a, b, lcm);\n    // Output: GCD(48, 18) = 6\n    //         LCM(48, 18) = 144\n    return 0;\n}',
+  power:'// Power without pow() function\n#include <stdio.h>\n\nlong power(int base, int exp) {\n    long result = 1;\n    while(exp > 0) {\n        if(exp % 2 == 1)\n            result *= base;\n        base *= base;\n        exp /= 2;\n    }\n    return result;\n}\n\nint main() {\n    printf("2^10 = %ld\\n", power(2, 10));\n    printf("3^5  = %ld\\n", power(3, 5));\n    // Output: 2^10 = 1024\n    //         3^5  = 243\n    return 0;\n}',
+  binary:'// Decimal to Binary in C\n#include <stdio.h>\n\nvoid toBinary(int n) {\n    if(n == 0) { printf("0"); return; }\n    int bits[32], count = 0;\n    while(n > 0) {\n        bits[count++] = n % 2;\n        n /= 2;\n    }\n    for(int i = count-1; i >= 0; i--)\n        printf("%d", bits[i]);\n}\n\nint main() {\n    int n = 42;\n    printf("%d in binary = ", n);\n    toBinary(n);\n    printf("\\n");\n    // Output: 42 in binary = 101010\n    return 0;\n}'
+};
+
+function showCProg(prog){
+  document.getElementById('cprog-detail').textContent=cProgs[prog];
+  document.getElementById('cprog-res').classList.add('on');
+}
+
+var cQuizzes=[
+  {code:'int a=5, b=3;\nprintf("%d", a+b);',ans:'8',explanation:'5+3=8'},
+  {code:'int a=10;\nprintf("%d", a%3);',ans:'1',explanation:'10 ÷ 3 = 3 remainder 1'},
+  {code:'int a=2;\nprintf("%d", a<<2);',ans:'8',explanation:'Left shift 2 times = 2×4=8'},
+  {code:'int a=16;\nprintf("%d", a>>2);',ans:'4',explanation:'Right shift 2 times = 16÷4=4'},
+  {code:'int a=5, b=5;\nprintf("%d", a==b);',ans:'1',explanation:'5==5 is true = 1 in C'},
+  {code:'int a=7;\nprintf("%d", a&3);',ans:'3',explanation:'0111 AND 0011 = 0011 = 3'},
+  {code:'float a=7.0/2;\nprintf("%.1f", a);',ans:'3.5',explanation:'7.0/2 = 3.5 (float division)'},
+  {code:'int a=7/2;\nprintf("%d", a);',ans:'3',explanation:'7/2 = 3 (integer division, drops decimal)'},
+  {code:'int a=5;\nprintf("%d", a++);',ans:'5',explanation:'Post-increment: prints 5 THEN increments'},
+  {code:'int a=5;\nprintf("%d", ++a);',ans:'6',explanation:'Pre-increment: increments THEN prints 6'},
+  {code:'int a=3, b=4;\nprintf("%d", a^b);',ans:'7',explanation:'0011 XOR 0100 = 0111 = 7'},
+  {code:'printf("%d", sizeof(int));',ans:'4',explanation:'int is 4 bytes on most systems'}
+];
+var currentQuiz=null;
+
+function newCQuiz(){
+  currentQuiz=cQuizzes[Math.floor(Math.random()*cQuizzes.length)];
+  document.getElementById('cquiz-code').textContent=currentQuiz.code;
+  document.getElementById('cquiz-ans').value='';
+  document.getElementById('cquiz-feedback').textContent='';
+  document.getElementById('cquiz-res').classList.add('on');
+}
+
+function checkCQuiz(){
+  if(!currentQuiz){alert('First press New Question!');return;}
+  var ans=document.getElementById('cquiz-ans').value.trim();
+  if(!ans){alert('Answer দাও!');return;}
+  var fb=document.getElementById('cquiz-feedback');
+  if(ans===currentQuiz.ans){
+    fb.textContent='✅ Correct! '+currentQuiz.explanation;
+    fb.style.color='#4ecca3';
+  } else {
+    fb.textContent='❌ Wrong! Correct: '+currentQuiz.ans+'\n'+currentQuiz.explanation;
+    fb.style.color='#f87171';
+  }
+}
 // CURRENCY
 function convertCurr(){var v=parseFloat(document.getElementById('curr-val').value),f=document.getElementById('curr-from').value,t=document.getElementById('curr-to').value;if(isNaN(v)){alert('Amount দাও!');return;}var rates={USD:1,BDT:110,INR:83,EUR:0.92,GBP:0.79,SAR:3.75,AED:3.67,MYR:4.72};var result=(v/rates[f])*rates[t];document.getElementById('curr-ans').textContent=result.toFixed(2)+' '+t;document.getElementById('curr-detail').textContent='1 '+f+' = '+(rates[t]/rates[f]).toFixed(4)+' '+t+'\n'+v+' '+f+' = '+result.toFixed(4)+' '+t;document.getElementById('curr-res').classList.add('on');}
 </script>
